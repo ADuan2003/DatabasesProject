@@ -1,0 +1,49 @@
+Positions(position, minSalary, maxSalary)
+#position primary key
+
+HealthInsurance (coverage)
+#coverage primary key
+
+EmployeeInfo (EmployeeID, SSN, Name, gender, DoB, PrimaryAddress, PhoneNumber, HighestDegree, YearsExperience, 
+HiringPosition, HiringSalary, CurrentPosition, CurrentSalary, Coverage)
+#EmployeeID primary key
+#HiringPosition and CurrentPosition foreign keys from Positions(position)
+#Coverage foreign key from HealthInsurance(coverage)
+#HiringSalary and CurrentSalary must be between their respective positions' minSalary and maxSalary
+
+Departments (department)
+#department primary key
+
+EmployeeAssignments (EmployeeID, Department, StartDate, EndDate)
+#EmployeeID foreign key from EmployeeInfo(EmployeeID)
+#Department foreign key from Departments(department)
+#(EmployeeID, Department, StartDate) primary key
+
+Benefits (benefit)
+#benefit primary key
+
+EmployeeBenefits (EmployeeID, Benefit, StartDate, EndDate)
+#EmployeeID foreign key from EmployeeInfo(EmployeeID)
+#Benefit foreign key from Benefits(benefit)
+#(EmployeeID, Department, StartDate) primary key
+
+ProjectStatus (status)
+#status primary key
+
+Projects (Project, Department, ProjectLeader, Status)
+#Project primary key
+#Department foreign key from Deparments(Department)
+#ProjectLeader foreign key from EmployeeInfo(EmployeeID)
+#Status foreign key from ProjectStatus(status)
+
+Roles(role)
+#role primary keys
+
+EmployeeProjects (EmployeeID, Project, Role, Current)
+#(EmployeeID, Project, Role) primary key
+#Current being true or false allows us to keep history of roles
+#EmployeeID foreign key from EmployeeInfo(EmployeeID)
+#Project foreign key from Projects(Project)
+#Role foreign key from Roles(role)
+
+
