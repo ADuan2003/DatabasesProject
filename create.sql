@@ -72,4 +72,16 @@ CREATE TABLE Projects
   FOREIGN KEY KA (Status) references ProjectStatus(status) ON DELETE CASCADE,
   PRIMARY KEY (Project));
 
+CREATE TABLE Roles
+(role CHAR(20) NOT NULL,
+  PRIMARY KEY (role));
 
+CREATE TABLE EmployeeProjects
+(EmployeeID SMALLINT NOT NULL,
+  Project CHAR(20) NOT NULL,
+  Role CHAR(20) NOT NULL,
+  Current BOOLEAN NOT NULL,
+  FOREIGN KEY KB (EmployeeID) references EmployeeInfo(EmployeeID) ON DELETE CASCADE,
+  FOREIGN KEY KC (Project) references Projects(Project) ON DELETE CASCADE,
+  FOREIGN KEY KD (Role) references Roles(role) ON DELETE CASCADE,
+  PRIMARY KEY (Employee, Project, Role));
