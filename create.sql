@@ -26,9 +26,9 @@ CREATE TABLE EmployeeInfo
   CurrentPosition CHAR(40) NOT NULL,
   CurrentSalary SMALLINT NOT NULL,
   Coverage CHAR(40) NOT NULL,
-  FOREIGN KEY K1 (HiringPosition) references Positions(position) ON DELETE CASCADE,
-  FOREIGN KEY K2 (CurrentPosition) references Positions(position) ON DELETE CASCADE,
-  FOREIGN KEY K3 (Coverage) references HealthInsurance(coverage) ON DELETE CASCADE,
+  FOREIGN KEY (HiringPosition) references Positions(position) ON DELETE CASCADE,
+  FOREIGN KEY (CurrentPosition) references Positions(position) ON DELETE CASCADE,
+  FOREIGN KEY (Coverage) references HealthInsurance(coverage) ON DELETE CASCADE,
   PRIMARY KEY (EmployeeID));
 #how to verify that salary is within range?
 
@@ -41,8 +41,8 @@ CREATE TABLE EmployeeAssignments
   Department CHAR(30) NOT NULL,
   StartDate DATE NOT NULL,
   EndDate DATE NOT NULL,
-  FOREIGN KEY K4 (EmployeeID) references EmployeeInfo(EmployeeID) ON DELETE CASCADE,
-  FOREIGN KEY K5 (Department) references Departments(department) ON DELETE CASCADE,
+  FOREIGN KEY (EmployeeID) references EmployeeInfo(EmployeeID) ON DELETE CASCADE,
+  FOREIGN KEY (Department) references Departments(department) ON DELETE CASCADE,
   PRIMARY KEY (EmployeeID, Department, StartDate));
 
 CREATE TABLE Benefits
@@ -54,8 +54,8 @@ CREATE TABLE EmployeeBenefits
   Benefit CHAR(30) NOT NULL,
   StartDate DATE NOT NULL,
   EndDate DATE NOT NULL,
-  FOREIGN KEY K6 (EmployeeID) references EmployeeInfo(EmployeeID) ON DELETE CASCADE,
-  FOREIGN KEY K7 (Benefit) references Benefits(benefit) ON DELETE CASCADE,
+  FOREIGN KEY (EmployeeID) references EmployeeInfo(EmployeeID) ON DELETE CASCADE,
+  FOREIGN KEY (Benefit) references Benefits(benefit) ON DELETE CASCADE,
   PRIMARY KEY (EmployeeID, Department, StartDate));
 
 CREATE TABLE ProjectStatus
@@ -67,9 +67,9 @@ CREATE TABLE Projects
   Department CHAR(30) NOT NULL,
   ProjectLeader SMALLINT NOT NULL,
   Status CHAR(20) NOT NULL,
-  FOREIGN KEY K8 (Department) references Department(department) ON DELETE CASCADE,
-  FOREIGN KEY K9 (ProjectLeader) references EmployeeInfo(EmployeeID) ON DELETE CASCADE,
-  FOREIGN KEY KA (Status) references ProjectStatus(status) ON DELETE CASCADE,
+  FOREIGN KEY (Department) references Department(department) ON DELETE CASCADE,
+  FOREIGN KEY (ProjectLeader) references EmployeeInfo(EmployeeID) ON DELETE CASCADE,
+  FOREIGN KEY (Status) references ProjectStatus(status) ON DELETE CASCADE,
   PRIMARY KEY (Project));
 
 CREATE TABLE Roles
@@ -82,7 +82,7 @@ CREATE TABLE EmployeeProjects
   Role CHAR(30) NOT NULL,
   StartDate DATE NOT NULL,
   EndDate DATE NOT NULL, 
-  FOREIGN KEY KB (EmployeeID) references EmployeeInfo(EmployeeID) ON DELETE CASCADE,
-  FOREIGN KEY KC (Project) references Projects(Project) ON DELETE CASCADE,
-  FOREIGN KEY KD (Role) references Roles(role) ON DELETE CASCADE,
+  FOREIGN KEY (EmployeeID) references EmployeeInfo(EmployeeID) ON DELETE CASCADE,
+  FOREIGN KEY (Project) references Projects(Project) ON DELETE CASCADE,
+  FOREIGN KEY (Role) references Roles(role) ON DELETE CASCADE,
   PRIMARY KEY (Employee, Project, Role));
