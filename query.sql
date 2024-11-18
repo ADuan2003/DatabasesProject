@@ -13,7 +13,8 @@ SELECT DISTINCT EmployeeID
   
 #3 -- Finding who are employees working on a given project
 #proj is the given project
-SELECT EmployeeID
+#should name be included?
+SELECT (EmployeeID, Name)
   FROM EmployeeProjects
   WHERE Project = proj AND Current = TRUE;
 
@@ -48,17 +49,34 @@ SELECT EmployeeID
   WHERE Current = TRUE AND Project = Proj AND Role = role;
 
 #9 -- Finding all active projects
+SELECT Project
+  FROM Projects
+  WHERE Status = 'in-progress' OR Status = 'new';
 
 #10 -- Finding any information of each department.
+# probably requires a join
 
 #11 -- Finding the current role of an employee
+# emp is the employee
+SELECT Role
+  FROM EmployeeProjects
+  WHERE Current = TRUE AND EmployeeID = emp;
+  
 
 #12 -- Finding all roles of an employees along with the date
 # I presume this meant 'employee'
 
 #13 -- Finding the number of employees who have certain health plan
+# HealthPlan is our variable
+SELECT COUNT(EmployeeInfo)
+  FROM EmployeeInfo
+  WHERE Coverage = HealthPlan;
 
 #14 -- Finding the number of employees for each and all the types of health plan
+#very uncertain about this one
+SELECT DISTINCT (COUNT(Coverage), Coverage)
+  FROM EmployeeInfo
+  GROUP BY Coverage;
 
 #15 -- Finding if the salary of underpaid female employees (namely, those who for the same role and level as their male counter-part were paid less) is improved?
 
@@ -69,6 +87,10 @@ SELECT (minSalary, maxSalary)
   WHERE position = pos;
 
 #17 -- Finding the number of projects per project status
+#very uncertain about this one
+SELECT DISTINCT (COUNT(Status), Status)
+  FROM Projects
+  GROUP BY Status;
 
 #18 -- Finding the start & end date of a given employee for any of the employee’s department(s)
 #emp is employee and dep is department
@@ -82,8 +104,13 @@ SELECT (a.Project, b.Name)
   WHERE a.ProjectLeader == b.EmployeeID;
 
 #20 -- Finding whose salaries are increased by 20% since their hiring in the company
+#does this include more than 20%?
+SELECT (EmployeeID, Name)
+  FROM EmployeeInfo
+  WHERE 4*CurrentSalary >= 5*HiringSalary;
 
 #21 -- Finding which position type has the highest average salary
+
 
 #22 -- In addition to above queries, you may come up with other queries.
 
