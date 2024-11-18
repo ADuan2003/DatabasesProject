@@ -20,4 +20,11 @@ VALUES
 ('completed'),
 ('on-hold');
 
+INSERT INTO HealthInsurance(coverage)
+VALUES
+  ('company'),
+  ('family member'),
+  ('Medicare'),
+  ('Affordable Care Act');
+
 #these are the specified values to insert; I suppose we'll write up functions in whatever language we use that enables more detailed insertions
