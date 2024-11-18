@@ -39,9 +39,8 @@ Projects (Project, Department, ProjectLeader, Status)
 Roles(role)
 #role primary keys
 
-EmployeeProjects (EmployeeID, Project, Role, Current)
+EmployeeProjects (EmployeeID, Project, Role, StartDate, EndDate)
 #(EmployeeID, Project, Role) primary key
-#Current being true or false allows us to keep history of roles
 #EmployeeID foreign key from EmployeeInfo(EmployeeID)
 #Project foreign key from Projects(Project)
 #Role foreign key from Roles(role)
