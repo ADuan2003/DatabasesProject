@@ -2,14 +2,14 @@
 # emp is the given EmployeeID
 SELECT *
   FROM EmployeeInfo
-  WHERE (EmployeeID = emp);
+  WHERE EmployeeID = emp;
 
 #2 -- Finding who are employees of a given department
 # dept is the given Department
 # look into how to do the comparison -- maybe make dates yyyy-mm-dd?
 SELECT DISTINCT EmployeeID
   FROM EmployeeInfo
-  WHERE (EndDate >= GetDate() && Department = dept)
+  WHERE EndDate >= GetDate() && Department = dept
   
 #3 -- Finding who are employees working on a given project
 
@@ -40,12 +40,23 @@ SELECT DISTINCT EmployeeID
 #15 -- Finding if the salary of underpaid female employees (namely, those who for the same role and level as their male counter-part were paid less) is improved?
 
 #16 -- Finding min & max salary for a given position
+#pos is position
+SELECT (minSalary, maxSalary)
+  FROM Positions
+  WHERE position = pos;
 
 #17 -- Finding the number of projects per project status
 
 #18 -- Finding the start & end date of a given employee for any of the employee’s department(s)
+#emp is employee and dep is department
+SELECT (StartDate, EndDate)
+  FROM EmployeeAssignments
+  WHERE EmployeeID = emp AND Department = dep;
 
 #19 -- Finding the name of all project leaders along with the name of project
+SELECT (a.Project, b.Name)
+  FROM Projects a, EmployeeID b,
+  WHERE a.ProjectLeader == b.EmployeeID;
 
 #20 -- Finding whose salaries are increased by 20% since their hiring in the company
 
