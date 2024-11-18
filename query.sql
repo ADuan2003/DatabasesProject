@@ -12,17 +12,40 @@ SELECT DISTINCT EmployeeID
   WHERE EndDate >= GetDate() && Department = dept
   
 #3 -- Finding who are employees working on a given project
-
+#proj is the given project
+SELECT EmployeeID
+  FROM EmployeeProjects
+  WHERE Project = proj AND Current = TRUE;
 
 #4 -- Finding the zip code that most employees live in
+# how does address relate to ZIP code?
+  
 
 #5 -- Finding the project info of any given project
+#proj is the given project
+SELECT *
+  FROM Projects
+  WHERE Project = proj;
 
 #6 -- Finding the number of employees working on a given project at any given time
+#proj is the given project
+# does this 'given time' possibly refer to a past time???
+SELECT COUNT (EmployeeID)
+  FROM EmployeeProjects
+  WHERE Project = proj AND Current = True;
 
 #7 -- Finding the number of employees who have a certain benefit
+# ben is the given benefit
+# look into how to do the comparison -- maybe make dates yyyy-mm-dd?
+SELECT COUNT (DISTINCT EmployeeID)
+  FROM EmployeeBenefits
+  WHERE EndDate >= GetDate() && Benefit = ben;
 
 #8 -- Finding the employee who has a given role in a given project
+# role is the given role, and proj is the given project
+SELECT EmployeeID
+  FROM EmployeeProjects
+  WHERE Current = TRUE AND Project = Proj AND Role = role;
 
 #9 -- Finding all active projects
 
