@@ -56,7 +56,7 @@ CREATE TABLE EmployeeBenefits
   EndDate DATE NOT NULL,
   FOREIGN KEY (EmployeeID) references EmployeeInfo(EmployeeID) ON DELETE CASCADE,
   FOREIGN KEY (Benefit) references Benefits(benefit) ON DELETE CASCADE,
-  PRIMARY KEY (EmployeeID, Department, StartDate));
+  PRIMARY KEY (EmployeeID, Benefit, StartDate));
 
 CREATE TABLE ProjectStatus
 (status CHAR(20) NOT NULL,
