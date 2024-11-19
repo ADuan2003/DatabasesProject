@@ -1,3 +1,10 @@
+#stuff to fix -- I asked Amro
+  #1 --> EndDates can be NULL; queries should see if they are 1) NULL or 2) in the future
+  #2 --> address table should be created with address and ZIP code
+  #3 --> StartDate, EndDate used for query on EmployeeProjects
+  #4 --> 'a date' can refer to a past date
+  #5 --> query no. 15 is about making comparison from current data
+
 #1 -- Finding employee’s data for a given employee
 # emp is the given EmployeeID
 SELECT *
