@@ -1,4 +1,9 @@
 #a list of commands for creating tables
+CREATE TABLE Addresses
+  (address CHAR(80) NOT NULL,
+  zipCode SMALLINT NOT NULL,
+  PRIMARY KEY (address));
+  
 CREATE TABLE Positions 
 (position CHAR(40) NOT NULL,
   minSalary SMALLINT NOT NULL,
@@ -40,10 +45,10 @@ CREATE TABLE EmployeeAssignments
 (EmployeeID SMALLINT NOT NULL,
   Department CHAR(30) NOT NULL,
   StartDate DATE NOT NULL,
-  EndDate DATE NOT NULL,
+  EndDate DATE, 
   FOREIGN KEY (EmployeeID) references EmployeeInfo(EmployeeID) ON DELETE CASCADE,
   FOREIGN KEY (Department) references Departments(department) ON DELETE CASCADE,
-  PRIMARY KEY (EmployeeID, Department, StartDate));
+  PRIMARY KEY (EmployeeID, Department, StartDate)); #EndDate nullable
 
 CREATE TABLE Benefits
 (benefit CHAR(30) NOT NULL,
@@ -53,10 +58,11 @@ CREATE TABLE EmployeeBenefits
 (EmployeeID SMALLINT NOT NULL,
   Benefit CHAR(30) NOT NULL,
   StartDate DATE NOT NULL,
-  EndDate DATE NOT NULL,
+  EndDate DATE,
   FOREIGN KEY (EmployeeID) references EmployeeInfo(EmployeeID) ON DELETE CASCADE,
   FOREIGN KEY (Benefit) references Benefits(benefit) ON DELETE CASCADE,
-  PRIMARY KEY (EmployeeID, Benefit, StartDate));
+  PRIMARY KEY (EmployeeID, Benefit, StartDate)); #EndDate nullable
+
 
 CREATE TABLE ProjectStatus
 (status CHAR(20) NOT NULL,
@@ -81,8 +87,8 @@ CREATE TABLE EmployeeProjects
   Project CHAR(40) NOT NULL,
   Role CHAR(30) NOT NULL,
   StartDate DATE NOT NULL,
-  EndDate DATE NOT NULL, 
+  EndDate DATE, 
   FOREIGN KEY (EmployeeID) references EmployeeInfo(EmployeeID) ON DELETE CASCADE,
   FOREIGN KEY (Project) references Projects(Project) ON DELETE CASCADE,
   FOREIGN KEY (Role) references Roles(role) ON DELETE CASCADE,
-  PRIMARY KEY (Employee, Project, Role));
+  PRIMARY KEY (Employee, Project, Role)); #EndDate nullable
