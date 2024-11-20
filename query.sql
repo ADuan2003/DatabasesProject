@@ -1,9 +1,5 @@
 #stuff to fix -- I asked Amro
-  #1 --> EndDates can be NULL; queries should see if they are 1) NULL or 2) in the future
-  #2 --> address table should be created with address and ZIP code
-  #3 --> StartDate, EndDate used for query on EmployeeProjects
-  #4 --> 'a date' can refer to a past date
-  #5 --> query no. 15 is about making comparison from current data
+  #Priority 1 --> finish queries
 
 #1 -- Finding employee’s data for a given employee
 # emp is the given EmployeeID
@@ -16,14 +12,14 @@ SELECT *
 # look into how to do the comparison -- maybe make dates yyyy-mm-dd?
 SELECT DISTINCT EmployeeID
   FROM EmployeeInfo
-  WHERE EndDate >= GetDate() && Department = dept
+  WHERE (EndDate IS NULL OR EndDate >= GetDate()) && Department = dept
   
 #3 -- Finding who are employees working on a given project
 #proj is the given project
 #should name be included?
 SELECT (EmployeeID, Name)
   FROM EmployeeProjects
-  WHERE Project = proj AND Current = TRUE;
+  WHERE Project = proj AND (EndDate IS NULL OR EndDate >= GetDate());
 
 #4 -- Finding the zip code that most employees live in
 # how does address relate to ZIP code?
@@ -37,23 +33,24 @@ SELECT *
 
 #6 -- Finding the number of employees working on a given project at any given time
 #proj is the given project
+#date is the given date
 # does this 'given time' possibly refer to a past time???
 SELECT COUNT (EmployeeID)
   FROM EmployeeProjects
-  WHERE Project = proj AND Current = True;
+  WHERE Project = proj AND (EndDate IS NULL OR EndDate >= date) AND (StartDate <= date);
 
 #7 -- Finding the number of employees who have a certain benefit
 # ben is the given benefit
 # look into how to do the comparison -- maybe make dates yyyy-mm-dd?
 SELECT COUNT (DISTINCT EmployeeID)
   FROM EmployeeBenefits
-  WHERE EndDate >= GetDate() && Benefit = ben;
+  WHERE (EndDate IS NULL OR EndDate >= GetDate()) AND Benefit = ben;
 
 #8 -- Finding the employee who has a given role in a given project
 # role is the given role, and proj is the given project
 SELECT EmployeeID
   FROM EmployeeProjects
-  WHERE Current = TRUE AND Project = Proj AND Role = role;
+  WHERE (EndDate IS NULL OR EndDate >= GetDate()) AND Project = Proj AND Role = role;
 
 #9 -- Finding all active projects
 SELECT Project
@@ -67,7 +64,7 @@ SELECT Project
 # emp is the employee
 SELECT Role
   FROM EmployeeProjects
-  WHERE Current = TRUE AND EmployeeID = emp;
+  WHERE (EndDate IS NULL OR EndDate >= GetDate()) AND EmployeeID = emp;
   
 
 #12 -- Finding all roles of an employees along with the date
