@@ -1,3 +1,5 @@
+-- I googled and apparently comments in sql are actually with "--"
+
 #stuff to fix -- I asked Amro
   #Priority 1 --> finish queries
 
@@ -10,6 +12,7 @@ SELECT *
 #2 -- Finding who are employees of a given department
 # dept is the given Department
 # look into how to do the comparison -- maybe make dates yyyy-mm-dd?
+-- What is the usual format for Date in SQL again? Just put it in that format and the operators should probably just work? 
 SELECT DISTINCT EmployeeID
   FROM EmployeeInfo
   WHERE (EndDate IS NULL OR EndDate >= GetDate()) && Department = dept
@@ -17,13 +20,15 @@ SELECT DISTINCT EmployeeID
 #3 -- Finding who are employees working on a given project
 #proj is the given project
 #should name be included?
+-- if you want name you're gonna need a join with EmployeeInfo -E
 SELECT (EmployeeID, Name)
   FROM EmployeeProjects
   WHERE Project = proj AND (EndDate IS NULL OR EndDate >= GetDate());
 
 #4 -- Finding the zip code that most employees live in
 # how does address relate to ZIP code?
-  
+--I'm thinking we're gonna split address into multiple sections (street, city, state, zip, etc.), and then have a table for address??
+--  Not entirely sure how the foreign keys are gonna work tho (unless we just dump everything into EmployeeInfo, but will that still maintain 3NF and losslessness?) -E
 
 #5 -- Finding the project info of any given project
 #proj is the given project
