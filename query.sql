@@ -93,9 +93,13 @@ SELECT COUNT(EmployeeInfo)
 
 #14 -- Finding the number of employees for each and all the types of health plan
 #very uncertain about this one
-SELECT DISTINCT (COUNT(Coverage), Coverage)
-  FROM EmployeeInfo
-  GROUP BY Coverage;
+--SELECT DISTINCT (COUNT(Coverage), Coverage)
+--  FROM EmployeeInfo
+--  GROUP BY Coverage;
+--this is getting the number of coverage types there are 
+select distinct count(employeeid)
+  from employeeInfo
+  group by coverage; 
 
 #15 -- Finding if the salary of underpaid female employees (namely, those who for the same role and level as their male counter-part were paid less) is improved?
 --how would you find the improvement of something...? Especially since we're (presumably) not storing former salaries of people... 
