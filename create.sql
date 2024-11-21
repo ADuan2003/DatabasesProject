@@ -48,7 +48,7 @@ CREATE TABLE EmployeeAssignments
   EndDate DATE, 
   FOREIGN KEY (EmployeeID) references EmployeeInfo(EmployeeID) ON DELETE CASCADE,
   FOREIGN KEY (Department) references Departments(department) ON DELETE CASCADE,
-  PRIMARY KEY (EmployeeID, Department, StartDate)); #EndDate nullable
+  PRIMARY KEY (EmployeeID, Department, StartDate)); --EndDate nullable
 
 CREATE TABLE Benefits
 (benefit CHAR(30) NOT NULL,
@@ -61,7 +61,7 @@ CREATE TABLE EmployeeBenefits
   EndDate DATE,
   FOREIGN KEY (EmployeeID) references EmployeeInfo(EmployeeID) ON DELETE CASCADE,
   FOREIGN KEY (Benefit) references Benefits(benefit) ON DELETE CASCADE,
-  PRIMARY KEY (EmployeeID, Benefit, StartDate)); #EndDate nullable
+  PRIMARY KEY (EmployeeID, Benefit, StartDate)); --EndDate nullable
 
 
 CREATE TABLE ProjectStatus
@@ -91,4 +91,4 @@ CREATE TABLE EmployeeProjects
   FOREIGN KEY (EmployeeID) references EmployeeInfo(EmployeeID) ON DELETE CASCADE,
   FOREIGN KEY (Project) references Projects(Project) ON DELETE CASCADE,
   FOREIGN KEY (Role) references Roles(role) ON DELETE CASCADE,
-  PRIMARY KEY (Employee, Project, Role)); #EndDate nullable
+  PRIMARY KEY (Employee, Project, Role)); --EndDate nullable
