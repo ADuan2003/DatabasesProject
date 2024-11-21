@@ -66,9 +66,10 @@ SELECT Project
 
 #10 -- Finding any information of each department.
 # probably requires a join
---I'm sensing a chain of ifs -E
+--I'm sensing a chain of ifs... -E
 select --wanted attributes
   from --projects or employeeassigments depending on the wanted info 
+  where --insert operators
 
 #11 -- Finding the current role of an employee
 # emp is the employee
@@ -79,6 +80,10 @@ SELECT Role
 
 #12 -- Finding all roles of an employees along with the date
 # I presume this meant 'employee'
+--depending on how info is entered, we might need a join to find the id associated with an employee's name 
+select role, startdate, enddate
+  from EmployeeProjects
+  where --find emp
 
 #13 -- Finding the number of employees who have certain health plan
 # HealthPlan is our variable
@@ -93,6 +98,8 @@ SELECT DISTINCT (COUNT(Coverage), Coverage)
   GROUP BY Coverage;
 
 #15 -- Finding if the salary of underpaid female employees (namely, those who for the same role and level as their male counter-part were paid less) is improved?
+--how would you find the improvement of something...? Especially since we're (presumably) not storing former salaries of people... 
+--something something data warehouse? 
 
 #16 -- Finding min & max salary for a given position
 #pos is position
@@ -124,7 +131,11 @@ SELECT (EmployeeID, Name)
   WHERE 4*CurrentSalary >= 5*HiringSalary;
 
 #21 -- Finding which position type has the highest average salary
-
+select max(avg(CurrentSalary))
+  from (
+    select avg(CurrentSalary) 
+    from EmployeeInfo
+    group by CurrentPosition)
 
 #22 -- In addition to above queries, you may come up with other queries.
 
