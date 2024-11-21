@@ -97,7 +97,7 @@ SELECT COUNT(EmployeeInfo)
 --  FROM EmployeeInfo
 --  GROUP BY Coverage;
 --this is getting the number of coverage types there are 
-select distinct count(employeeid)
+select count(distinct employeeid)
   from employeeInfo
   group by coverage; 
 
@@ -117,7 +117,7 @@ SELECT (minSalary, maxSalary)
 --  FROM Projects
 --  GROUP BY Status;
 --again, this is counting the number of statuses
-select distinct count(project), status 
+select count(distinct project), status 
   from projects
   group by status; 
 
