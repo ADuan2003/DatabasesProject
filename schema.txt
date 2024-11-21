@@ -25,7 +25,9 @@ Benefits (benefit)
 EmployeeBenefits (EmployeeID, Benefit, StartDate, EndDate)
 #EmployeeID foreign key from EmployeeInfo(EmployeeID)
 #Benefit foreign key from Benefits(benefit)
-#(EmployeeID, Department, StartDate) primary key
+#(EmployeeID, Benefit, StartDate) primary key
+//shouldn't we add the name of the benefit too? And make the primary key (EmployeeID, BenefitName, StartDate)?
+//at least if Benefits is storing only the types of benefits 
 
 ProjectStatus (status)
 #status primary key
@@ -40,7 +42,9 @@ Roles(role)
 #role primary keys
 
 EmployeeProjects (EmployeeID, Project, Role, StartDate, EndDate)
-#(EmployeeID, Project, Role) primary key
+#(EmployeeID, Project, Role) primary key 
+//isn't it theoretically possible that someone works the same role at the same project but at different times? 
+//I think start or end date would be better for being part of the primary key 
 #EmployeeID foreign key from EmployeeInfo(EmployeeID)
 #Project foreign key from Projects(Project)
 #Role foreign key from Roles(role)
