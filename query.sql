@@ -113,9 +113,13 @@ SELECT (minSalary, maxSalary)
 
 #17 -- Finding the number of projects per project status
 #very uncertain about this one
-SELECT DISTINCT (COUNT(Status), Status)
-  FROM Projects
-  GROUP BY Status;
+--SELECT DISTINCT (COUNT(Status), Status)
+--  FROM Projects
+--  GROUP BY Status;
+--again, this is counting the number of statuses
+select distinct count(project), status 
+  from projects
+  group by status; 
 
 #18 -- Finding the start & end date of a given employee for any of the employee’s department(s)
 #emp is employee and dep is department
