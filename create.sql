@@ -15,6 +15,9 @@ CREATE TABLE Positions
 CREATE TABLE HealthInsurance
 (coverage CHAR(40) NOT NULL,
   PRIMARY KEY (coverage));
+--this is referring to the name of the health insurance, yeah?
+--I feel like you could remove this table and just put this info in EmployeeBenefits 
+--altho if you did that, that might cause redundant updating (having to update both employeeInfo and employeeBenefits when health insurance changes...)
 
 CREATE TABLE EmployeeInfo
 (EmployeeID SMALLINT NOT NULL,
