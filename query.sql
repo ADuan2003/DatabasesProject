@@ -41,7 +41,7 @@ SELECT *
 #date is the given date
 # does this 'given time' possibly refer to a past time???
 -- Probably -E 
---Do we wanna add "distinct"? Ex. select distinct count(employeeid) -E
+--Do we wanna add "distinct"? Ex. select count(distinct employeeid) -E
 SELECT COUNT (EmployeeID)
   FROM EmployeeProjects
   WHERE Project = proj AND (EndDate IS NULL OR EndDate >= date) AND (StartDate <= date);
