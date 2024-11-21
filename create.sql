@@ -1,4 +1,4 @@
-#a list of commands for creating tables
+--a list of commands for creating tables
 CREATE TABLE Addresses
   (address CHAR(80) NOT NULL,
   zipCode SMALLINT NOT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE EmployeeInfo
   FOREIGN KEY (CurrentPosition) references Positions(position) ON DELETE CASCADE,
   FOREIGN KEY (Coverage) references HealthInsurance(coverage) ON DELETE CASCADE,
   PRIMARY KEY (EmployeeID));
-#how to verify that salary is within range?
+--how to verify that salary is within range?
 
 CREATE TABLE Departments
 (department CHAR(30) NOT NULL,
