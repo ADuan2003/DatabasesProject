@@ -40,6 +40,8 @@ SELECT *
 #proj is the given project
 #date is the given date
 # does this 'given time' possibly refer to a past time???
+-- Probably -E 
+--Do we wanna add "distinct"? Ex. select distinct count(employeeid) -E
 SELECT COUNT (EmployeeID)
   FROM EmployeeProjects
   WHERE Project = proj AND (EndDate IS NULL OR EndDate >= date) AND (StartDate <= date);
@@ -64,6 +66,9 @@ SELECT Project
 
 #10 -- Finding any information of each department.
 # probably requires a join
+--I'm sensing a chain of ifs -E
+select --wanted attributes
+  from --projects or employeeassigments depending on the wanted info 
 
 #11 -- Finding the current role of an employee
 # emp is the employee
