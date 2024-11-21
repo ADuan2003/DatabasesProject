@@ -136,7 +136,10 @@ SELECT (a.Project, b.Name)
 #does this include more than 20%?
 SELECT (EmployeeID, Name)
   FROM EmployeeInfo
-  WHERE 4*CurrentSalary >= 5*HiringSalary;
+  WHERE 5*CurrentSalary >= 6*HiringSalary;
+-- currentSalary >= 1.2 * hiringSalary
+-- 10 * currentSalary >= 12 * hiringSalary
+-- 5 * currentSalary >= 6 * hiringSalary
 
 #21 -- Finding which position type has the highest average salary
 select max(avg(CurrentSalary))
