@@ -128,8 +128,6 @@ conn.commit()
 
 #queries go here
 
-#main method goes here
-
 #insert format/syntax
 #def funcName(args): 
 # cursor.execute('insert into table (args) values (?)', (args))
@@ -150,3 +148,5 @@ conn.commit()
 # cursor.execute('delete from table where id = ?', (id,))
 # conn.commit()
 ## must have comma at the end of the var to make it a tuple 
+
+#main method goes here
