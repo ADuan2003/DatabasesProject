@@ -8,7 +8,6 @@ cursor = conn.cursor()
 
 #Create a table
 cursor.execute('''
---a list of commands for creating tables
 CREATE TABLE IF NOT EXISTS Addresses
   (address TEXT NOT NULL,
   zipCode SMALLINT NOT NULL,
@@ -29,11 +28,6 @@ cursor.execute('''
 CREATE TABLE IF NOT EXISTS HealthInsurance
 (coverage TEXT NOT NULL,
   PRIMARY KEY (coverage));
---this is referring to the name of the health insurance, yeah?
---I feel like you could remove this table and just put this info in EmployeeBenefits 
---altho if you did that, that might cause redundant updating 
-
--- (having to update both employeeInfo and employeeBenefits when health insurance changes...)
 ''')
 
 cursor.execute('''
@@ -56,7 +50,6 @@ CREATE TABLE IF NOT EXISTS EmployeeInfo
   FOREIGN KEY (CurrentPosition) REFERENCES Positions(position),
   FOREIGN KEY (Coverage) REFERENCES HealthInsurance(coverage),
   PRIMARY KEY (EmployeeID));
---how to verify that salary is within range?
 ''')
 
 cursor.execute('''
@@ -73,7 +66,7 @@ CREATE TABLE IF NOT EXISTS EmployeeAssignments
   EndDate DATE, 
   FOREIGN KEY (EmployeeID) REFERENCES EmployeeInfo(EmployeeID),
   FOREIGN KEY (Department) REFERENCES Departments(department),
-  PRIMARY KEY (EmployeeID, Department, StartDate)); --EndDate nullable
+  PRIMARY KEY (EmployeeID, Department, StartDate)); 
 ''')
 
 cursor.execute('''
@@ -90,7 +83,7 @@ CREATE TABLE IF NOT EXISTS EmployeeBenefits
   EndDate DATE,
   FOREIGN KEY (EmployeeID) REFERENCES EmployeeInfo(EmployeeID),
   FOREIGN KEY (Benefit) REFERENCES Benefits(benefit),
-  PRIMARY KEY (EmployeeID, Benefit, StartDate)); --EndDate nullable
+  PRIMARY KEY (EmployeeID, Benefit, StartDate)); 
 ''')
 
 cursor.execute('''
@@ -127,7 +120,7 @@ CREATE TABLE IF NOT EXISTS EmployeeProjects
   FOREIGN KEY (EmployeeID) REFERENCES EmployeeInfo(EmployeeID),
   FOREIGN KEY (Project) REFERENCES Projects(Project),
   FOREIGN KEY (Role) REFERENCES Roles(role),
-  PRIMARY KEY (Employee, Project, Role)); --EndDate nullable
+  PRIMARY KEY (Employee, Project, Role)); 
 ''')
 
 conn.commit()
