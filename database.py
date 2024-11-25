@@ -112,17 +112,17 @@ CREATE TABLE IF NOT EXISTS Roles
 ''')
 
 cursor.execute('''
-  CREATE TABLE if not exists EmployeeProjects
-  EmployeeID SMALLINT not null, 
-  Project TEXT not null, 
-  Role TEXT not null, 
-  StartDate DATE not null,
+CREATE TABLE IF NOT EXISTS EmployeeProjects
+(EmployeeID SMALLINT NOT NULL, 
+  Project TEXT NOT NULL,
+  Role TEXT NOT NULL,
+  StartDate DATE NOT NULL,
   EndDate DATE, 
-  FOREIGN KEY (EmployeeID) references EmployeeInfo(EmployeeID),
+  FOREIGN KEY (EmployeeID) REFERENCES EmployeeInfo(EmployeeID),
   FOREIGN KEY (Project) REFERENCES Projects(Project),
   FOREIGN KEY (Role) REFERENCES Roles(role),
-  PRIMARY KEY (EmployeeID, Project, Role);
-  ''')
+  PRIMARY KEY (EmployeeID, Project, Role)); 
+''')
 
 conn.commit()
 
