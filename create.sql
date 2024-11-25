@@ -94,4 +94,4 @@ CREATE TABLE EmployeeProjects
   FOREIGN KEY (EmployeeID) references EmployeeInfo(EmployeeID) ON DELETE CASCADE,
   FOREIGN KEY (Project) references Projects(Project) ON DELETE CASCADE,
   FOREIGN KEY (Role) references Roles(role) ON DELETE CASCADE,
-  PRIMARY KEY (Employee, Project, Role)); --EndDate nullable
+  PRIMARY KEY (EmployeeID, Project, Role)); --EndDate nullable
