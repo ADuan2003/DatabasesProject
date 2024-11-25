@@ -134,3 +134,19 @@ conn.commit()
 #def funcName(args): 
 # cursor.execute('insert into table (args) values (?)', (args))
 # conn.commit()
+
+#get/read format/syntax
+#def funcName():
+# cursor.execute('select * from table')
+# return cursor.fetchall()
+
+#update format/syntax
+#def funcName(args): 
+# cursor.execute('update table set arg = ? where id = ?', (arg, id))
+# conn.commit()
+
+#delete format/syntax
+#def funcName(args): 
+# cursor.execute('delete from table where id = ?', (id,))
+# conn.commit()
+## must have comma at the end of the var to make it a tuple 
