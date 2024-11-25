@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS Addresses
   zipCode SMALLINT NOT NULL,
   PRIMARY KEY (address));
 ''')
+#semicolon optional? It only matters if there's multiple sql statements in one execute string
 
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS Positions 
@@ -112,7 +113,7 @@ CREATE TABLE IF NOT EXISTS Roles
 
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS EmployeeProjects
-(EmployeeID SMALLINT NOT NULL,
+(EmployeeID SMALLINT NOT NULL, 
   Project TEXT NOT NULL,
   Role TEXT NOT NULL,
   StartDate DATE NOT NULL,
@@ -129,3 +130,7 @@ conn.commit()
 
 #main method goes here
 
+#insert format/syntax
+#def funcName(args): 
+# cursor.execute('insert into table (args) values (?)', (args))
+# conn.commit()
