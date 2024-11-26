@@ -251,8 +251,10 @@ def query14():
     cursor.execute('select count(distinct employeeid), coverage from employeeInfo group by coverage')
     conn.commit()
 
-def query15():
-    #this will need some actual writing
+def query15(role, lev):
+  #not sure if this is how you'd solve the issue
+    cursor.execute('SELECT AVG(CurrentSalary) FROM EmployeeInfo WHERE Gender = 'Female' AND CurrentPosition = ? AND YearsExperience = ?', role, lev)
+    cursor.execute('SELECT AVG(CurrentSalary) FROM EmployeeInfo WHERE Gender = 'Male' AND CurrentPosition = ? AND YearsExperience = ?', role, lev)
     conn.commit()
 
 def query16(pos):
