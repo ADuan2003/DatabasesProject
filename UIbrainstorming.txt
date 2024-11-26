@@ -1,0 +1,11 @@
+DD = dropdown
+
+Find: 
+    DD(aggregate functions)          DD(aggregate functions)
+    DD(employee, project, etc.) with DD(attribute)           by DD(groupable attributes)
+Dynamic UI where selecting the entity you wanna find (ex. employee, project, etc.) allows for filtering by different attributes? 
+How will aggregate functions work? Since they can be applied to both the "find" and the "attribute"...
+
+Show all: 
+    DD(employees, projects, etc.) with DD(attribute) DD(comparisons ex. =, <, contains) Textbox(filter)
+Or should these be buttons? Ex. "show all employees" is a button (which then gives a dropdown of possible filters?)
