@@ -231,7 +231,8 @@ def query9():
     conn.commit()
 
 def query10():
-    #this will need some actual writing
+    cursor.execute('SELECT Department, EmployeeID, StartDate, EndDate FROM EmployeeAssignments GROUP BY Department')
+    cursor.execute('SELECT Department, Project, ProjectLeader, Status FROM Projects GROUP BY DEPARTMENT')
     conn.commit()
 
 def query11(emp):
@@ -239,7 +240,7 @@ def query11(emp):
     conn.commit()
 
 def query12(emp):
-    #this will need some actual writing
+    cursor.execute('select role, startdate, enddate from EmployeeProjects where EmployeeID = ?', emp)
     conn.commit()
 
 def query13(HealthPlan):
@@ -247,7 +248,7 @@ def query13(HealthPlan):
     conn.commit()
 
 def query14():
-    cursor.execute('select count(distinct employeeid) from employeeInfo group by coverage')
+    cursor.execute('select count(distinct employeeid), coverage from employeeInfo group by coverage')
     conn.commit()
 
 def query15():
