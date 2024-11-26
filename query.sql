@@ -29,7 +29,10 @@ SELECT (EmployeeID, Name)
 # how does address relate to ZIP code?
 --I'm thinking we're gonna split address into multiple sections (street, city, state, zip, etc.), and then have a table for address??
 --  Not entirely sure how the foreign keys are gonna work tho (unless we just dump everything into EmployeeInfo, but will that still maintain 3NF and losslessness?) -E
-
+SELECT zipCode
+  FROM Addresses
+  
+  
 #5 -- Finding the project info of any given project
 #proj is the given project
 SELECT *
@@ -67,9 +70,16 @@ SELECT Project
 #10 -- Finding any information of each department.
 # probably requires a join
 --I'm sensing a chain of ifs... -E
-select --wanted attributes
-  from --projects or employeeassigments depending on the wanted info 
-  where --insert operators
+--select --wanted attributes
+  --from --projects or employeeassigments depending on the wanted info 
+  --where --insert operators
+SELECT Department, EmployeeID, StartDate, EndDate
+  FROM EmployeeAssignments
+  GROUP BY Department;
+SELECT Department, Project, ProjectLeader, Status
+  FROM Projects
+  GROUP BY DEPARTMENT;
+
 
 #11 -- Finding the current role of an employee
 # emp is the employee
@@ -81,9 +91,10 @@ SELECT Role
 #12 -- Finding all roles of an employees along with the date
 # I presume this meant 'employee'
 --depending on how info is entered, we might need a join to find the id associated with an employee's name 
+--names aren't necessarily unique; I wouldn't worry about that 
 select role, startdate, enddate
   from EmployeeProjects
-  where --find emp
+  where EmployeeID = emp
 
 #13 -- Finding the number of employees who have certain health plan
 # HealthPlan is our variable
