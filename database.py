@@ -207,7 +207,7 @@ def query3(proj):
     conn.commit()
 
 def query4():
-    #this will need some actual writing
+    cursor.execute('SELECT distinct(zipCode) FROM Addresses GROUP BY zipCode HAVING count(zipCode) >= ALL (SELECT count(zipCode) FROM Addresses GROUP BY zipCode)')
     conn.commit()
 
 def query5(proj):
