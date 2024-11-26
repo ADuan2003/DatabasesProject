@@ -29,9 +29,11 @@ SELECT (EmployeeID, Name)
 # how does address relate to ZIP code?
 --I'm thinking we're gonna split address into multiple sections (street, city, state, zip, etc.), and then have a table for address??
 --  Not entirely sure how the foreign keys are gonna work tho (unless we just dump everything into EmployeeInfo, but will that still maintain 3NF and losslessness?) -E
-SELECT zipCode
+SELECT distinct(zipCode)
   FROM Addresses
-  
+  GROUP BY zipCode
+  HAVING count(zipCode) >=
+  ALL (SELECT count(zipCode) FROM Addresses GROUP BY zipCode);
   
 #5 -- Finding the project info of any given project
 #proj is the given project
@@ -115,6 +117,7 @@ select count(distinct employeeid)
 #15 -- Finding if the salary of underpaid female employees (namely, those who for the same role and level as their male counter-part were paid less) is improved?
 --how would you find the improvement of something...? Especially since we're (presumably) not storing former salaries of people... 
 --something something data warehouse? 
+
 
 #16 -- Finding min & max salary for a given position
 #pos is position
