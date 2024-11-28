@@ -114,15 +114,15 @@ CREATE TABLE IF NOT EXISTS Roles
 
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS EmployeeProjects
-(Employee SMALLINT NOT NULL,
+(EmployeeID SMALLINT NOT NULL,
   Project TEXT NOT NULL,
   Role TEXT NOT NULL,
   StartDate DATE NOT NULL,
   EndDate DATE, 
-  FOREIGN KEY (Employee) REFERENCES EmployeeInfo(EmployeeID) ON DELETE CASCADE,
+  FOREIGN KEY (EmployeeID) REFERENCES EmployeeInfo(EmployeeID) ON DELETE CASCADE,
   FOREIGN KEY (Project) REFERENCES Projects(Project) ON DELETE CASCADE,
   FOREIGN KEY (Role) REFERENCES Roles(role) ON DELETE CASCADE,
-  PRIMARY KEY (Employee, Project, Role)); 
+  PRIMARY KEY (EmployeeID, Project, Role)); 
 ''')
 
 conn.commit()
