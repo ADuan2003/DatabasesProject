@@ -1,5 +1,5 @@
 import sqlite3
-from Flask import flask, render_template
+from flask import Flask, render_template
 app = Flask(__name__)
 
 #Connect to sqlLite database (or create if it doesn't exist)
