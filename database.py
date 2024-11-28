@@ -52,9 +52,9 @@ CREATE TABLE IF NOT EXISTS EmployeeInfo
   CurrentPosition TEXT NOT NULL,
   CurrentSalary SMALLINT NOT NULL,
   Coverage TEXT NOT NULL,
-  FOREIGN KEY (HiringPosition) REFERENCES Positions(position),
-  FOREIGN KEY (CurrentPosition) REFERENCES Positions(position),
-  FOREIGN KEY (Coverage) REFERENCES HealthInsurance(coverage),
+  FOREIGN KEY (HiringPosition) REFERENCES Positions(position) ON DELETE CASCADE,
+  FOREIGN KEY (CurrentPosition) REFERENCES Positions(position) ON DELETE CASCADE,
+  FOREIGN KEY (Coverage) REFERENCES HealthInsurance(coverage) ON DELETE CASCADE,
   PRIMARY KEY (EmployeeID));
 --how to verify that salary is within range?
 ''')
@@ -71,8 +71,8 @@ CREATE TABLE IF NOT EXISTS EmployeeAssignments
   Department TEXT NOT NULL,
   StartDate DATE NOT NULL,
   EndDate DATE, 
-  FOREIGN KEY (EmployeeID) REFERENCES EmployeeInfo(EmployeeID),
-  FOREIGN KEY (Department) REFERENCES Departments(department),
+  FOREIGN KEY (EmployeeID) REFERENCES EmployeeInfo(EmployeeID) ON DELETE CASCADE,
+  FOREIGN KEY (Department) REFERENCES Departments(department) ON DELETE CASCADE,
   PRIMARY KEY (EmployeeID, Department, StartDate)); --EndDate nullable
 ''')
 
@@ -88,8 +88,8 @@ CREATE TABLE IF NOT EXISTS EmployeeBenefits
   Benefit TEXT NOT NULL,
   StartDate DATE NOT NULL,
   EndDate DATE,
-  FOREIGN KEY (EmployeeID) REFERENCES EmployeeInfo(EmployeeID),
-  FOREIGN KEY (Benefit) REFERENCES Benefits(benefit),
+  FOREIGN KEY (EmployeeID) REFERENCES EmployeeInfo(EmployeeID) ON DELETE CASCADE,
+  FOREIGN KEY (Benefit) REFERENCES Benefits(benefit) ON DELETE CASCADE,
   PRIMARY KEY (EmployeeID, Benefit, StartDate)); --EndDate nullable
 ''')
 
@@ -105,9 +105,9 @@ CREATE TABLE IF NOT EXISTS Projects
   Department TEXT NOT NULL,
   ProjectLeader SMALLINT NOT NULL,
   Status TEXT NOT NULL,
-  FOREIGN KEY (Department) REFERENCES Department(department),
-  FOREIGN KEY (ProjectLeader) REFERENCES EmployeeInfo(EmployeeID),
-  FOREIGN KEY (Status) REFERENCES ProjectStatus(status),
+  FOREIGN KEY (Department) REFERENCES Department(department) ON DELETE CASCADE,
+  FOREIGN KEY (ProjectLeader) REFERENCES EmployeeInfo(EmployeeID) ON DELETE CASCADE,
+  FOREIGN KEY (Status) REFERENCES ProjectStatus(status) ON DELETE CASCADE,
   PRIMARY KEY (Project));
 ''')
 
@@ -124,9 +124,9 @@ CREATE TABLE IF NOT EXISTS EmployeeProjects
   Role TEXT NOT NULL,
   StartDate DATE NOT NULL,
   EndDate DATE, 
-  FOREIGN KEY (EmployeeID) REFERENCES EmployeeInfo(EmployeeID),
-  FOREIGN KEY (Project) REFERENCES Projects(Project),
-  FOREIGN KEY (Role) REFERENCES Roles(role),
+  FOREIGN KEY (EmployeeID) REFERENCES EmployeeInfo(EmployeeID) ON DELETE CASCADE,
+  FOREIGN KEY (Project) REFERENCES Projects(Project) ON DELETE CASCADE,
+  FOREIGN KEY (Role) REFERENCES Roles(role) ON DELETE CASCADE,
   PRIMARY KEY (Employee, Project, Role)); --EndDate nullable
 ''')
 
@@ -253,9 +253,9 @@ def query14():
 
 def query15(role, lev):
   #not sure if this is how you'd solve the issue
-    #cursor.execute('SELECT AVG(CurrentSalary) FROM EmployeeInfo WHERE Gender = 'Female' AND CurrentPosition = ? AND YearsExperience = ?', role, lev)
-    #this was giving me errors regarding the '' with female and male 
-    #cursor.execute('SELECT AVG(CurrentSalary) FROM EmployeeInfo WHERE Gender = 'Male' AND CurrentPosition = ? AND YearsExperience = ?', role, lev)
+    cursor.execute('SELECT AVG(CurrentSalary) FROM EmployeeInfo WHERE Gender = \'Female\' AND CurrentPosition = ? AND YearsExperience = ?', role, lev)
+    #this was giving me errors regarding the '' with female and male -- yeah needed the \' oops
+    cursor.execute('SELECT AVG(CurrentSalary) FROM EmployeeInfo WHERE Gender = \'Male\' AND CurrentPosition = ? AND YearsExperience = ?', role, lev)
     conn.commit()
 
 def query16(pos):
