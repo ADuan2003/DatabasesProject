@@ -138,14 +138,6 @@ conn.commit()
 
 #these pages don't exist yet, but I presume they'll include a 'submit' button to do the operation and send someone back to the home page
 
-@app.route('/')
-def home():
-  return render_template('home.html')
-
-@app.route('/query/')
-def query():
-  return render_template('query.html')
-
 @app.route('/update/')
 def query():
   return render_template('update.html')
