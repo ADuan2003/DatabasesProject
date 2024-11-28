@@ -3,6 +3,7 @@ CREATE TABLE Addresses
   (address CHAR(80) NOT NULL,
   zipCode SMALLINT NOT NULL,
   PRIMARY KEY (address));
+--assumes that we never need to query by state, city, etc. 
   
 CREATE TABLE Positions 
 (position CHAR(40) NOT NULL,
