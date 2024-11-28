@@ -253,8 +253,9 @@ def query14():
 
 def query15(role, lev):
   #not sure if this is how you'd solve the issue
-    cursor.execute('SELECT AVG(CurrentSalary) FROM EmployeeInfo WHERE Gender = 'Female' AND CurrentPosition = ? AND YearsExperience = ?', role, lev)
-    cursor.execute('SELECT AVG(CurrentSalary) FROM EmployeeInfo WHERE Gender = 'Male' AND CurrentPosition = ? AND YearsExperience = ?', role, lev)
+    #cursor.execute('SELECT AVG(CurrentSalary) FROM EmployeeInfo WHERE Gender = 'Female' AND CurrentPosition = ? AND YearsExperience = ?', role, lev)
+    #this was giving me errors regarding the '' with female and male 
+    #cursor.execute('SELECT AVG(CurrentSalary) FROM EmployeeInfo WHERE Gender = 'Male' AND CurrentPosition = ? AND YearsExperience = ?', role, lev)
     conn.commit()
 
 def query16(pos):
