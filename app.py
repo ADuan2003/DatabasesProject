@@ -8,9 +8,11 @@ app = Flask(__name__)
 def home():
     return render_template("home.html")
 
-@app.route("/query/", methods =['GET', 'POST'])
+@app.route("/query/")
 def queryPage():
-    table = None
-    if request.method == ['POST']:
-        table = request.form.get('show') #for some reason this isn't getting set... 
+    return render_template("query.html")
+
+@app.route("/showall/", methods=['POST'])
+def showall():
+    table = request.form.get("show")
     return render_template("query.html", query = table)
