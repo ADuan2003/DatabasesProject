@@ -1,4 +1,6 @@
 import sqlite3
+from Flask import flask, render_template
+app = Flask(__name__)
 
 #Connect to sqlLite database (or create if it doesn't exist)
 conn = sqlite3.connect('database.db')
@@ -131,6 +133,78 @@ CREATE TABLE IF NOT EXISTS EmployeeProjects
 ''')
 
 conn.commit()
+
+#after pressing a button (add / delete / update / query) on the home page, these functions will take someone to the appropriate page to make their selections
+
+#these pages don't exist yet, but I presume they'll include a 'submit' button to do the operation and send someone back to the home page
+
+@app.route('/')
+def home():
+  return render_template('home.html')
+
+@app.route('/query/')
+def query():
+  return render_template('query.html')
+
+@app.route('/update/')
+def query():
+  return render_template('update.html')
+
+@app.route('/delete/')
+def query():
+  return render_template('delete.html')
+
+@app.route('/addinsurance/')
+def query():
+  return render_template('addinsurance.html')
+
+@app.route('/addbenefit/')
+def query():
+  return render_template('addbenefit.html')
+
+@app.route('/addstatus/')
+def query():
+  return render_template('addstatus.html')
+
+@app.route('/addaddress/')
+def query():
+  return render_template('addaddress.html')
+
+@app.route('/addposition/')
+def query():
+  return render_template('addposition.html')
+
+@app.route('/adddepartment/')
+def query():
+  return render_template('adddepartment.html')
+
+@app.route('/addemployee/')
+def query():
+  return render_template('addemployee.html')
+
+@app.route('/addempbenefit/')
+def query():
+  return render_template('addempbenefit.html')
+
+@app.route('/addproject/')
+def query():
+  return render_template('addproject.html')
+
+@app.route('/addrole/')
+def query():
+  return render_template('addrole.html')
+
+@app.route('/addempproj/')
+def query():
+  return render_template('addempproj.html')
+
+@app.route('/addassignment/')
+def query():
+  return render_template('addassignment.html')
+  
+#to blend the html requests with the python, we'll need https://stackoverflow.com/questions/5615228/call-a-python-function-within-a-html-file
+
+#the below will also need@app.route -- basically the above app routes took someone to the non-home pages; these take them back from the non-home pages
 
 def insertIntoHealthInsurance(coverage):
     cursor.execute('INSERT INTO HealthInsurance (coverage) VALUES (?)', (coverage))
