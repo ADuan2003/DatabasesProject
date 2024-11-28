@@ -10,7 +10,6 @@ cursor = conn.cursor()
 
 #Create a table
 cursor.execute('''
---a list of commands for creating tables
 CREATE TABLE IF NOT EXISTS Addresses
   (address TEXT NOT NULL,
   zipCode SMALLINT NOT NULL,
@@ -31,11 +30,6 @@ cursor.execute('''
 CREATE TABLE IF NOT EXISTS HealthInsurance
 (coverage TEXT NOT NULL,
   PRIMARY KEY (coverage));
---this is referring to the name of the health insurance, yeah?
---I feel like you could remove this table and just put this info in EmployeeBenefits 
---altho if you did that, that might cause redundant updating 
-
--- (having to update both employeeInfo and employeeBenefits when health insurance changes...)
 ''')
 
 cursor.execute('''
@@ -58,7 +52,6 @@ CREATE TABLE IF NOT EXISTS EmployeeInfo
   FOREIGN KEY (CurrentPosition) REFERENCES Positions(position) ON DELETE CASCADE,
   FOREIGN KEY (Coverage) REFERENCES HealthInsurance(coverage) ON DELETE CASCADE,
   PRIMARY KEY (EmployeeID));
---how to verify that salary is within range?
 ''')
 
 cursor.execute('''
@@ -75,7 +68,7 @@ CREATE TABLE IF NOT EXISTS EmployeeAssignments
   EndDate DATE, 
   FOREIGN KEY (EmployeeID) REFERENCES EmployeeInfo(EmployeeID) ON DELETE CASCADE,
   FOREIGN KEY (Department) REFERENCES Departments(department) ON DELETE CASCADE,
-  PRIMARY KEY (EmployeeID, Department, StartDate)); --EndDate nullable
+  PRIMARY KEY (EmployeeID, Department, StartDate)); 
 ''')
 
 cursor.execute('''
@@ -92,7 +85,7 @@ CREATE TABLE IF NOT EXISTS EmployeeBenefits
   EndDate DATE,
   FOREIGN KEY (EmployeeID) REFERENCES EmployeeInfo(EmployeeID) ON DELETE CASCADE,
   FOREIGN KEY (Benefit) REFERENCES Benefits(benefit) ON DELETE CASCADE,
-  PRIMARY KEY (EmployeeID, Benefit, StartDate)); --EndDate nullable
+  PRIMARY KEY (EmployeeID, Benefit, StartDate)); 
 ''')
 
 cursor.execute('''
@@ -121,15 +114,15 @@ CREATE TABLE IF NOT EXISTS Roles
 
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS EmployeeProjects
-(EmployeeID SMALLINT NOT NULL,
+(Employee SMALLINT NOT NULL,
   Project TEXT NOT NULL,
   Role TEXT NOT NULL,
   StartDate DATE NOT NULL,
   EndDate DATE, 
-  FOREIGN KEY (EmployeeID) REFERENCES EmployeeInfo(EmployeeID) ON DELETE CASCADE,
+  FOREIGN KEY (Employee) REFERENCES EmployeeInfo(EmployeeID) ON DELETE CASCADE,
   FOREIGN KEY (Project) REFERENCES Projects(Project) ON DELETE CASCADE,
   FOREIGN KEY (Role) REFERENCES Roles(role) ON DELETE CASCADE,
-  PRIMARY KEY (Employee, Project, Role)); --EndDate nullable
+  PRIMARY KEY (Employee, Project, Role)); 
 ''')
 
 conn.commit()
@@ -138,61 +131,61 @@ conn.commit()
 
 #these pages don't exist yet, but I presume they'll include a 'submit' button to do the operation and send someone back to the home page
 
-@app.route('/update/')
-def query():
-  return render_template('update.html')
+#@app.route('/update/')
+#def query():
+#  return render_template('update.html')
 
-@app.route('/delete/')
-def query():
-  return render_template('delete.html')
+#@app.route('/delete/')
+#def query():
+#  return render_template('delete.html')
 
-@app.route('/addinsurance/')
-def query():
-  return render_template('addinsurance.html')
+#@app.route('/addinsurance/')
+#def query():
+#  return render_template('addinsurance.html')
 
-@app.route('/addbenefit/')
-def query():
-  return render_template('addbenefit.html')
+#@app.route('/addbenefit/')
+#def query():
+#  return render_template('addbenefit.html')
 
-@app.route('/addstatus/')
-def query():
-  return render_template('addstatus.html')
+#@app.route('/addstatus/')
+#def query():
+#  return render_template('addstatus.html')
 
-@app.route('/addaddress/')
-def query():
-  return render_template('addaddress.html')
+#@app.route('/addaddress/')
+#def query():
+#  return render_template('addaddress.html')
 
-@app.route('/addposition/')
-def query():
-  return render_template('addposition.html')
+#@app.route('/addposition/')
+#def query():
+#  return render_template('addposition.html')
 
-@app.route('/adddepartment/')
-def query():
-  return render_template('adddepartment.html')
+#@app.route('/adddepartment/')
+#def query():
+#  return render_template('adddepartment.html')
 
-@app.route('/addemployee/')
-def query():
-  return render_template('addemployee.html')
+#@app.route('/addemployee/')
+#def query():
+#  return render_template('addemployee.html')
 
-@app.route('/addempbenefit/')
-def query():
-  return render_template('addempbenefit.html')
+#@app.route('/addempbenefit/')
+#def query():
+#  return render_template('addempbenefit.html')
 
-@app.route('/addproject/')
-def query():
-  return render_template('addproject.html')
+#@app.route('/addproject/')
+#def query():
+#  return render_template('addproject.html')
 
-@app.route('/addrole/')
-def query():
-  return render_template('addrole.html')
+#@app.route('/addrole/')
+#def query():
+#  return render_template('addrole.html')
 
-@app.route('/addempproj/')
-def query():
-  return render_template('addempproj.html')
+#@app.route('/addempproj/')
+#def query():
+#  return render_template('addempproj.html')
 
-@app.route('/addassignment/')
-def query():
-  return render_template('addassignment.html')
+#@app.route('/addassignment/')
+#def query():
+#  return render_template('addassignment.html')
   
 #to blend the html requests with the python, we'll need https://stackoverflow.com/questions/5615228/call-a-python-function-within-a-html-file
 
