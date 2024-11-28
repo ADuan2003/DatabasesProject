@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Database Project</title> <!--This sets the website's name-->
+    </head>
+    <body>
+        {%if name %}
+            <strong>Hello there, {{ name }}!</strong> 
+        {% else %}
+            Use curly brackets for code blocks (ex. if/else). <strong>Use double curly brackets for variables</strong>
+        {% endif %}
+    </body>
+</html>
