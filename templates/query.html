@@ -5,6 +5,26 @@
     <title>Company Database</title>
 </head>
 <body>
-  <a href="/">Click me</a>
+  <h2>Show all: </h2>
+  <form method="POST">
+    <select name = "show">
+      <option value = "insurance">Health Insurance</option>
+      <option value = "benefit">Benefit Type</option>
+      <option value = "status">Project Status</option>
+      <option value = "address">Address</option>
+      <option value = "position">Job Position</option>
+      <option value = "department">Department</option>
+      <option value = "employee">Employee</option>
+      <option value = "empBenefit">Employee's Benefit</option>
+      <option value = "project">Project</option>
+      <option value = "role">Role</option>
+      <option value = "empProject">Employee's Project</option>
+      <option value = "empDep">Employee's Department</option>
+    </select>
+    <input type = "submit" value = "Show"> <!--The problem is actually making this form submit things...-->
+  </form>
+  {%if query%}
+    Show {{query}}
+  {%endif%}
 </body>
 </html>
