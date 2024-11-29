@@ -131,59 +131,59 @@ conn.commit()
 
 #these pages don't exist yet, but I presume they'll include a 'submit' button to do the operation and send someone back to the home page
 
-#@app.route('/update/')
+#@app.route('/updateEmployeeInfo/', methods=['POST'])
 #def query():
-#  return render_template('update.html')
+#  return render_template('updateEmployeeInfo.html')
 
-#@app.route('/delete/')
+#@app.route('/delete/', methods=['POST'])
 #def query():
 #  return render_template('delete.html')
 
-#@app.route('/addinsurance/')
+#@app.route('/addinsurance/', methods=['POST'])
 #def query():
 #  return render_template('addinsurance.html')
 
-#@app.route('/addbenefit/')
+#@app.route('/addbenefit/', methods=['POST'])
 #def query():
 #  return render_template('addbenefit.html')
 
-#@app.route('/addstatus/')
+#@app.route('/addstatus/', methods=['POST'])
 #def query():
 #  return render_template('addstatus.html')
 
-#@app.route('/addaddress/')
+#@app.route('/addaddress/', methods=['POST'])
 #def query():
 #  return render_template('addaddress.html')
 
-#@app.route('/addposition/')
+#@app.route('/addposition/', methods=['POST'])
 #def query():
 #  return render_template('addposition.html')
 
-#@app.route('/adddepartment/')
+#@app.route('/adddepartment/', methods=['POST'])
 #def query():
 #  return render_template('adddepartment.html')
 
-#@app.route('/addemployee/')
+#@app.route('/addemployee/', methods=['POST'])
 #def query():
 #  return render_template('addemployee.html')
 
-#@app.route('/addempbenefit/')
+#@app.route('/addempbenefit/', methods=['POST'])
 #def query():
 #  return render_template('addempbenefit.html')
 
-#@app.route('/addproject/')
+#@app.route('/addproject/', methods=['POST'])
 #def query():
 #  return render_template('addproject.html')
 
-#@app.route('/addrole/')
+#@app.route('/addrole/', methods=['POST'])
 #def query():
 #  return render_template('addrole.html')
 
-#@app.route('/addempproj/')
+#@app.route('/addempproj/', methods=['POST'])
 #def query():
 #  return render_template('addempproj.html')
 
-#@app.route('/addassignment/')
+#@app.route('/addassignment/', methods=['POST'])
 #def query():
 #  return render_template('addassignment.html')
   
@@ -241,75 +241,92 @@ def insertIntoEmployeeProjects(employeeID, project, role, startDate, endDate):
 
 #the drop-down menu will definitely come in handy down below
 
+#@app.route('/update-<table>-<column>-<value>-<cond1>-<cond2>/', methods=['POST'])
 def updateTable(table, column, value, cond1, cond2):
     cursor.execute('UPDATE ? SET ? = ? WHERE ? = ?', (table, column, value, cond1, cond2))
     conn.commit()
 #e.g. if it's like update table A set B = C where D = E
 #then you would call updateTable('A', 'B', 'C', 'D', 'E')
 
+#@app.route('/delete-<table>-<cond1>-<cond2>/', methods=['POST'])
 def deleteFromTable(table, cond1, cond2):
     cursor.execute('DELETE FROM ? WHERE ? = ?', (table, cond1, cond2))
     conn.commit()
 
 #these correspond to the queries we need to do in the instructions
 
+#@app.route('/query1-<emp>/', methods=['POST'])
 def query1(emp):
     cursor.execute('SELECT * FROM EmployeeInfo WHERE EmployeeID = ?', (emp))
     conn.commit()
 
+#@app.route('/query2-<dept>/', methods=['POST'])
 def query2(dept):
     cursor.execute('SELECT DISTINCT EmployeeID FROM EmployeeInfo WHERE (EndDate IS NULL OR EndDate >= GetDate()) && Department = ?', dept)
     conn.commit()
 
+#@app.route('/query3-<proj>/', methods=['POST'])
 def query3(proj):
     cursor.execute('SELECT (EmployeeID, Name) FROM EmployeeProjects WHERE Project = ? AND (EndDate IS NULL OR EndDate >= GetDate())', proj)
     conn.commit()
 
+#@app.route('/query4/', methods=['POST'])
 def query4():
     cursor.execute('SELECT distinct(zipCode) FROM Addresses GROUP BY zipCode HAVING count(zipCode) >= ALL (SELECT count(zipCode) FROM Addresses GROUP BY zipCode)')
     conn.commit()
 
+#@app.route('/query5-<proj>/', methods=['POST'])
 def query5(proj):
     cursor.execute('SELECT * FROM Projects WHERE Project = ?;', proj)
     conn.commit()
 
+#@app.route('/query6-<proj>-<date>/', methods=['POST'])
 def query6(proj, date):
     cursor.execute('SELECT COUNT (EmployeeID) FROM EmployeeProjects WHERE Project = ? AND (EndDate IS NULL OR EndDate >= ?) AND (StartDate <= ?)', proj, date, date)
     conn.commit()
 
+#@app.route('/query7-<ben>/', methods=['POST'])
 def query7(ben):
     cursor.execute('SELECT COUNT (DISTINCT EmployeeID) FROM EmployeeBenefits WHERE (EndDate IS NULL OR EndDate >= GetDate()) AND Benefit = ?', ben)
     conn.commit()
 
+#@app.route('/query8-<proj>-<role>/', methods=['POST'])
 def query8(proj, role):
     cursor.execute('SELECT EmployeeID FROM EmployeeProjects WHERE (EndDate IS NULL OR EndDate >= GetDate()) AND Project = ? AND Role = ?', proj, role)
     conn.commit()
 
+#@app.route('/query9/', methods=['POST'])
 def query9():
     cursor.execute('SELECT Project FROM Projects WHERE Status = \'in-progress\' OR Status = \'new\'')
     conn.commit()
 
+#@app.route('/query10/', methods=['POST'])
 def query10():
     cursor.execute('SELECT Department, EmployeeID, StartDate, EndDate FROM EmployeeAssignments GROUP BY Department')
     cursor.execute('SELECT Department, Project, ProjectLeader, Status FROM Projects GROUP BY DEPARTMENT')
     conn.commit()
 
+#@app.route('/query11-<emp>/', methods=['POST'])
 def query11(emp):
     cursor.execute('SELECT Role FROM EmployeeProjects WHERE (EndDate IS NULL OR EndDate >= GetDate()) AND EmployeeID = ?', emp)
     conn.commit()
 
+#@app.route('/query12-<emp>/', methods=['POST'])
 def query12(emp):
     cursor.execute('select role, startdate, enddate from EmployeeProjects where EmployeeID = ?', emp)
     conn.commit()
 
+#@app.route('/query13-<HealthPlan>/', methods=['POST'])
 def query13(HealthPlan):
     cursor.execute('SELECT COUNT(EmployeeInfo) FROM EmployeeInfo WHERE Coverage = ?', HealthPlan)
     conn.commit()
 
+#@app.route('/query14/', methods=['POST'])
 def query14():
     cursor.execute('select count(distinct employeeid), coverage from employeeInfo group by coverage')
     conn.commit()
 
+#@app.route('/query15-<role>-<lev>/', methods=['POST'])
 def query15(role, lev):
   #not sure if this is how you'd solve the issue
     cursor.execute('SELECT AVG(CurrentSalary) FROM EmployeeInfo WHERE Gender = \'Female\' AND CurrentPosition = ? AND YearsExperience = ?', role, lev)
@@ -317,26 +334,32 @@ def query15(role, lev):
     cursor.execute('SELECT AVG(CurrentSalary) FROM EmployeeInfo WHERE Gender = \'Male\' AND CurrentPosition = ? AND YearsExperience = ?', role, lev)
     conn.commit()
 
+#@app.route('/query16-<pos>/', methods=['POST'])
 def query16(pos):
     cursor.execute('SELECT (minSalary, maxSalary) FROM Positions WHERE position = ?;', pos)
     conn.commit()
 
+#@app.route('/query17/', methods=['POST'])
 def query17():
     cursor.execute('select count(distinct project), status from projects group by status')
     conn.commit()
 
+#@app.route('/query15-<emp>-<dep>/', methods=['POST'])
 def query18(emp, dep):
     cursor.execute('SELECT (StartDate, EndDate) FROM EmployeeAssignments WHERE EmployeeID = ? AND Department = ?', emp, dep)
     conn.commit()
 
+#@app.route('/query19/', methods=['POST'])
 def query19():
     cursor.execute('SELECT (a.Project, b.Name) FROM Projects a, EmployeeID b, WHERE a.ProjectLeader == b.EmployeeID')
     conn.commit()
 
+#@app.route('/query20/', methods=['POST'])
 def query20():
     cursor.execute('SELECT (EmployeeID, Name) FROM EmployeeInfo WHERE 5*CurrentSalary >= 6*HiringSalary')
     conn.commit()
 
+#@app.route('/query21/', methods=['POST'])
 def query21():
     cursor.execute('select max(avg(CurrentSalary)) from ( select avg(CurrentSalary)  from EmployeeInfo group by CurrentPosition)')
     conn.commit()
