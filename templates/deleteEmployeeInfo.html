@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Database</title>
+</head>
+<body>
+  <div>
+  <h2>Add the attribute to be deleted on</h2>
+  <form>
+    <select name1 = "makeSelection">
+      <option attribute1 = "EmployeeID">Employee ID</option>
+      <option attribute1 = "SSN">SSN</option>
+      <option attribute1 = "Name">Name</option>
+      <option attribute1 = "Gender">Gender</option>
+      <option attribute1 = "DoB">Birthdate (yyyy-mm-dd)</option>
+      <option attribute1 = "PrimaryAddress">Primary Address</option>
+      <option attribute1 = "PhoneNumber">Phone Number</option>
+      <option attribute1 = "HighestDegree">Highest Degree</option>
+      <option attribute1 = "YearsExperience">Years Experience</option>
+      <option attribute1 = "HiringPosition">Hiring Position</option>
+      <option attribute1 = "HiringSalary">Hiring Salary</option>
+      <option attribute1 = "CurrentPosition">Current Position</option>
+      <option attribute1 = "CurrentSalary">Current Salary</option>
+      <option attribute1 = "Coverage">Health Insurance Coverage</option>
+    </select>
+  </form>
+  </div>
+  <div>
+  <h2>Add: </h2>
+  <form action="/url" method="GET">
+        <p>Please enter the value to be deleted on:</p>
+        <input type="text" placeholder="0">
+  </form>
+  </div>
+  <div>
+      <!-- Will need some change to make sure it gets the right values -->
+    <a href="/delete-EmployeeInfo-<column>-<value>-<cond1>-<cond2>/">Finalize selection</a>
+  </div>
+</body>
+</html>
