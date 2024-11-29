@@ -12,15 +12,15 @@ cursor = conn.cursor()
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS Addresses
   (address TEXT NOT NULL,
-  zipCode SMALLINT NOT NULL,
+  zipCode TEXT NOT NULL,
   PRIMARY KEY (address));
 ''')
 
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS Positions 
 (position TEXT NOT NULL,
-  minSalary SMALLINT NOT NULL,
-  maxSalary SMALLINT NOT NULL,
+  minSalary INT NOT NULL,
+  maxSalary INT NOT NULL,
   PRIMARY KEY (position),
   CHECK (0 < minSalary),
   CHECK (minSalary <= maxSalary));
@@ -34,8 +34,8 @@ CREATE TABLE IF NOT EXISTS HealthInsurance
 
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS EmployeeInfo
-(EmployeeID SMALLINT NOT NULL,
-  SSN SMALLINT NOT NULL,
+(EmployeeID TEXT NOT NULL,
+  SSN TEXT NOT NULL,
   Name TEXT NOT NULL,
   gender TEXT NOT NULL,
   DoB DATE NOT NULL,
@@ -44,9 +44,9 @@ CREATE TABLE IF NOT EXISTS EmployeeInfo
   HighestDegree TEXT NOT NULL,
   YearsExperience SMALLINT NOT NULL,
   HiringPosition TEXT NOT NULL,
-  HiringSalary SMALLINT NOT NULL,
+  HiringSalary INT NOT NULL,
   CurrentPosition TEXT NOT NULL,
-  CurrentSalary SMALLINT NOT NULL,
+  CurrentSalary INT NOT NULL,
   Coverage TEXT NOT NULL,
   FOREIGN KEY (HiringPosition) REFERENCES Positions(position) ON DELETE CASCADE,
   FOREIGN KEY (CurrentPosition) REFERENCES Positions(position) ON DELETE CASCADE,
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS Departments
 
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS EmployeeAssignments
-(EmployeeID SMALLINT NOT NULL,
+(EmployeeID TEXT NOT NULL,
   Department TEXT NOT NULL,
   StartDate DATE NOT NULL,
   EndDate DATE, 
@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS Benefits
 
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS EmployeeBenefits 
-(EmployeeID SMALLINT NOT NULL,
+(EmployeeID TEXT NOT NULL,
   Benefit TEXT NOT NULL,
   StartDate DATE NOT NULL,
   EndDate DATE,
@@ -98,7 +98,7 @@ cursor.execute('''
 CREATE TABLE IF NOT EXISTS Projects
 (Project TEXT NOT NULL,
   Department TEXT NOT NULL,
-  ProjectLeader SMALLINT NOT NULL,
+  ProjectLeader TEXT NOT NULL,
   Status TEXT NOT NULL,
   FOREIGN KEY (Department) REFERENCES Department(department) ON DELETE CASCADE,
   FOREIGN KEY (ProjectLeader) REFERENCES EmployeeInfo(EmployeeID) ON DELETE CASCADE,
@@ -114,7 +114,7 @@ CREATE TABLE IF NOT EXISTS Roles
 
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS EmployeeProjects
-(EmployeeID SMALLINT NOT NULL,
+(EmployeeID TEXT NOT NULL,
   Project TEXT NOT NULL,
   Role TEXT NOT NULL,
   StartDate DATE NOT NULL,
@@ -208,7 +208,7 @@ def insertIntoAddresses(address, zipcode):
     conn.commit()
 
 def insertIntoPositions(position, minSalary, maxSalary):
-    cursor.execute('INSERT INTO Positions (position, minSalary, maxSalary) VALUES (?, ?, ?)', (position, minSalary, maxSalary))
+    cursor.execute('INSERT INTO Positions (position, minSalary, maxSalary) VALUES (?, ?, ?)', (position, int(minSalary), int(maxSalary)))
     conn.commit()
 
 def insertIntoDepartments(department):
@@ -216,7 +216,7 @@ def insertIntoDepartments(department):
     conn.commit()
 
 def insertIntoEmployeeInfo(employeeID, ssn, name, gender, DoB, address, phone, degree, years, hiringPosition, hiringSalary, currentPosition, currentSalary, coverage):
-    cursor.execute('INSERT INTO EmployeeInfo (EmployeeID, SSN, Name, gender, DoB, PrimaryAddress, PhoneNumber, HighestDegree, YearsExperience, HiringPosition, HiringSalary, CurrentPosition, CurrentSalary, Coverage) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', (employeeID, ssn, name, gender, DoB, address, phone, degree, years, hiringPosition, hiringSalary, currentPosition, currentSalary, coverage))
+    cursor.execute('INSERT INTO EmployeeInfo (EmployeeID, SSN, Name, gender, DoB, PrimaryAddress, PhoneNumber, HighestDegree, YearsExperience, HiringPosition, HiringSalary, CurrentPosition, CurrentSalary, Coverage) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', (employeeID, ssn, name, gender, DoB, address, phone, degree, int(years), hiringPosition, int(hiringSalary), currentPosition, int(currentSalary), coverage))
     conn.commit()
 
 def insertIntoEmployeeAssignments(employeeID, department, startDate, endDate):
@@ -243,13 +243,21 @@ def insertIntoEmployeeProjects(employeeID, project, role, startDate, endDate):
 
 #@app.route('/update-<table>-<column>-<value>-<cond1>-<cond2>/', methods=['POST'])
 def updateTable(table, column, value, cond1, cond2):
-    cursor.execute('UPDATE ? SET ? = ? WHERE ? = ?', (table, column, value, cond1, cond2))
-    conn.commit()
+  if column == 'CurrentSalary' or column == 'HiringSalary' or column == 'YearsExperience' or column == 'minSalary' or column == 'maxSalary':
+      value = int(value)
+  if cond1 == 'CurrentSalary' or cond1 == 'HiringSalary' or cond1 == 'YearsExperience' or cond1 == 'minSalary' or cond1 == 'maxSalary':
+      cond2 = int(cond2)
+     #proper int formatting
+  cursor.execute('UPDATE ? SET ? = ? WHERE ? = ?', (table, column, value, cond1, cond2))
+  conn.commit()
 #e.g. if it's like update table A set B = C where D = E
 #then you would call updateTable('A', 'B', 'C', 'D', 'E')
 
 #@app.route('/delete-<table>-<cond1>-<cond2>/', methods=['POST'])
 def deleteFromTable(table, cond1, cond2):
+    if cond1 == 'CurrentSalary' or cond1 == 'HiringSalary' or cond1 == 'YearsExperience' or cond1 == 'minSalary' or cond1 == 'maxSalary':
+      cond2 = int(cond2)
+      #proper int formatting
     cursor.execute('DELETE FROM ? WHERE ? = ?', (table, cond1, cond2))
     conn.commit()
 
