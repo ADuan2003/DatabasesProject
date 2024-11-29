@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Database</title>
+</head>
+<body>
+  <div>
+  <h2>Add the attribute to be deleted upon</h2>
+  <form>
+    <select name1 = "makeSelection">
+      <option attribute1 = "Position">position</option>
+      <option attribute1 = "minSalary">mininimum salary</option>
+      <option attribute1 = "maxSalary">maximum salary</option>
+    </select>
+  </form>
+  </div>
+  <div>
+  <h2>Add: </h2>
+  <form action="/url" method="GET">
+        <p>Please enter the value to be deleted upon:</p>
+        <input type="text" placeholder="0">
+  </form>
+  </div>
+  
+  <div>
+      <!-- Will need some change to make sure it gets the right values -->
+    <a href="/delete-Positions-<column>-<value>-<cond1>-<cond2>/">Finalize selection</a>
+  </div>
+</body>
+</html>
