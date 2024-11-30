@@ -8,15 +8,30 @@
 </head>
 <body>
   <div>
-  <h2>Add: </h2>
-  <form action="/url" method="GET">
-        <p>Please enter the department to delete:</p>
-        <input type="text" placeholder="0">
+  <h2>"Select" the table (it's for the code): </h2>
+  <form>
+    <select name = "i1">
+      <option attribute = "Departments">Departments</option>
+    </select>
   </form>
   </div>
   <div>
-      <!-- Will need some change to make sure it gets the right values -->
-    <a href="/delete-Departments-department-<value>-department-<cond2>/">Finalize selection</a>
+  <h2>Add the attribute to be deleted upon</h2>
+  <form>
+    <select name = "i2">
+      <option attribute = "department">Department</option>
+    </select>
+  </form>
+  </div>
+  <div>
+  <h2>Add: </h2>
+  <form action="/url" method="GET">
+        <p>Please enter the department to delete:</p>
+        <input type="text" placeholder="0" name = "i3">
+  </form>
+  </div>
+  <div>
+    <a href="/delete/">Finalize selection</a>
   </div>
 </body>
 </html>
