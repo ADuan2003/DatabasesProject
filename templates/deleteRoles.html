@@ -8,16 +8,32 @@
 </head>
 <body>
   <div>
+  <h2>"Select" the table (it's for the code): </h2>
+  <form>
+    <select name = "i1">
+      <option attribute = "Roles">Roles</option>
+    </select>
+  </form>
+  </div>
+  <div>
+  <h2>Add the attribute to be deleted upon</h2>
+  <form>
+    <select name = "i2">
+      <option attribute = "role">Role</option>
+    </select>
+  </form>
+  </div>
+  <div>
   <h2>Add: </h2>
   <form action="/url" method="GET">
         <p>Please enter the role to delete upon:</p>
-        <input type="text" placeholder="0">
+        <input type="text" placeholder="0" name = "i3">
   </form>
   </div>
   
   <div>
       <!-- Will need some change to make sure it gets the right values -->
-    <a href="/delete-Roles-role-<value>-role-<cond2>/">Finalize selection</a>
+    <a href="/delete/">Finalize selection</a>
   </div>
 </body>
 </html>
