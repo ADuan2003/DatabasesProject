@@ -7,24 +7,32 @@
     <title>Company Database</title>
 </head>
 <body>
+    <div>
+ <h2>"Select" the table (it's for the code): </h2>
+ <form>
+   <select name = "i1">
+     <option attribute = "EmployeeInfo">Employee Information</option>
+   </select>
+ </form>
+</div>
   <div>
   <h2>Add the attribute to be updated</h2>
   <form>
-    <select name1 = "makeSelection">
-      <option attribute1 = "EmployeeID">Employee ID</option>
-      <option attribute1 = "SSN">SSN</option>
-      <option attribute1 = "Name">Name</option>
-      <option attribute1 = "Gender">Gender</option>
-      <option attribute1 = "DoB">Birthdate (yyyy-mm-dd)</option>
-      <option attribute1 = "PrimaryAddress">Primary Address</option>
-      <option attribute1 = "PhoneNumber">Phone Number</option>
-      <option attribute1 = "HighestDegree">Highest Degree</option>
-      <option attribute1 = "YearsExperience">Years Experience</option>
-      <option attribute1 = "HiringPosition">Hiring Position</option>
-      <option attribute1 = "HiringSalary">Hiring Salary</option>
-      <option attribute1 = "CurrentPosition">Current Position</option>
-      <option attribute1 = "CurrentSalary">Current Salary</option>
-      <option attribute1 = "Coverage">Health Insurance Coverage</option>
+    <select name = "i2">
+      <option attribute = "EmployeeID">Employee ID</option>
+      <option attribute = "SSN">SSN</option>
+      <option attribute = "Name">Name</option>
+      <option attribute = "Gender">Gender</option>
+      <option attribute = "DoB">Birthdate (yyyy-mm-dd)</option>
+      <option attribute = "PrimaryAddress">Primary Address</option>
+      <option attribute = "PhoneNumber">Phone Number</option>
+      <option attribute = "HighestDegree">Highest Degree</option>
+      <option attribute = "YearsExperience">Years Experience</option>
+      <option attribute = "HiringPosition">Hiring Position</option>
+      <option attribute = "HiringSalary">Hiring Salary</option>
+      <option attribute = "CurrentPosition">Current Position</option>
+      <option attribute = "CurrentSalary">Current Salary</option>
+      <option attribute = "Coverage">Health Insurance Coverage</option>
     </select>
   </form>
   </div>
@@ -32,27 +40,27 @@
   <h2>Add: </h2>
   <form action="/url" method="GET">
         <p>Please enter the new value:</p>
-        <input type="text" placeholder="0">
+        <input type="text" placeholder="0" name="i3">
   </form>
   </div>
   <div>
   <h2>Add the condition's attribute</h2>
   <form>
-    <select name2 = "makeSelection">
-      <option attribute2 = "EmployeeID">Employee ID</option>
-      <option attribute2 = "SSN">SSN</option>
-      <option attribute2 = "Name">Name</option>
-      <option attribute2 = "Gender">Gender</option>
-      <option attribute2 = "DoB">Birthdate (yyyy-mm-dd)</option>
-      <option attribute2 = "PrimaryAddress">Primary Address</option>
-      <option attribute2 = "PhoneNumber">Phone Number</option>
-      <option attribute2 = "HighestDegree">Highest Degree</option>
-      <option attribute2 = "YearsExperience">Years Experience</option>
-      <option attribute2 = "HiringPosition">Hiring Position</option>
-      <option attribute2 = "HiringSalary">Hiring Salary</option>
-      <option attribute2 = "CurrentPosition">Current Position</option>
-      <option attribute2 = "CurrentSalary">Current Salary</option>
-      <option attribute2 = "Coverage">Health Insurance Coverage</option>
+    <select name = "i4">
+      <option attribute = "EmployeeID">Employee ID</option>
+      <option attribute = "SSN">SSN</option>
+      <option attribute = "Name">Name</option>
+      <option attribute = "Gender">Gender</option>
+      <option attribute = "DoB">Birthdate (yyyy-mm-dd)</option>
+      <option attribute = "PrimaryAddress">Primary Address</option>
+      <option attribute = "PhoneNumber">Phone Number</option>
+      <option attribute = "HighestDegree">Highest Degree</option>
+      <option attribute = "YearsExperience">Years Experience</option>
+      <option attribute = "HiringPosition">Hiring Position</option>
+      <option attribute = "HiringSalary">Hiring Salary</option>
+      <option attribute = "CurrentPosition">Current Position</option>
+      <option attribute = "CurrentSalary">Current Salary</option>
+      <option attribute = "Coverage">Health Insurance Coverage</option>
     </select>
   </form>
   </div>
@@ -60,12 +68,12 @@
   <h2>Add: </h2>
   <form action="/url" method="GET">
         <p>Add the condition's value:</p>
-        <input type="text" placeholder="0">
+        <input type="text" placeholder="0" name="i5">
   </form>
   </div>
   <div>
       <!-- Will need some change to make sure it gets the right values -->
-    <a href="/update-EmployeeInfo-<column>-<value>-<cond1>-<cond2>/">Finalize selection</a>
+    <a href="/update/">Finalize selection</a>
   </div>
 </body>
 </html>
