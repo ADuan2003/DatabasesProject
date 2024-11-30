@@ -310,165 +310,226 @@ def Selection():
         return render_template('query20.html')
       elif selec == 'query21':
         return render_template('query21.html')
-      return render_template('home.html') #if somehow isn't something in list
+      return render_template('error.html') #if somehow isn't something in list
     except:
-      return render_template('home.html') #I'll try to expand these blocks to other functions Saturday
+      return render_template('error.html') #I'll try to expand these blocks to other functions Saturday
+  return render_template('error.html')
+
+#@app.route('/error/', methods=["GET", "POST"]) 
+def error():
+  return render_template('home.html')
 
 #@app.route('/insert-HealthInsurance/', methods=["GET", "POST"])
 def insertIntoHealthInsurance():
   if request.method == 'POST':
-    coverage = request.form['i1']
-    cursor.execute('INSERT INTO HealthInsurance (coverage) VALUES (?)', (coverage))
-    conn.commit()
-  return render_template('home.html')
+    try:
+      coverage = request.form['i1']
+      cursor.execute('INSERT INTO HealthInsurance (coverage) VALUES (?)', (coverage))
+      conn.commit()
+      return render_template('home.html')
+    except:
+      return render_template('error.html')
+  return render_template('error.html')
 
 #@app.route('/insert-Benefits/', methods=["GET", "POST"])
 def insertIntoBenefits():
   if request.method == 'POST':
-    benefit = request.form['i1']
-    cursor.execute('INSERT INTO Benefits (benefit) VALUES (?)', (benefit))
-    conn.commit()
-  return render_template('home.html')
+    try:
+      benefit = request.form['i1']
+      cursor.execute('INSERT INTO Benefits (benefit) VALUES (?)', (benefit))
+      conn.commit()
+      return render_template('home.html')
+    except:
+      return render_template('error.html')
+  return render_template('error.html')
 
 #@app.route('/insert-ProjectStatus/', methods=["GET", "POST"])
 def insertIntoProjectStatus():
   if request.method == 'POST':
-    status = request.form['i1']
-    cursor.execute('INSERT INTO ProjectStatus (status) VALUES (?)', (status))
-    conn.commit()
-  return render_template('home.html')
+    try:
+      status = request.form['i1']
+      cursor.execute('INSERT INTO ProjectStatus (status) VALUES (?)', (status))
+      conn.commit()
+      return render_template('home.html')
+    except:
+      return render_template('error.html')
+  return render_template('error.html')
 
 #@app.route('/insert-Addresses/', methods=["GET", "POST"])
 def insertIntoAddresses():
   if request.method == 'POST':
-    address = request.form['i1']
-    zipcode = request.form['i2']
-    cursor.execute('INSERT INTO Addresses (address, zipCode) VALUES (?, ?)', (address, zipcode))
-    conn.commit()
-  return render_template('home.html')
+    try:
+      address = request.form['i1']
+      zipcode = request.form['i2']
+      cursor.execute('INSERT INTO Addresses (address, zipCode) VALUES (?, ?)', (address, zipcode))
+      conn.commit()
+      return render_template('home.html')
+    except:
+      return render_template('error.html')
+  return render_template('error.html')
 
 #@app.route('/insert-Positions/', methods=["GET", "POST"])
 def insertIntoPositions():
   if request.method == 'POST':
-    position = request.form['i1']
-    minSalary = request.form['i2']
-    maxSalary = request.form['i3']
-    cursor.execute('INSERT INTO Positions (position, minSalary, maxSalary) VALUES (?, ?, ?)', (position, int(minSalary), int(maxSalary)))
-    conn.commit()
-  return render_template('home.html')
+    try:
+      position = request.form['i1']
+      minSalary = request.form['i2']
+      maxSalary = request.form['i3']
+      cursor.execute('INSERT INTO Positions (position, minSalary, maxSalary) VALUES (?, ?, ?)', (position, int(minSalary), int(maxSalary)))
+      conn.commit()
+      return render_template('home.html')
+    except:
+      return render_template('error.html')
+  return render_template('error.html')
 
 #@app.route('/insert-Departments/', methods=["GET", "POST"])
 def insertIntoDepartments():
   if request.method == 'POST':
-    department = request.form['i1']
-    cursor.execute('INSERT INTO Departments (department) VALUES (?)', (department))
-    conn.commit()
-  return render_template('home.html')
+    try:
+      department = request.form['i1']
+      cursor.execute('INSERT INTO Departments (department) VALUES (?)', (department))
+      conn.commit()
+      return render_template('home.html')
+    except:
+      return render_template('error.html')
+  return render_template('error.html')
 
 #@app.route('/insert-EmployeeInfo/', methods=["GET", "POST"])
 def insertIntoEmployeeInfo():
   if request.method == 'POST':
-    employeeID = request.form['i1']
-    ssn = request.form['i2']
-    name = request.form['i3']
-    gender = request.form['i4']
-    DoB = request.form['i5']
-    address = request.form['i6']
-    phone = request.form['i7']
-    degree = request.form['i8']
-    years = request.form['i9']
-    hiringPosition = request.form['i10']
-    hiringSalary = request.form['i11']
-    currentPosition = request.form['i12']
-    currentSalary = request.form['i13']
-    coverage = request.form['i14']
-    cursor.execute('INSERT INTO EmployeeInfo (EmployeeID, SSN, Name, gender, DoB, PrimaryAddress, PhoneNumber, HighestDegree, YearsExperience, HiringPosition, HiringSalary, CurrentPosition, CurrentSalary, Coverage) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', (employeeID, ssn, name, gender, DoB, address, phone, degree, int(years), hiringPosition, int(hiringSalary), currentPosition, int(currentSalary), coverage))
-    conn.commit()
-  return render_template('home.html')
+    try:
+      employeeID = request.form['i1']
+      ssn = request.form['i2']
+      name = request.form['i3']
+      gender = request.form['i4']
+      DoB = request.form['i5']
+      address = request.form['i6']
+      phone = request.form['i7']
+      degree = request.form['i8']
+      years = request.form['i9']
+      hiringPosition = request.form['i10']
+      hiringSalary = request.form['i11']
+      currentPosition = request.form['i12']
+      currentSalary = request.form['i13']
+      coverage = request.form['i14']
+      cursor.execute('INSERT INTO EmployeeInfo (EmployeeID, SSN, Name, gender, DoB, PrimaryAddress, PhoneNumber, HighestDegree, YearsExperience, HiringPosition, HiringSalary, CurrentPosition, CurrentSalary, Coverage) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', (employeeID, ssn, name, gender, DoB, address, phone, degree, int(years), hiringPosition, int(hiringSalary), currentPosition, int(currentSalary), coverage))
+      conn.commit()
+      return render_template('home.html')
+    except:
+      return render_template('error.html')
+  return render_template('error.html')
 
 #@app.route('/insert-EmployeeAssignments/', methods=["GET", "POST"])
 def insertIntoEmployeeAssignments():
   if request.method == 'POST':
-    employeeID = request.form['i1']
-    department = request.form['i2']
-    startDate = request.form['i3']
-    endDate = request.form['i4']
-    cursor.execute('INSERT INTO EmployeeAssignments (EmployeeID, Department, StartDate, EndDate) VALUES (?, ?, ?, ?)', (employeeID, department, startDate, endDate))
-    conn.commit()
-  return render_template('home.html')
+    try:
+      employeeID = request.form['i1']
+      department = request.form['i2']
+      startDate = request.form['i3']
+      endDate = request.form['i4']
+      cursor.execute('INSERT INTO EmployeeAssignments (EmployeeID, Department, StartDate, EndDate) VALUES (?, ?, ?, ?)', (employeeID, department, startDate, endDate))
+      conn.commit()
+      return render_template('home.html')
+    except:
+      return render_template('error.html')
+  return render_template('error.html')
 
 #@app.route('/insert-EmployeeBenefits/', methods=["GET", "POST"])
 def insertIntoEmployeeBenefits():
   if request.method == 'POST':
-    employeeID = request.form['i1']
-    benefit = request.form['i2']
-    startDate = request.form['i3']
-    endDate = request.form['i4']
-    cursor.execute('INSERT INTO EmployeeBenefits (EmployeeID, Benefit, StartDate, EndDate) VALUES (?, ?, ?, ?)', (employeeID, benefit, startDate, endDate))
-    conn.commit()
-  return render_template('home.html')
+    try:
+      employeeID = request.form['i1']
+      benefit = request.form['i2']
+      startDate = request.form['i3']
+      endDate = request.form['i4']
+      cursor.execute('INSERT INTO EmployeeBenefits (EmployeeID, Benefit, StartDate, EndDate) VALUES (?, ?, ?, ?)', (employeeID, benefit, startDate, endDate))
+      conn.commit()
+      return render_template('home.html')
+    except:
+      return render_template('error.html')
+  return render_template('error.html')
 
 #@app.route('/insert-Projects/', methods=["GET", "POST"])
 def insertIntoProjects():
   if request.method == 'POST':
-    project = request.form['i1']
-    department = request.form['i2']
-    projectLeader = request.form['i3']
-    status = request.form['i4']
-    cursor.execute('INSERT INTO Projects (Project, Department, ProjectLeader, Status) VALUES (?, ?, ?, ?)', (project, department, projectLeader, status))
-    conn.commit()
-  return render_template('home.html')
+    try:
+      project = request.form['i1']
+      department = request.form['i2']
+      projectLeader = request.form['i3']
+      status = request.form['i4']
+      cursor.execute('INSERT INTO Projects (Project, Department, ProjectLeader, Status) VALUES (?, ?, ?, ?)', (project, department, projectLeader, status))
+      conn.commit()
+      return render_template('home.html')
+    except:
+      return render_template('error.html')
+  return render_template('error.html')
 
 #@app.route('/insert-Roles/', methods=["GET", "POST"])
 def insertIntoRoles():
   if request.method == 'POST':
-    role = request.form['i1']
-    cursor.execute('INSERT INTO Roles (role) VALUES (?)', (role))
-    conn.commit()
-  return render_template('home.html')
+    try:
+      role = request.form['i1']
+      cursor.execute('INSERT INTO Roles (role) VALUES (?)', (role))
+      conn.commit()
+      return render_template('home.html')
+    except:
+      return render_template('error.html')
+  return render_template('error.html')
 
 #@app.route('/insert-EmployeeProjects/', methods=["GET", "POST"])
 def insertIntoEmployeeProjects():
   if request.method == 'POST':
-    employeeID = request.form['i1']
-    project = request.form['i2']
-    role = request.form['i3']
-    startDate = request.form['i4']
-    endDate = request.form['i5']
-    cursor.execute('INSERT INTO EmployeeProjects (EmployeeID, Project, Role, StartDate, EndDate) VALUES (?, ?, ?, ?, ?)', (employeeID, project, role, startDate, endDate))
-    conn.commit()
-  return render_template('home.html')
+    try:
+      employeeID = request.form['i1']
+      project = request.form['i2']
+      role = request.form['i3']
+      startDate = request.form['i4']
+      endDate = request.form['i5']
+      cursor.execute('INSERT INTO EmployeeProjects (EmployeeID, Project, Role, StartDate, EndDate) VALUES (?, ?, ?, ?, ?)', (employeeID, project, role, startDate, endDate))
+      conn.commit()
+      return render_template('home.html')
+    except:
+      return render_template('error.html')
+  return render_template('error.html')
 #@app.route('/update/', methods=["GET", "POST"])
 def updateTable():
   if request.method == 'POST':
-    table = request.form['i1']
-    column = request.form['i2']
-    value = request.form['i3']
-    cond1 = request.form['i4']
-    cond2 = request.form['i5']
-    if column == 'CurrentSalary' or column == 'HiringSalary' or column == 'YearsExperience' or column == 'minSalary' or column == 'maxSalary':
-      value = int(value)
-    if cond1 == 'CurrentSalary' or cond1 == 'HiringSalary' or cond1 == 'YearsExperience' or cond1 == 'minSalary' or cond1 == 'maxSalary':
-      cond2 = int(cond2)
-     #proper int formatting
-    cursor.execute('UPDATE ? SET ? = ? WHERE ? = ?', (table, column, value, cond1, cond2))
-    conn.commit()
-  return render_template('home.html')
+    try:
+      table = request.form['i1']
+      column = request.form['i2']
+      value = request.form['i3']
+      cond1 = request.form['i4']
+      cond2 = request.form['i5']
+      if column == 'CurrentSalary' or column == 'HiringSalary' or column == 'YearsExperience' or column == 'minSalary' or column == 'maxSalary':
+        value = int(value)
+      if cond1 == 'CurrentSalary' or cond1 == 'HiringSalary' or cond1 == 'YearsExperience' or cond1 == 'minSalary' or cond1 == 'maxSalary':
+        cond2 = int(cond2)
+       #proper int formatting
+      cursor.execute('UPDATE ? SET ? = ? WHERE ? = ?', (table, column, value, cond1, cond2))
+      conn.commit()
+      return render_template('home.html')
+    except:
+      return render_template('error.html')
+  return render_template('error.html')
 #e.g. if it's like update table A set B = C where D = E
 #then you would call updateTable('A', 'B', 'C', 'D', 'E')
 
 #@app.route('/delete/', methods=["GET", "POST"])
 def deleteFromTable():
   if request.method == 'POST':
-    table = request.form['i1']
-    column = request.form['i2']
-    value = request.form['i3']
-    if cond1 == 'CurrentSalary' or cond1 == 'HiringSalary' or cond1 == 'YearsExperience' or cond1 == 'minSalary' or cond1 == 'maxSalary':
-      cond2 = int(cond2)
-      #proper int formatting
-    cursor.execute('DELETE FROM ? WHERE ? = ?', (table, cond1, cond2))
-    conn.commit()
-  return render_template('home.html')
+    try:
+      table = request.form['i1']
+      column = request.form['i2']
+      value = request.form['i3']
+      if cond1 == 'CurrentSalary' or cond1 == 'HiringSalary' or cond1 == 'YearsExperience' or cond1 == 'minSalary' or cond1 == 'maxSalary':
+        cond2 = int(cond2)
+        #proper int formatting
+      cursor.execute('DELETE FROM ? WHERE ? = ?', (table, cond1, cond2))
+      conn.commit()
+      return render_template('home.html')
+    except:
+      return render_template('error.html')
+  return render_template('error.html')
 
 #these correspond to the queries we need to do in the instructions
 
