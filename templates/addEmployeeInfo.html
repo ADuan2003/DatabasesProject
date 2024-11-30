@@ -10,103 +10,111 @@
 <h2>Add: </h2>
 <form action="/url" method="GET">
    <p>Please enter the new EmployeeID:</p>
-   <input type="text" value="000000000A" id="i1">
+   <input type="text" name="i1"/> <br>
+   <p>Please enter the new SSN:</p>
+   <input type="text" name="i2"/> <br>
+   <p>Please enter the new Name:</p>
+   <input type="text" name="i3"/> <br>
+   <p>Please enter the new Gender:</p>
+   <input type="text" name="i4"/> <br>
+   <p>Please enter the new Date of Birth as yyyy-mm-dd:</p>
+   <input type="text" name="i5"/> <br>
 </form>
 </div>
 <div>
 <h2>Add: </h2>
 <form action="/url" method="GET">
    <p>Please enter the new SSN:</p>
-   <input type="text" value="000-00-0000" id = "i2">
+   <input type="text" value="000-00-0000" name="i2">
 </form>
 </div>
 <div>
 <h2>Add: </h2>
 <form action="/url" method="GET">
    <p>Please enter the new Name:</p>
-   <input type="text" value="John Smith" id = "i3">
+   <input type="text" value="John Smith" name="i3">
 </form>
 </div>
 <div>
 <h2>Add: </h2>
 <form action="/url" method="GET">
    <p>Please enter the new Gender:</p>
-   <input type="text" value="None" id = "i4">
+   <input type="text" value="None" name="i4">
 </form>
 </div>
 <div>
 <h2>Add: </h2>
 <form action="/url" method="GET">
    <p>Please enter the new Date of Birth as yyyy-mm-dd:</p>
-   <input type="text" value="1950-01-01" id = "i5">
+   <input type="text" value="1950-01-01" name="i5">
 </form>
 </div>
 <div>
 <h2>Add: </h2>
 <form action="/url" method="GET">
    <p>Please enter the new Primary Address:</p>
-   <input type="text" value="1 Main Street" id = "i6">
+   <input type="text" value="1 Main Street" name="i6">
 </form>
 </div>
 <div>
 <h2>Add: </h2>
 <form action="/url" method="GET">
    <p>Please enter the new Phone Number:</p>
-   <input type="text" value="111-111-1111" id = "i7">
+   <input type="text" value="111-111-1111" name="i7">
 </form>
 </div>
 <div>
 <h2>Add: </h2>
 <form action="/url" method="GET">
    <p>Please enter the new Highest Degree:</p>
-   <input type="text" value="Bachelor's" id = "i8">
+   <input type="text" value="Bachelor's" name="i8">
 </form>
 </div>
 <div>
 <h2>Add: </h2>
 <form action="/url" method="GET">
    <p>Please enter the new Years of Experience:</p>
-   <input type="text" value="0" id = "i9">
+   <input type="text" placeholder="0" name="i9">
 </form>
 </div>
 <div>
 <h2>Add: </h2>
 <form action="/url" method="GET">
    <p>Please enter the new Hiring Position:</p>
-   <input type="text" value="Research Scientist" id = "i10">
+   <input type="text" placeholder="Research Scientist" name="i10">
 </form>
 </div>
 <div>
 <h2>Add: </h2>
 <form action="/url" method="GET">
    <p>Please enter the new Hiring Salary:</p>
-   <input type="text" value="50000" id = "i11">
+   <input type="text" placeholder="50000" name="i11">
 </form>
 </div>
 <div>
 <h2>Add: </h2>
 <form action="/url" method="GET">
    <p>Please enter the new Current Position:</p>
-   <input type="text" value="Research Scientist" id = "i12">
+   <input type="text" placeholder="Research Scientist" name = "i12">
 </form>
 </div>
 <div>
 <h2>Add: </h2>
 <form action="/url" method="GET">
    <p>Please enter the new Current Salary:</p>
-   <input type="text" value="50000" id = "i13">
+   <input type="text" value="50000" name = "i13">
 </form>
 </div>
 <div>
 <h2>Add: </h2>
 <form action="/url" method="GET">
    <p>Please enter the new Health Insurance Coverage:</p>
-   <input type="text" value="company" id = "i14">
+   <input type="text" value="company" name = "i14">
 </form>
 </div>
 <div>
       <!-- Will need some change to make sure it gets the right values -->
-  <a href="'/insert-EmployeeInfo/{{i1.value}}/{{i2.value}}/{{i3.value}}/{{i4.value}}/{{i5.value}}/{{i6.value}}/{{i7.value}}/{{i8.value}}/{{i9.value}}/{{i10.value}}/{{i11.value}}/{{i12.value}}/{{i13.value}}/{{i14.value}}/'">Finalize selection</a>
+  <a href="'/insert-EmployeeInfo/'">Finalize selection</a>
 </div>
 </body>
 </html>
