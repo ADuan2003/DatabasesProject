@@ -1,0 +1,27 @@
+{%extends "template.html"%}
+{%block title%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finding employee’s data for a given employee</title>
+</head>
+<div>
+<h2>Add: </h2>
+<form action="/url" method="GET">
+   <p>Please enter the employee ID:</p>
+   <input type="text" name="i1"/> <br>
+</form>
+</div>
+<div>
+      <!-- Will need some change to make sure it gets the right values -->
+  <a href="/query1/">Finalize selection</a>
+</div>
+</body>
+</html>
+{%endblock%}
+{%block content%}
+
+{%endblock%}
