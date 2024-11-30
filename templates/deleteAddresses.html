@@ -8,9 +8,17 @@
 </head>
 <body>
   <div>
+  <h2>"Select" the table (it's for the code): </h2>
+  <form>
+    <select name1 = "i1">
+      <option attribute1 = "Addresses">Addresses</option>
+    </select>
+  </form>
+  </div>
+  <div>
   <h2>Add the attribute to be deleted upon</h2>
   <form>
-    <select name1 = "makeSelection">
+    <select name1 = "i2">
       <option attribute1 = "address">Address</option>
       <option attribute1 = "zipCode">Zip code</option>
     </select>
@@ -20,13 +28,13 @@
   <h2>Add: </h2>
   <form action="/url" method="GET">
         <p>Please enter the value to be deleted upon:</p>
-        <input type="text" placeholder="0">
+        <input type="text" placeholder="0" name = "i3">
   </form>
   </div>
   
   <div>
       <!-- Will need some change to make sure it gets the right values -->
-    <a href="/delete-Addresses-<column>-<value>-<cond1>-<cond2>/">Finalize selection</a>
+    <a href="/delete/">Finalize selection</a>
   </div>
 </body>
 </html>
