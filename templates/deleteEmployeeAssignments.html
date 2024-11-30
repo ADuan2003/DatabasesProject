@@ -8,13 +8,21 @@
 </head>
 <body>
   <div>
+  <h2>"Select" the table (it's for the code): </h2>
+  <form>
+    <select name = "i1">
+      <option attribute = "EmployeeAssignments">EmployeeAssignments</option>
+    </select>
+  </form>
+  </div>
+  <div>
   <h2>Select the attribute to be deleted upon</h2>
   <form>
-    <select name1 = "makeSelection">
-      <option attribute1 = "EmployeeID">Employee ID</option>
-      <option attribute1 = "Department">Department</option>
-      <option attribute1 = "StartDate">Start Date (yyyy-mm-dd)</option>
-      <option attribute1 = "EndDate">End Date (yyyy-mm-dd)</option>
+    <select name = "i2">
+      <option attribute = "EmployeeID">Employee ID</option>
+      <option attribute = "Department">Department</option>
+      <option attribute = "StartDate">Start Date (yyyy-mm-dd)</option>
+      <option attribute = "EndDate">End Date (yyyy-mm-dd)</option>
     </select>
   </form>
   </div>
@@ -22,12 +30,12 @@
   <h2>Add: </h2>
   <form action="/url" method="GET">
         <p>Please enter the value to be deleted upon:</p>
-        <input type="text" placeholder="0">
+        <input type="text" placeholder="0" name = "i3">
   </form>
   </div>
   <div>
       <!-- Will need some change to make sure it gets the right values -->
-    <a href="/delete-EmployeeAssignments-<column>-<value>-<cond1>-<cond2>/">Finalize selection</a>
+    <a href="/delete/">Finalize selection</a>
   </div>
 </body>
 </html>
