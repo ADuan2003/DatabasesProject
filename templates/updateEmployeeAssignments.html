@@ -7,14 +7,22 @@
     <title>Company Database</title>
 </head>
 <body>
+<div>
+ <h2>"Select" the table (it's for the code): </h2>
+ <form>
+   <select name = "i1">
+     <option attribute = "EmployeeAssignments">Employee Assignments</option>
+   </select>
+ </form>
+</div>
   <div>
   <h2>Add the attribute to be updated</h2>
   <form>
-    <select name1 = "makeSelection">
-      <option attribute1 = "EmployeeID">Employee ID</option>
-      <option attribute1 = "Department">Department</option>
-      <option attribute1 = "StartDate">Start Date (yyyy-mm-dd)</option>
-      <option attribute1 = "EndDate">End Date (yyyy-mm-dd)</option>
+    <select name = "i2">
+      <option attribute = "EmployeeID">Employee ID</option>
+      <option attribute = "Department">Department</option>
+      <option attribute = "StartDate">Start Date (yyyy-mm-dd)</option>
+      <option attribute = "EndDate">End Date (yyyy-mm-dd)</option>
     </select>
   </form>
   </div>
@@ -22,17 +30,17 @@
   <h2>Add: </h2>
   <form action="/url" method="GET">
         <p>Please enter the new value:</p>
-        <input type="text" placeholder="0">
+        <input type="text" placeholder="0" name="i3">
   </form>
   </div>
   <div>
   <h2>Add the condition's attribute</h2>
   <form>
-    <select name2 = "makeSelection">
-      <option attribute2 = "EmployeeID">Employee ID</option>
-      <option attribute2 = "Department">Department</option>
-      <option attribute2 = "StartDate">Start Date (yyyy-mm-dd)</option>
-      <option attribute2 = "EndDate">End Date (yyyy-mm-dd)</option>
+    <select name = "i4">
+      <option attribute = "EmployeeID">Employee ID</option>
+      <option attribute = "Department">Department</option>
+      <option attribute = "StartDate">Start Date (yyyy-mm-dd)</option>
+      <option attribute = "EndDate">End Date (yyyy-mm-dd)</option>
     </select>
   </form>
   </div>
@@ -40,12 +48,12 @@
   <h2>Add: </h2>
   <form action="/url" method="GET">
         <p>Add the condition's value:</p>
-        <input type="text" placeholder="0">
+        <input type="text" placeholder="0" name = "i5">
   </form>
   </div>
   <div>
       <!-- Will need some change to make sure it gets the right values -->
-    <a href="/update-EmployeeAssignments-<column>-<value>-<cond1>-<cond2>/">Finalize selection</a>
+    <a href="/update/">Finalize selection</a>
   </div>
 </body>
 </html>
