@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Database</title>
+</head>
+<div>
+<h2>Add: </h2>
+<form action="/url" method="GET">
+   <p>Please enter the new EmployeeID:</p>
+   <input type="text" name="i1"/> <br>
+   <p>Please enter the new Project:</p>
+   <input type="text" name="i2"/> <br>
+   <p>Please enter the new Role:</p>
+   <input type="text" name="i3"/> <br>
+   <p>Please enter the new Start Date as yyyy-mm-dd:</p>
+   <input type="text" name="i4"/> <br>
+   <p>Please enter the new End Date as yyyy-mm-dd:</p>
+   <input type="text" name="i5"/> <br>
+</form>
+</div>
+<div>
+      <!-- Will need some change to make sure it gets the right values -->
+  <a href="'/insert-EmployeeProjects/'">Finalize selection</a>
+</div>
+</body>
+</html>
