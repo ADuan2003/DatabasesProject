@@ -191,6 +191,129 @@ conn.commit()
 
 #the below will also need@app.route -- basically the above app routes took someone to the non-home pages; these take them back from the non-home pages
 
+#@app.route('/selection/', methods=["GET", "POST"])
+def Selection():
+  if request.method == 'POST':
+    try:
+      selec = request.form['operation']
+      if selec == 'Ainsurance':
+        return render_template('addHealthInsurance.html')
+      elif selec == 'Abenefit':
+        return render_template('addBenefits.html')
+      elif selec == 'Astatus':
+        return render_template('addProjectStatus.html')
+      elif selec == 'Aaddress':
+        return render_template('addAddresses.html')
+      elif selec == 'Aposition':
+        return render_template('addPositions.html')
+      elif selec == 'Adepartment':
+        return render_template('addDepartments.html')
+      elif selec == 'Aemployee':
+        return render_template('addEmployeeInfo.html')
+      elif selec == 'AempBenefit':
+        return render_template('addEmployeeBenefits.html')
+      elif selec == 'Aproject':
+        return render_template('addProjects.html')
+      elif selec == 'Arole':
+        return render_template('addRoles.html')
+      elif selec == 'AempProject':
+        return render_template('addEmployeeProjects.html')
+      elif selec == 'AempDep':
+        return render_template('addEmployeeAssignments.html')
+      elif selec == 'Uinsurance':
+        return render_template('updateHealthInsurance.html')
+      elif selec == 'Ubenefit':
+        return render_template('updateBenefits.html')
+      elif selec == 'Ustatus':
+        return render_template('updateProjectStatus.html')
+      elif selec == 'Uaddress':
+        return render_template('updateAddresses.html')
+      elif selec == 'Uposition':
+        return render_template('updatePositions.html')
+      elif selec == 'Udepartment':
+        return render_template('updateDepartments.html')
+      elif selec == 'Uemployee':
+        return render_template('updateEmployeeInfo.html')
+      elif selec == 'UempBenefit':
+        return render_template('updateEmployeeBenefits.html')
+      elif selec == 'Uproject':
+        return render_template('updateProjects.html')
+      elif selec == 'Urole':
+        return render_template('updateRoles.html')
+      elif selec == 'UempProject':
+        return render_template('updateEmployeeProjects.html')
+      elif selec == 'UempDep':
+        return render_template('updateEmployeeAssignments.html')
+      elif selec == 'Dinsurance':
+        return render_template('deleteHealthInsurance.html')
+      elif selec == 'Dbenefit':
+        return render_template('deleteBenefits.html')
+      elif selec == 'Dstatus':
+        return render_template('deleteProjectStatus.html')
+      elif selec == 'Daddress':
+        return render_template('deleteAddresses.html')
+      elif selec == 'Dposition':
+        return render_template('deletePositions.html')
+      elif selec == 'Ddepartment':
+        return render_template('deleteDepartments.html')
+      elif selec == 'Demployee':
+        return render_template('deleteEmployeeInfo.html')
+      elif selec == 'DempBenefit':
+        return render_template('deleteEmployeeBenefits.html')
+      elif selec == 'Dproject':
+        return render_template('deleteProjects.html')
+      elif selec == 'Drole':
+        return render_template('deleteRoles.html')
+      elif selec == 'DempProject':
+        return render_template('deleteEmployeeProjects.html')
+      elif selec == 'DempDep':
+        return render_template('deleteEmployeeAssignments.html')
+      elif selec == 'query1':
+        return render_template('query1.html')
+      elif selec == 'query2':
+        return render_template('query2.html')
+      elif selec == 'query3':
+        return render_template('query3.html')
+      elif selec == 'query4':
+        return render_template('query4.html')
+      elif selec == 'query5':
+        return render_template('query5.html')
+      elif selec == 'query6':
+        return render_template('query6.html')
+      elif selec == 'query7':
+        return render_template('query7.html')
+      elif selec == 'query8':
+        return render_template('query8.html')
+      elif selec == 'query9':
+        return render_template('query9.html')
+      elif selec == 'query10':
+        return render_template('query10.html')
+      elif selec == 'query11':
+        return render_template('query11.html')
+      elif selec == 'query12':
+        return render_template('query12.html')
+      elif selec == 'query13':
+        return render_template('query13.html')
+      elif selec == 'query14':
+        return render_template('query14.html')
+      elif selec == 'query15':
+        return render_template('query15.html')
+      elif selec == 'query16':
+        return render_template('query16.html')
+      elif selec == 'query17':
+        return render_template('query17.html')
+      elif selec == 'query18':
+        return render_template('query18.html')
+      elif selec == 'query19':
+        return render_template('query19.html')
+      elif selec == 'query20':
+        return render_template('query20.html')
+      elif selec == 'query21':
+        return render_template('query21.html')
+      return render_template('home.html') #if somehow isn't something in list
+    except:
+      return render_template('home.html') #I'll try to expand these blocks to other functions Saturday
+
 #@app.route('/insert-HealthInsurance/', methods=["GET", "POST"])
 def insertIntoHealthInsurance():
   if request.method == 'POST':
