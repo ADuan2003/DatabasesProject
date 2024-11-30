@@ -8,62 +8,69 @@
   <div>
   <h2>Add: </h2>
   <form>
-    <select name = "addRow">
-      <option addingTable = "insurance">Health Insurance</option>
-      <option addingTable = "benefit">Benefit Type</option>
-      <option addingTable = "status">Project Status</option>
-      <option addingTable = "address">Address</option>
-      <option addingTable = "position">Job Position</option>
-      <option addingTable = "department">Department</option>
-      <option addingTable = "employee">Employee</option>
-      <option addingTable = "empBenefit">Employee's Benefit</option>
-      <option addingTable = "project">Project</option>
-      <option addingTable = "role">Role</option>
-      <option addingTable = "empProject">Employee's Project</option>
-      <option addingTable = "empDep">Employee's Department</option>
+    <select name = "operation">
+      <option Table = "Ainsurance">Add to Health Insurance</option>
+      <option Table = "Abenefit">Add to Benefit Type</option>
+      <option Table = "Astatus">Add to Project Status</option>
+      <option Table = "Aaddress">Add to Address</option>
+      <option Table = "Aposition">Add to Job Position</option>
+      <option Table = "Adepartment">Add to Department</option>
+      <option Table = "Aemployee">Add to Employee</option>
+      <option Table = "AempBenefit">Add to Employee's Benefit</option>
+      <option Table = "Aproject">Add to Project</option>
+      <option Table = "Arole">Add to Role</option>
+      <option Table = "AempProject">Add to Employee's Project</option>
+      <option Table = "AempDep">Add to Employee's Department</option>
+      <option Table = "Uinsurance">Update Health Insurance</option>
+      <option Table = "Ubenefit">Update Benefit Type</option>
+      <option Table = "Ustatus">Update Project Status</option>
+      <option Table = "Uaddress">Update Address</option>
+      <option Table = "Uposition">Update Job Position</option>
+      <option Table = "Udepartment">Update Department</option>
+      <option Table = "Uemployee">Update Employee</option>
+      <option Table = "UempBenefit">Update Employee's Benefit</option>
+      <option Table = "Uproject">Update Project</option>
+      <option Table = "Urole">Update Role</option>
+      <option Table = "UempProject">Update Employee's Project</option>
+      <option Table = "UempDep">Update Employee's Department</option>
+      <option Table = "Dinsurance">Delete from Health Insurance</option>
+      <option Table = "Dbenefit">Delete from Benefit Type</option>
+      <option Table = "Dstatus">Delete from Project Status</option>
+      <option Table = "Daddress">Delete from Address</option>
+      <option Table = "Dposition">Delete from Job Position</option>
+      <option Table = "Ddepartment">Delete from Department</option>
+      <option Table = "Demployee">Delete from Employee</option>
+      <option Table = "DempBenefit">Delete from Employee's Benefit</option>
+      <option Table = "Dproject">Delete from Project</option>
+      <option Table = "Drole">Delete from Role</option>
+      <option Table = "DempProject">Delete from Employee's Project</option>
+      <option Table = "DempDep">Delete from Employee's Department</option>
+      <option Table = "query1">Finding employee’s data for a given employee</option>
+      <option Table = "query2">Finding who are employees of a given department</option>
+      <option Table = "query3">Finding who are employees working on a given project</option>
+      <option Table = "query4">Finding the zip code that most employees live in</option>
+      <option Table = "query5">Finding the project info of any given project</option>
+      <option Table = "query6">Finding the number of employees working on a given project at any given time</option>
+      <option Table = "query7">Finding the number of employees who have a certain benefit</option>
+      <option Table = "query8">Finding the employee who has a given role in a given project</option>
+      <option Table = "query9">Finding all active projects</option>
+      <option Table = "query10">Finding any information of each department</option>
+      <option Table = "query11">Finding the current role of an employee</option>
+      <option Table = "query12">Finding all roles of an employees along with the date</option>
+      <option Table = "query13">Finding the number of employees who have certain health plan</option>
+      <option Table = "query14">Finding the number of employees for each and all the types of health plan</option>
+      <option Table = "query15">Finding if the salary of underpaid female employees is improved?</option>
+      <option Table = "query16">Finding min & max salary for a given position</option>
+      <option Table = "query17">Finding the number of projects per project status</option>
+      <option Table = "query18">Finding the start & end date of a given employee for any of the employee’s department(s)</option>
+      <option Table = "query19">Finding the name of all project leaders along with the name of project</option>
+      <option Table = "query20">Finding whose salaries are increased by 20% since their hiring in the company</option>
+      <option Table = "query21">Finding which position type has the highest average salary</option>
     </select>
   </form>
   </div>
   <div>
-    <h2>Update: </h2>
-    <form>
-      <select name = "updateRow">
-        <option updateTable = "insurance">Health Insurance</option>
-        <option updateTable = "benefit">Benefit Type</option>
-        <option updateTable = "status">Project Status</option>
-        <option updateTable = "address">Address</option>
-        <option updateTable = "position">Job Position</option>
-        <option updateTable = "department">Department</option>
-        <option updateTable = "employee">Employee</option>
-        <option updateTable = "empBenefit">Employee's Benefit</option>
-        <option updateTable = "project">Project</option>
-        <option updateTable = "role">Role</option>
-        <option updateTable = "empProject">Employee's Project</option>
-        <option updateTable = "empDep">Employee's Department</option>
-      </select>
-    </form>
-  </div>
-  <div>
-  <h2>Delete: </h2>
-  <form>
-    <select name = "deleteRow">
-      <option deletingTable = "insurance">Health Insurance</option>
-      <option deletingTable = "benefit">Benefit Type</option>
-      <option deletingTable = "status">Project Status</option>
-      <option deletingTable = "address">Address</option>
-      <option deletingTable = "position">Job Position</option>
-      <option deletingTable = "department">Department</option>
-      <option deletingTable = "employee">Employee</option>
-      <option deletingTable = "empBenefit">Employee's Benefit</option>
-      <option deletingTable = "project">Project</option>
-      <option deletingTable = "role">Role</option>
-      <option deletingTable = "empProject">Employee's Project</option>
-      <option deletingTable = "empDep">Employee's Department</option>
-    </select>
-  </form>
-  </div>
-  <div>
-    <h2><a href="/query/">Query</href></h2>
+    <h2><a href="/selection/">Make Selection</href></h2>
   </div>
 </body>
 </html>
