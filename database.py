@@ -131,59 +131,59 @@ conn.commit()
 
 #these pages don't exist yet, but I presume they'll include a 'submit' button to do the operation and send someone back to the home page
 
-#@app.route('/updateEmployeeInfo/', methods=['POST'])
+#@app.route('/updateEmployeeInfo/', methods=["GET", "POST"])
 #def query():
 #  return render_template('updateEmployeeInfo.html')
 
-#@app.route('/delete/', methods=['POST'])
+#@app.route('/delete/', methods=["GET", "POST"])
 #def query():
 #  return render_template('delete.html')
 
-#@app.route('/addinsurance/', methods=['POST'])
+#@app.route('/addinsurance/', methods=["GET", "POST"])
 #def query():
 #  return render_template('addinsurance.html')
 
-#@app.route('/addbenefit/', methods=['POST'])
+#@app.route('/addbenefit/', methods=["GET", "POST"])
 #def query():
 #  return render_template('addbenefit.html')
 
-#@app.route('/addstatus/', methods=['POST'])
+#@app.route('/addstatus/', methods=["GET", "POST"])
 #def query():
 #  return render_template('addstatus.html')
 
-#@app.route('/addaddress/', methods=['POST'])
+#@app.route('/addaddress/', methods=["GET", "POST"])
 #def query():
 #  return render_template('addaddress.html')
 
-#@app.route('/addposition/', methods=['POST'])
+#@app.route('/addposition/', methods=["GET", "POST"])
 #def query():
 #  return render_template('addposition.html')
 
-#@app.route('/adddepartment/', methods=['POST'])
+#@app.route('/adddepartment/', methods=["GET", "POST"])
 #def query():
 #  return render_template('adddepartment.html')
 
-#@app.route('/addemployee/', methods=['POST'])
+#@app.route('/addemployee/', methods=["GET", "POST"])
 #def query():
 #  return render_template('addemployee.html')
 
-#@app.route('/addempbenefit/', methods=['POST'])
+#@app.route('/addempbenefit/', methods=["GET", "POST"])
 #def query():
 #  return render_template('addempbenefit.html')
 
-#@app.route('/addproject/', methods=['POST'])
+#@app.route('/addproject/', methods=["GET", "POST"])
 #def query():
 #  return render_template('addproject.html')
 
-#@app.route('/addrole/', methods=['POST'])
+#@app.route('/addrole/', methods=["GET", "POST"])
 #def query():
 #  return render_template('addrole.html')
 
-#@app.route('/addempproj/', methods=['POST'])
+#@app.route('/addempproj/', methods=["GET", "POST"])
 #def query():
 #  return render_template('addempproj.html')
 
-#@app.route('/addassignment/', methods=['POST'])
+#@app.route('/addassignment/', methods=["GET", "POST"])
 #def query():
 #  return render_template('addassignment.html')
   
@@ -191,199 +191,309 @@ conn.commit()
 
 #the below will also need@app.route -- basically the above app routes took someone to the non-home pages; these take them back from the non-home pages
 
-#@app.route('/insert-HealthInsurance/<coverage>/', methods=['POST'])
-def insertIntoHealthInsurance(coverage):
+#@app.route('/insert-HealthInsurance/', methods=["GET", "POST"])
+def insertIntoHealthInsurance():
+  if request.method == 'POST':
+    coverage = request.form['i1']
     cursor.execute('INSERT INTO HealthInsurance (coverage) VALUES (?)', (coverage))
     conn.commit()
+  return render_template('home.html')
 
-#@app.route('/insert-Benefits/<benefit>/', methods=['POST'])
-def insertIntoBenefits(benefit):
+#@app.route('/insert-Benefits/', methods=["GET", "POST"])
+def insertIntoBenefits():
+  if request.method == 'POST':
+    benefit = request.form['i1']
     cursor.execute('INSERT INTO Benefits (benefit) VALUES (?)', (benefit))
     conn.commit()
+  return render_template('home.html')
 
-#@app.route('/insert-ProjectStatus/<status>/', methods=['POST'])
-def insertIntoProjectStatus(status):
+#@app.route('/insert-ProjectStatus/', methods=["GET", "POST"])
+def insertIntoProjectStatus():
+  if request.method == 'POST':
+    status = request.form['i1']
     cursor.execute('INSERT INTO ProjectStatus (status) VALUES (?)', (status))
     conn.commit()
+  return render_template('home.html')
 
-#@app.route('/insert-Addresses/<address>/<zipcode>/', methods=['POST'])
-def insertIntoAddresses(address, zipcode):
+#@app.route('/insert-Addresses/', methods=["GET", "POST"])
+def insertIntoAddresses():
+  if request.method == 'POST':
+    address = request.form['i1']
+    zipcode = request.form['i2']
     cursor.execute('INSERT INTO Addresses (address, zipCode) VALUES (?, ?)', (address, zipcode))
     conn.commit()
+  return render_template('home.html')
 
-#@app.route('/insert-Positions/<position>/<minSalary>/<maxSalary>/', methods=['POST'])
-def insertIntoPositions(position, minSalary, maxSalary):
+#@app.route('/insert-Positions/', methods=["GET", "POST"])
+def insertIntoPositions():
+  if request.method == 'POST':
+    position = request.form['i1']
+    minSalary = request.form['i2']
+    maxSalary = request.form['i3']
     cursor.execute('INSERT INTO Positions (position, minSalary, maxSalary) VALUES (?, ?, ?)', (position, int(minSalary), int(maxSalary)))
     conn.commit()
+  return render_template('home.html')
 
-#@app.route('/insert-Departments/<department>/', methods=['POST'])
-def insertIntoDepartments(department):
+#@app.route('/insert-Departments/', methods=["GET", "POST"])
+def insertIntoDepartments():
+  if request.method == 'POST':
+    department = request.form['i1']
     cursor.execute('INSERT INTO Departments (department) VALUES (?)', (department))
     conn.commit()
+  return render_template('home.html')
 
-#@app.route('/insert-EmployeeInfo/<employeeID>/<ssn>/<name>/<gender>/<DoB>/<address>/<phone>/<degree>/<years>/<hiringPosition>/<hiringSalary>/<currentPosition>/<currentSalary>/<coverage>/', methods=['POST'])
-def insertIntoEmployeeInfo(employeeID, ssn, name, gender, DoB, address, phone, degree, years, hiringPosition, hiringSalary, currentPosition, currentSalary, coverage):
+#@app.route('/insert-EmployeeInfo/', methods=["GET", "POST"])
+def insertIntoEmployeeInfo():
+  if request.method == 'POST':
+    employeeID = request.form['i1']
+    ssn = request.form['i2']
+    name = request.form['i3']
+    gender = request.form['i4']
+    DoB = request.form['i5']
+    address = request.form['i6']
+    phone = request.form['i7']
+    degree = request.form['i8']
+    years = request.form['i9']
+    hiringPosition = request.form['i10']
+    hiringSalary = request.form['i11']
+    currentPosition = request.form['i12']
+    currentSalary = request.form['i13']
+    coverage = request.form['i14']
     cursor.execute('INSERT INTO EmployeeInfo (EmployeeID, SSN, Name, gender, DoB, PrimaryAddress, PhoneNumber, HighestDegree, YearsExperience, HiringPosition, HiringSalary, CurrentPosition, CurrentSalary, Coverage) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', (employeeID, ssn, name, gender, DoB, address, phone, degree, int(years), hiringPosition, int(hiringSalary), currentPosition, int(currentSalary), coverage))
     conn.commit()
+  return render_template('home.html')
 
-#@app.route('/insert-EmployeeAssignments/<employeeID>/<department>/<startDate>/<endDate>/', methods=['POST'])
-def insertIntoEmployeeAssignments(employeeID, department, startDate, endDate):
+#@app.route('/insert-EmployeeAssignments/', methods=["GET", "POST"])
+def insertIntoEmployeeAssignments():
+  if request.method == 'POST':
+    employeeID = request.form['i1']
+    department = request.form['i2']
+    startDate = request.form['i3']
+    endDate = request.form['i4']
     cursor.execute('INSERT INTO EmployeeAssignments (EmployeeID, Department, StartDate, EndDate) VALUES (?, ?, ?, ?)', (employeeID, department, startDate, endDate))
     conn.commit()
+  return render_template('home.html')
 
-#@app.route('/insert-EmployeeBenefits/<employeeID>/<benefit>/<startDate>/<endDate>/', methods=['POST'])
-def insertIntoEmployeeBenefits(employeeID, benefit, startDate, endDate):
+#@app.route('/insert-EmployeeBenefits/', methods=["GET", "POST"])
+def insertIntoEmployeeBenefits():
+  if request.method == 'POST':
+    employeeID = request.form['i1']
+    benefit = request.form['i2']
+    startDate = request.form['i3']
+    endDate = request.form['i4']
     cursor.execute('INSERT INTO EmployeeBenefits (EmployeeID, Benefit, StartDate, EndDate) VALUES (?, ?, ?, ?)', (employeeID, benefit, startDate, endDate))
     conn.commit()
+  return render_template('home.html')
 
-#@app.route('/insert-Projects/<project>/<department>/<projectLeader>/<status>/', methods=['POST'])
-def insertIntoProjects(project, department, projectLeader, status):
+#@app.route('/insert-Projects/', methods=["GET", "POST"])
+def insertIntoProjects():
+  if request.method == 'POST':
+    project = request.form['i1']
+    department = request.form['i2']
+    projectLeader = request.form['i3']
+    status = request.form['i4']
     cursor.execute('INSERT INTO Projects (Project, Department, ProjectLeader, Status) VALUES (?, ?, ?, ?)', (project, department, projectLeader, status))
     conn.commit()
+  return render_template('home.html')
 
-#@app.route('/insert-Roles/<role>/', methods=['POST'])
-def insertIntoRoles(role):
+#@app.route('/insert-Roles/', methods=["GET", "POST"])
+def insertIntoRoles():
+  if request.method == 'POST':
+    role = request.form['i1']
     cursor.execute('INSERT INTO Roles (role) VALUES (?)', (role))
     conn.commit()
+  return render_template('home.html')
 
-#@app.route('/insert-EmployeeProjects/<employeeID>/<project>/<role>/<startDate>/<endDate>/', methods=['POST'])
-def insertIntoEmployeeProjects(employeeID, project, role, startDate, endDate):
+#@app.route('/insert-EmployeeProjects/', methods=["GET", "POST"])
+def insertIntoEmployeeProjects():
+  if request.method == 'POST':
+    employeeID = request.form['i1']
+    project = request.form['i2']
+    role = request.form['i3']
+    startDate = request.form['i4']
+    endDate = request.form['i5']
     cursor.execute('INSERT INTO EmployeeProjects (EmployeeID, Project, Role, StartDate, EndDate) VALUES (?, ?, ?, ?, ?)', (employeeID, project, role, startDate, endDate))
     conn.commit()
-
-#the drop-down menu will definitely come in handy down below
-
-#@app.route('/update/<table>/<column>/<value>/<cond1>/<cond2>/', methods=['POST'])
-def updateTable(table, column, value, cond1, cond2):
-  if column == 'CurrentSalary' or column == 'HiringSalary' or column == 'YearsExperience' or column == 'minSalary' or column == 'maxSalary':
+  return render_template('home.html')
+#@app.route('/update/', methods=["GET", "POST"])
+def updateTable():
+  if request.method == 'POST':
+    table = request.form['i1']
+    column = request.form['i2']
+    value = request.form['i3']
+    cond1 = request.form['i4']
+    cond2 = request.form['i5']
+    if column == 'CurrentSalary' or column == 'HiringSalary' or column == 'YearsExperience' or column == 'minSalary' or column == 'maxSalary':
       value = int(value)
-  if cond1 == 'CurrentSalary' or cond1 == 'HiringSalary' or cond1 == 'YearsExperience' or cond1 == 'minSalary' or cond1 == 'maxSalary':
+    if cond1 == 'CurrentSalary' or cond1 == 'HiringSalary' or cond1 == 'YearsExperience' or cond1 == 'minSalary' or cond1 == 'maxSalary':
       cond2 = int(cond2)
      #proper int formatting
-  cursor.execute('UPDATE ? SET ? = ? WHERE ? = ?', (table, column, value, cond1, cond2))
-  conn.commit()
+    cursor.execute('UPDATE ? SET ? = ? WHERE ? = ?', (table, column, value, cond1, cond2))
+    conn.commit()
   return render_template('home.html')
 #e.g. if it's like update table A set B = C where D = E
 #then you would call updateTable('A', 'B', 'C', 'D', 'E')
 
-#@app.route('/delete/<table>/<cond1>/<cond2>/', methods=['POST'])
-def deleteFromTable(table, cond1, cond2):
-  if cond1 == 'CurrentSalary' or cond1 == 'HiringSalary' or cond1 == 'YearsExperience' or cond1 == 'minSalary' or cond1 == 'maxSalary':
-    cond2 = int(cond2)
-    #proper int formatting
-  cursor.execute('DELETE FROM ? WHERE ? = ?', (table, cond1, cond2))
-  conn.commit()
+#@app.route('/delete/', methods=["GET", "POST"])
+def deleteFromTable():
+  if request.method == 'POST':
+    table = request.form['i1']
+    column = request.form['i2']
+    value = request.form['i3']
+    if cond1 == 'CurrentSalary' or cond1 == 'HiringSalary' or cond1 == 'YearsExperience' or cond1 == 'minSalary' or cond1 == 'maxSalary':
+      cond2 = int(cond2)
+      #proper int formatting
+    cursor.execute('DELETE FROM ? WHERE ? = ?', (table, cond1, cond2))
+    conn.commit()
   return render_template('home.html')
 
 #these correspond to the queries we need to do in the instructions
 
-#@app.route('/query1/<emp>/', methods=['POST'])
-def query1(emp):
+#@app.route('/query1/', methods=["GET", "POST"])
+def query1():
+  if request.method == 'POST':
+    emp = request.form['i1']
     cursor.execute('SELECT * FROM EmployeeInfo WHERE EmployeeID = ?', (emp))
     conn.commit()
   #return render_template('home.html')
 
-#@app.route('/query2/<dept>/', methods=['POST'])
-def query2(dept):
+#@app.route('/query2/', methods=["GET", "POST"])
+def query2():
+  if request.method == 'POST':
+    dept = request.form['i1']
     cursor.execute('SELECT DISTINCT EmployeeID FROM EmployeeInfo WHERE (EndDate IS NULL OR EndDate >= GetDate()) && Department = ?', dept)
     conn.commit()
 
-#@app.route('/query3/<proj>/', methods=['POST'])
-def query3(proj):
+#@app.route('/query3/', methods=["GET", "POST"])
+def query3():
+  if request.method == 'POST':
+    proj = request.form['i1']
     cursor.execute('SELECT (EmployeeID, Name) FROM EmployeeProjects WHERE Project = ? AND (EndDate IS NULL OR EndDate >= GetDate())', proj)
     conn.commit()
 
-#@app.route('/query4/', methods=['POST'])
+#@app.route('/query4/', methods=["GET", "POST"])
 def query4():
+  if request.method == 'POST':
     cursor.execute('SELECT distinct(zipCode) FROM Addresses GROUP BY zipCode HAVING count(zipCode) >= ALL (SELECT count(zipCode) FROM Addresses GROUP BY zipCode)')
     conn.commit()
 
-#@app.route('/query5/<proj>/', methods=['POST'])
-def query5(proj):
+#@app.route('/query5/', methods=["GET", "POST"])
+def query5():
+  if request.method == 'POST':
+    proj = request.form['i1']
     cursor.execute('SELECT * FROM Projects WHERE Project = ?;', proj)
     conn.commit()
 
-#@app.route('/query6/<proj>/<date>/', methods=['POST'])
-def query6(proj, date):
+#@app.route('/query6/', methods=["GET", "POST"])
+def query6():
+  if request.method == 'POST':
+    proj = request.form['i1']
+    date = request.form['i2']
     cursor.execute('SELECT COUNT (EmployeeID) FROM EmployeeProjects WHERE Project = ? AND (EndDate IS NULL OR EndDate >= ?) AND (StartDate <= ?)', proj, date, date)
     conn.commit()
 
-#@app.route('/query7/<ben>/', methods=['POST'])
-def query7(ben):
+#@app.route('/query7/', methods=["GET", "POST"])
+def query7():
+  if request.method == 'POST':
+    ben = request.form['i1']
     cursor.execute('SELECT COUNT (DISTINCT EmployeeID) FROM EmployeeBenefits WHERE (EndDate IS NULL OR EndDate >= GetDate()) AND Benefit = ?', ben)
     conn.commit()
 
-#@app.route('/query8/<proj>/<role>/', methods=['POST'])
-def query8(proj, role):
+#@app.route('/query8/', methods=["GET", "POST"])
+def query8():
+  if request.method == 'POST':
+    proj = request.form['i1']
+    role = request.form['i2']
     cursor.execute('SELECT EmployeeID FROM EmployeeProjects WHERE (EndDate IS NULL OR EndDate >= GetDate()) AND Project = ? AND Role = ?', proj, role)
     conn.commit()
 
-#@app.route('/query9/', methods=['POST'])
+#@app.route('/query9/', methods=["GET", "POST"])
 def query9():
+  if request.method == 'POST':
     cursor.execute('SELECT Project FROM Projects WHERE Status = \'in-progress\' OR Status = \'new\'')
     conn.commit()
 
-#@app.route('/query10/', methods=['POST'])
+#@app.route('/query10/', methods=["GET", "POST"])
 def query10():
+  if request.method == 'POST':
     cursor.execute('SELECT Department, EmployeeID, StartDate, EndDate FROM EmployeeAssignments GROUP BY Department')
     cursor.execute('SELECT Department, Project, ProjectLeader, Status FROM Projects GROUP BY DEPARTMENT')
     conn.commit()
 
-#@app.route('/query11/<emp>/', methods=['POST'])
-def query11(emp):
+#@app.route('/query11/', methods=["GET", "POST"])
+def query11():
+  if request.method == 'POST':
+    emp = request.form['i1']
     cursor.execute('SELECT Role FROM EmployeeProjects WHERE (EndDate IS NULL OR EndDate >= GetDate()) AND EmployeeID = ?', emp)
     conn.commit()
 
-#@app.route('/query12/<emp>/', methods=['POST'])
-def query12(emp):
+#@app.route('/query12/', methods=["GET", "POST"])
+def query12():
+  if request.method == 'POST':
+    emp = request.form['i1']
     cursor.execute('select role, startdate, enddate from EmployeeProjects where EmployeeID = ?', emp)
     conn.commit()
 
-#@app.route('/query13/<HealthPlan>/', methods=['POST'])
-def query13(HealthPlan):
+#@app.route('/query13/', methods=["GET", "POST"])
+def query13():
+  if request.method == 'POST':
+    HealthPlan = request.form['i1']
     cursor.execute('SELECT COUNT(EmployeeInfo) FROM EmployeeInfo WHERE Coverage = ?', HealthPlan)
     conn.commit()
 
-#@app.route('/query14/', methods=['POST'])
+#@app.route('/query14/', methods=["GET", "POST"])
 def query14():
+  if request.method == 'POST':
     cursor.execute('select count(distinct employeeid), coverage from employeeInfo group by coverage')
     conn.commit()
 
-#@app.route('/query15/<role>/<lev>/', methods=['POST'])
-def query15(role, lev):
+#@app.route('/query15/', methods=["GET", "POST"])
+def query15():
+  if request.method == 'POST':
+    role = request.form['i1']
+    lev = request.form['i2']
   #not sure if this is how you'd solve the issue
     cursor.execute('SELECT AVG(CurrentSalary) FROM EmployeeInfo WHERE Gender = \'Female\' AND CurrentPosition = ? AND YearsExperience = ?', role, lev)
     #this was giving me errors regarding the '' with female and male -- yeah needed the \' oops
     cursor.execute('SELECT AVG(CurrentSalary) FROM EmployeeInfo WHERE Gender = \'Male\' AND CurrentPosition = ? AND YearsExperience = ?', role, lev)
     conn.commit()
 
-#@app.route('/query16/<pos>/', methods=['POST'])
-def query16(pos):
+#@app.route('/query16/', methods=["GET", "POST"])
+def query16():
+  if request.method == 'POST':
+    pos = request.form['i1']
     cursor.execute('SELECT (minSalary, maxSalary) FROM Positions WHERE position = ?;', pos)
     conn.commit()
 
-#@app.route('/query17/', methods=['POST'])
+#@app.route('/query17/', methods=["GET", "POST"])
 def query17():
+  if request.method == 'POST':
     cursor.execute('select count(distinct project), status from projects group by status')
     conn.commit()
 
-#@app.route('/query15/<emp>/<dep>/', methods=['POST'])
-def query18(emp, dep):
+#@app.route('/query15/', methods=["GET", "POST"])
+def query18():
+  if request.method == 'POST':
+    emp = request.form['i1']
+    dep = request.form['i2']
     cursor.execute('SELECT (StartDate, EndDate) FROM EmployeeAssignments WHERE EmployeeID = ? AND Department = ?', emp, dep)
     conn.commit()
 
-#@app.route('/query19/', methods=['POST'])
+#@app.route('/query19/', methods=["GET", "POST"])
 def query19():
+  if request.method == 'POST':
     cursor.execute('SELECT (a.Project, b.Name) FROM Projects a, EmployeeID b, WHERE a.ProjectLeader == b.EmployeeID')
     conn.commit()
 
-#@app.route('/query20/', methods=['POST'])
+#@app.route('/query20/', methods=["GET", "POST"])
 def query20():
+  if request.method == 'POST':
     cursor.execute('SELECT (EmployeeID, Name) FROM EmployeeInfo WHERE 5*CurrentSalary >= 6*HiringSalary')
     conn.commit()
 
-#@app.route('/query21/', methods=['POST'])
+#@app.route('/query21/', methods=["GET", "POST"])
 def query21():
+  if request.method == 'POST':
     cursor.execute('select max(avg(CurrentSalary)) from ( select avg(CurrentSalary)  from EmployeeInfo group by CurrentPosition)')
     conn.commit()
 
