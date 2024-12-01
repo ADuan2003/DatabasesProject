@@ -9,10 +9,9 @@
     <title>Finding which position type has the highest average salary</title>
 </head>
 
-<div>
-      <!-- Will need some change to make sure it gets the right values -->
-  <a href="/query21/">Query!</a>
-</div>
+<form action = "{{ url_for('query21') }}" method="post">
+    <button type="submit">Finalize selection</button>
+</form>
 </body>
 </html>
 {%endblock%}
