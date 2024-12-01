@@ -10,8 +10,9 @@
 </head>
 
 <div>
-      <!-- Will need some change to make sure it gets the right values -->
-  <a href="/query9/">Query!</a>
+<form action = "{{ url_for('query9') }}" method="post">
+    <button type="submit">Finalize selection</button>
+</form>
 </div>
 </body>
 </html>
