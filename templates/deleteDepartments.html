@@ -4,34 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Company Database</title>
+    <title>Delete Departments</title>
 </head>
 <body>
   <div>
-  <h2>"Select" the table (it's for the code): </h2>
-  <form>
-    <select name = "i1">
-      <option attribute = "Departments">Departments</option>
-    </select>
-  </form>
-  </div>
-  <div>
-  <h2>Add the attribute to be deleted upon</h2>
-  <form>
-    <select name = "i2">
-      <option attribute = "department">Department</option>
-    </select>
-  </form>
-  </div>
-  <div>
-  <h2>Add: </h2>
-  <form action="/url" method="GET">
-        <p>Please enter the department to delete:</p>
-        <input type="text" placeholder="0" name = "i3">
-  </form>
-  </div>
-  <div>
-    <a href="/delete/">Finalize selection</a>
-  </div>
+ <form action = "{{ url_for('delete') }}" method="post">
+     <h2>"Select" the table (it's for the code): </h2>
+         <select name = "i1">
+             <option attribute = "Departments">Departments</option>
+         </select>
+     <h2>Add the attribute to be deleted upon</h2>
+         <select name = "i2">
+             <option attribute = "department">Department</option>
+         </select>
+     <h2>Please enter the department to be deleted:</h2>
+         <input type="text" placeholder="0" name="i3">
+     
+     <button type="submit">Finalize selection</button>
+ </form>
+</div>
 </body>
 </html>
