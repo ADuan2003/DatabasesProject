@@ -192,7 +192,7 @@ conn.commit()
 #the below will also need@app.route -- basically the above app routes took someone to the non-home pages; these take them back from the non-home pages
 
 @app.route('/selection', methods=["GET", "POST"])
-def Selection():
+def selection():
   if request.method == 'POST':
     try:
       selec = request.form['operation']
