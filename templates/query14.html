@@ -9,10 +9,9 @@
     <title>Finding the number of employees for each and all the types of health plan</title>
 </head>
 
-<div>
-      <!-- Will need some change to make sure it gets the right values -->
-  <a href="/query14/">Query!</a>
-</div>
+<form action = "{{ url_for('query14') }}" method="post">
+    <button type="submit">Finalize selection</button>
+</form>
 </body>
 </html>
 {%endblock%}
