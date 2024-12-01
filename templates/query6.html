@@ -10,17 +10,16 @@
 </head>
 <div>
 <h2>Add: </h2>
-<form action="/url" method="GET">
-   <p>Please enter the project:</p>
+<form action = "{{ url_for('query6') }}" method="post">
+    <p>Please enter the project:</p>
    <input type="text" name="i1"/> <br>
-  <p>Please enter the date as yyyy-mm-dd:</p>
+   <p>Please enter the date as yyyy-mm-dd:</p>
    <input type="text" name="i2"/> <br>
+    <button type="submit">Finalize selection</button>
 </form>
+
 </div>
-<div>
-      <!-- Will need some change to make sure it gets the right values -->
-  <a href="/query6/">Finalize selection</a>
-</div>
+
 </body>
 </html>
 {%endblock%}
