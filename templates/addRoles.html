@@ -10,15 +10,13 @@
 </head>
 <div>
 <h2>Add: </h2>
-<form action="/url" method="GET">
+<form action="{{ url_for('insertIntoRoles') }}" method="post">
    <p>Please enter the new role:</p>
    <input type="text" name="i1"/> <br>
+    <button type="submit">Finalize selection</button>
 </form>
 </div>
-<div>
-      <!-- Will need some change to make sure it gets the right values -->
-  <a href="'/insert-Roles/'">Finalize selection</a>
-</div>
+
 </body>
 </html>
 {%endblock%}
