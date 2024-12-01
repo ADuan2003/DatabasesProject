@@ -9,10 +9,9 @@
     <title>Finding the zip code that most employees live in</title>
 </head>
 
-<div>
-      <!-- Will need some change to make sure it gets the right values -->
-  <a href="/query4/">Query!</a>
-</div>
+<form action = "{{ url_for('query4') }}" method="post">
+    <button type="submit">Finalize selection</button>
+</form>
 </body>
 </html>
 {%endblock%}
