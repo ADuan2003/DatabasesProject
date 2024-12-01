@@ -8,11 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finding any information of each department</title>
 </head>
+<form action = "{{ url_for('query10') }}" method="post">
+    <button type="submit">Finalize selection</button>
+</form>
 
-<div>
-      <!-- Will need some change to make sure it gets the right values -->
-  <a href="/query10/">Query!</a>
-</div>
 </body>
 </html>
 {%endblock%}
