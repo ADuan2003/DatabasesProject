@@ -9,10 +9,9 @@
     <title>Finding the number of projects per project status</title>
 </head>
 
-<div>
-      <!-- Will need some change to make sure it gets the right values -->
-  <a href="/query17/">Query!</a>
-</div>
+<form action = "{{ url_for('query17') }}" method="post">
+    <button type="submit">Finalize selection</button>
+</form>
 </body>
 </html>
 {%endblock%}
