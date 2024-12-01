@@ -9,10 +9,9 @@
     <title>Finding whose salaries are increased by 20% since their hiring in the company</title>
 </head>
 
-<div>
-      <!-- Will need some change to make sure it gets the right values -->
-  <a href="/query20/">Query!</a>
-</div>
+<form action = "{{ url_for('query20') }}" method="post">
+    <button type="submit">Finalize selection</button>
+</form>
 </body>
 </html>
 {%endblock%}
