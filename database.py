@@ -327,7 +327,7 @@ def error():
   return render_template('home.html')
 
 #these insertion methods come from add .html files; they take the user back to the home page after doing their operation
-@app.route('/insert-HealthInsurance', methods=["GET", "POST"])
+@app.route('/insertIntoHealthInsurance', methods=["GET", "POST"])
 def insertIntoHealthInsurance():
   if request.method == 'POST':
     try:
@@ -339,7 +339,7 @@ def insertIntoHealthInsurance():
       return render_template('error.html')
   return render_template('error.html')
 
-@app.route('/insert-Benefits', methods=["GET", "POST"])
+@app.route('/insertIntoBenefits', methods=["GET", "POST"])
 def insertIntoBenefits():
   if request.method == 'POST':
     try:
@@ -351,7 +351,7 @@ def insertIntoBenefits():
       return render_template('error.html')
   return render_template('error.html')
 
-@app.route('/insert-ProjectStatus', methods=["GET", "POST"])
+@app.route('/insertIntoProjectStatus', methods=["GET", "POST"])
 def insertIntoProjectStatus():
   if request.method == 'POST':
     try:
@@ -363,7 +363,7 @@ def insertIntoProjectStatus():
       return render_template('error.html')
   return render_template('error.html')
 
-@app.route('/insert-Addresses', methods=["GET", "POST"])
+@app.route('/insertIntoAddresses', methods=["GET", "POST"])
 def insertIntoAddresses():
   if request.method == 'POST':
     try:
@@ -376,7 +376,7 @@ def insertIntoAddresses():
       return render_template('error.html')
   return render_template('error.html')
 
-@app.route('/insert-Positions', methods=["GET", "POST"])
+@app.route('/insertIntoPositions', methods=["GET", "POST"])
 def insertIntoPositions():
   if request.method == 'POST':
     try:
@@ -390,7 +390,7 @@ def insertIntoPositions():
       return render_template('error.html')
   return render_template('error.html')
 
-@app.route('/insert-Departments', methods=["GET", "POST"])
+@app.route('/insertIntoDepartments', methods=["GET", "POST"])
 def insertIntoDepartments():
   if request.method == 'POST':
     try:
@@ -402,7 +402,7 @@ def insertIntoDepartments():
       return render_template('error.html')
   return render_template('error.html')
 
-@app.route('/insert-EmployeeInfo', methods=["GET", "POST"])
+@app.route('/insertIntoEmployeeInfo', methods=["GET", "POST"])
 def insertIntoEmployeeInfo():
   if request.method == 'POST':
     try:
@@ -427,7 +427,7 @@ def insertIntoEmployeeInfo():
       return render_template('error.html')
   return render_template('error.html')
 
-@app.route('/insert-EmployeeAssignments', methods=["GET", "POST"])
+@app.route('/insertIntoEmployeeAssignments', methods=["GET", "POST"])
 def insertIntoEmployeeAssignments():
   if request.method == 'POST':
     try:
@@ -442,7 +442,7 @@ def insertIntoEmployeeAssignments():
       return render_template('error.html')
   return render_template('error.html')
 
-@app.route('/insert-EmployeeBenefits', methods=["GET", "POST"])
+@app.route('/insertIntoEmployeeBenefits', methods=["GET", "POST"])
 def insertIntoEmployeeBenefits():
   if request.method == 'POST':
     try:
@@ -457,7 +457,7 @@ def insertIntoEmployeeBenefits():
       return render_template('error.html')
   return render_template('error.html')
 
-@app.route('/insert-Projects', methods=["GET", "POST"])
+@app.route('/insertIntoProjects', methods=["GET", "POST"])
 def insertIntoProjects():
   if request.method == 'POST':
     try:
@@ -472,7 +472,7 @@ def insertIntoProjects():
       return render_template('error.html')
   return render_template('error.html')
 
-@app.route('/insert-Roles', methods=["GET", "POST"])
+@app.route('/insertIntoRoles', methods=["GET", "POST"])
 def insertIntoRoles():
   if request.method == 'POST':
     try:
@@ -484,7 +484,7 @@ def insertIntoRoles():
       return render_template('error.html')
   return render_template('error.html')
 
-@app.route('/insert-EmployeeProjects', methods=["GET", "POST"])
+@app.route('/insertIntoEmployeeProjects', methods=["GET", "POST"])
 def insertIntoEmployeeProjects():
   if request.method == 'POST':
     try:
@@ -502,7 +502,7 @@ def insertIntoEmployeeProjects():
 
 #coming from the update html pages, this method sends the user back to the home page after doing the operation
 @app.route('/update', methods=["GET", "POST"])
-def updateTable():
+def update():
   if request.method == 'POST':
     try:
       table = request.form['i1']
@@ -526,7 +526,7 @@ def updateTable():
 
 #coming from the delete html pages, this method sends the user back to the home page after doing the operation
 @app.route('/delete', methods=["GET", "POST"])
-def deleteFromTable():
+def delete():
   if request.method == 'POST':
     try:
       table = request.form['i1']
