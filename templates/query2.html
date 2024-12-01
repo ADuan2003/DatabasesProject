@@ -10,14 +10,11 @@
 </head>
 <div>
 <h2>Add: </h2>
-<form action="/url" method="GET">
-   <p>Please enter the department:</p>
+<form action = "{{ url_for('query2') }}" method="post">
+    <p>Please enter the department:</p>
    <input type="text" name="i1"/> <br>
+    <button type="submit">Finalize selection</button>
 </form>
-</div>
-<div>
-      <!-- Will need some change to make sure it gets the right values -->
-  <a href="/query2/">Finalize selection</a>
 </div>
 </body>
 </html>
