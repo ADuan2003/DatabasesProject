@@ -4,54 +4,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Company Database</title>
+    <title>Update Positions</title>
 </head>
 <body>
   <div>
  <h2>"Select" the table (it's for the code): </h2>
- <form>
-   <select name = "i1">
-     <option attribute = "Positions">Positions</option>
-   </select>
+ <form action = "{{ url_for('update') }}" method="post">
+     <h2>"Select" the table (it's for the code): </h2>
+         <select name = "i1">
+             <option attribute = "Positions">Positions</option>
+         </select>
+     <h2>Add the attribute to be updated upon</h2>
+         <select name = "i2">
+            <option attribute = "Position">position</option>
+            <option attribute = "minSalary">mininimum salary</option>
+            <option attribute = "maxSalary">maximum salary</option>
+         </select>
+     <h2>Please enter the new value:</h2>
+         <input type="text" placeholder="0" name="i3">
+     <h2>Add the attribute to of the condition be updated upon</h2>
+         <select name = "i4">
+            <option attribute = "Position">position</option>
+            <option attribute = "minSalary">mininimum salary</option>
+            <option attribute = "maxSalary">maximum salary</option>
+         </select>
+     <h2>Add the condition's value:</h2>
+        <input type="text" placeholder="0" name="i5">
+     <button type="submit">Finalize selection</button>
  </form>
 </div>
-  <div>
-  <h2>Add the attribute to be updated</h2>
-  <form>
-    <select name = "i2">
-      <option attribute = "Position">position</option>
-      <option attribute = "minSalary">mininimum salary</option>
-      <option attribute = "maxSalary">maximum salary</option>
-    </select>
-  </form>
-  </div>
-  <div>
-  <h2>Add: </h2>
-  <form action="/url" method="GET">
-        <p>Please enter the new value:</p>
-        <input type="text" placeholder="0" name = "i3">
-  </form>
-  </div>
-  <div>
-  <h2>Add the condition's attribute</h2>
-  <form>
-    <select name = "i4">
-      <option attribute = "Position">position</option>
-      <option attribute = "minSalary">mininimum salary</option>
-      <option attribute = "maxSalary">maximum salary</option>
-    </select>
-  </form>
-  </div>
-  <div>
-  <h2>Add: </h2>
-  <form action="/url" method="GET">
-        <p>Add the condition's value:</p>
-        <input type="text" placeholder="0" name = "i5">
-  </form>
-  </div>
-  <div>
-      <!-- Will need some change to make sure it gets the right values -->
-    <a href="/update/">Finalize selection</a>
-  </div>
 </body>
 </html>
