@@ -4,36 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Company Database</title>
+    <title>Delete Project Status</title>
 </head>
 <body>
 <div>
-  <h2>"Select" the table (it's for the code): </h2>
-  <form>
-    <select name = "i1">
-      <option attribute = "ProjectStatus">Project Status</option>
-    </select>
-  </form>
-  </div>
-  <div>
-  <h2>Add the attribute to be deleted upon</h2>
-  <form>
-    <select name = "i2">
+<form action = "{{ url_for('delete') }}" method="post">
+ <h2>"Select" the table (it's for the code): </h2>
+ <select name = "i1">
+     <option attribute = "ProjectStatus">Project Status</option>
+ </select>
+ <h2>Add the attribute to be deleted upon</h2>
+ <select name = "i2">
       <option attribute = "status">Status</option>
-    </select>
-  </form>
-  </div>
-  <div>
-  <h2>Add: </h2>
-  <form action="/url" method="GET">
-        <p>Please enter the status to delete:</p>
+ </select>
+ <h2>Please enter the status to be deleted:</h2>
         <input type="text" placeholder="0" name = "i3">
-  </form>
+
+  <button type="submit">Finalize selection</button>
   </div>
-  
-  <div>
-      <!-- Will need some change to make sure it gets the right values -->
-    <a href="/delete/">Finalize selection</a>
-  </div>
+</form>
 </body>
 </html>
