@@ -7,7 +7,7 @@
 <body>
   <div>
   <h2>Add: </h2>
-  <form>
+  <form action="{{ url_for('selection') }}" method="post"> 
     <select name = "operation">
       <option Table = "Ainsurance">Add to Health Insurance</option>
       <option Table = "Abenefit">Add to Benefit Type</option>
@@ -67,11 +67,10 @@
       <option Table = "query20">Finding whose salaries are increased by 20% since their hiring in the company</option>
       <option Table = "query21">Finding which position type has the highest average salary</option>
     </select>
+    <button type="submit">Finalize selection</button>
   </form>
   </div>
-  <div>
-    <h2><a href="/selection/">Make Selection</href></h2>
-  </div>
+  
 </body>
 </html>
 
