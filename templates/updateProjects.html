@@ -4,56 +4,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Company Database</title>
+    <title>Update Projects</title>
 </head>
 <body>
 <div>
- <h2>"Select" the table (it's for the code): </h2>
- <form>
-   <select name = "i1">
-     <option attribute = "Projects">Projects</option>
-   </select>
- </form>
-</div>
-  <div>
-  <h2>Add the attribute to be updated</h2>
-  <form>
+<form action = "{{ url_for('update') }}" method="post">
+    <h2>"Select" the table (it's for the code): </h2>
+    <select name = "i1">
+         <option attribute = "Projects">Projects</option>
+    </select>
+    <h2>Add the attribute to be updated</h2>
     <select name = "i2">
       <option attribute = "Project">Project</option>
       <option attribute = "Department">Department</option>
       <option attribute = "ProjectLeader">Project Leader</option>
       <option attribute = "Status">Project Status</option>
     </select>
-  </form>
-  </div>
-  <div>
-  <h2>Add: </h2>
-  <form action="/url" method="GET">
-        <p>Please enter the new value:</p>
-        <input type="text" placeholder="0" name = "i3">
-  </form>
-  </div>
-  <div>
-  <h2>Add the condition's attribute</h2>
-  <form>
+    <h2>Please enter the new value:</h2>
+        <input type="text" placeholder="0" name = "i3">  
+    <h2>Add the condition's attribute</h2>
     <select name = "i4">
       <option attribute = "Project">Project</option>
       <option attribute = "Department">Department</option>
       <option attribute = "ProjectLeader">Project Leader</option>
       <option attribute = "Status">Project Status</option>
     </select>
-  </form>
-  </div>
-  <div>
-  <h2>Add: </h2>
-  <form action="/url" method="GET">
-        <p>Add the condition's value:</p>
+    <h2>Add the condition's value:</h2>
         <input type="text" placeholder="0" name = "i5">
+    <button type="submit">Finalize selection</button>
   </form>
-  </div>
-  <div>
-      <!-- Will need some change to make sure it gets the right values -->
-    <a href="/update/">Finalize selection</a>
   </div>
 </body>
 </html>
