@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Company Database</title>
+    <title>Add Employee With Info</title>
 </head>
 <div>
 <h2>Add: </h2>
-<form action="/url" method="GET">
+<form action="{{ url_for('insertIntoEmployeeInfo') }}" method="post">
    <p>Please enter the new EmployeeID:</p>
    <input type="text" name="i1"/> <br>
    <p>Please enter the new SSN:</p>
@@ -37,11 +37,9 @@
    <input type="text" name="i13"/> <br>
    <p>Please enter the new Health Insurance Coverage:</p>
    <input type="text" name="i14"/> <br>
+    <button type="submit">Finalize selection</button>
 </form>
 </div>
-<div>
-      <!-- Will need some change to make sure it gets the right values -->
-  <a href="'/insert-EmployeeInfo/'">Finalize selection</a>
-</div>
+
 </body>
 </html>
