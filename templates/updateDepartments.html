@@ -7,47 +7,28 @@
     <title>Company Database</title>
 </head>
 <body>
-<div>
- <h2>"Select" the table (it's for the code): </h2>
- <form>
-   <select name = "i1">
-     <option attribute = "Departments">Departments</option>
-   </select>
+  <div>
+ <form action = "{{ url_for('update') }}" method="post">
+     <h2>"Select" the table (it's for the code): </h2>
+         <select name = "i1">
+             <option attribute = "Departments">Departments</option>
+         </select>
+     <h2>Add the attribute to be updated upon</h2>
+         <select name = "i2">
+             <option attribute = "department">Department</option>
+         </select>
+     <h2>Please enter the new department:</h2>
+         <input type="text" placeholder="0" name="i3">
+     <h2>Add the attribute to of the condition be updated upon</h2>
+         <select name = "i4">
+              <option attribute = "department">Department</option>
+         </select>
+     <h2>Add the old department to replace:</h2>
+        <input type="text" placeholder="0" name="i5">
+     <button type="submit">Finalize selection</button>
  </form>
 </div>
-<div>
-  <h2>Add the attribute to be updated upon</h2>
-  <form>
-    <select name = "i2">
-      <option attribute = "department">Department</option>
-    </select>
-  </form>
- </div>
-  <div>
-  <h2>Add: </h2>
-  <form action="/url" method="GET">
-        <p>Please enter the new department:</p>
-        <input type="text" placeholder="0" name = "i3">
-  </form>
-  </div>
- <div>
-  <h2>Add the attribute of the condition to be updated upon</h2>
-  <form>
-    <select name = "i4">
-      <option attribute = "department">Department</option>
-    </select>
-  </form>
- </div>
-  <div>
-  <h2>Add: </h2>
-  <form action="/url" method="GET">
-        <p>Add the old department to replace:</p>
-        <input type="text" placeholder="0" name = "i5">
-  </form>
-  </div>
-  <div>
-      <!-- Will need some change to make sure it gets the right values -->
-    <a href="/update/">Finalize selection</a>
-  </div>
 </body>
 </html>
+
+
