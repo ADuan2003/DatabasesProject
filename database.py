@@ -190,10 +190,13 @@ conn.commit()
 #to blend the html requests with the python, we'll need https://stackoverflow.com/questions/5615228/call-a-python-function-within-a-html-file
 
 #the below will also need@app.route -- basically the above app routes took someone to the non-home pages; these take them back from the non-home pages
+
+#this method deals with the initial state of the app
 @app.route('/')
 def home():
   return render_template('home.html')
 
+#this method is called when a selection is made on home.html; it directs to one of the operation .html (add / delete / update / query) pages
 @app.route('/selection', methods=["GET", "POST"])
 def selection():
   if request.method == 'POST':
@@ -318,10 +321,12 @@ def selection():
       return render_template('error.html') #I'll try to expand these blocks to other functions Saturday
   return render_template('error.html')
 
+#if an error is found, this method takes the user back to the home page after notifying them of the error
 @app.route('/error', methods=["GET", "POST"]) 
 def error():
   return render_template('home.html')
 
+#these insertion methods come from add .html files; they take the user back to the home page after doing their operation
 @app.route('/insert-HealthInsurance', methods=["GET", "POST"])
 def insertIntoHealthInsurance():
   if request.method == 'POST':
@@ -495,6 +500,7 @@ def insertIntoEmployeeProjects():
       return render_template('error.html')
   return render_template('error.html')
 
+#coming from the update html pages, this method sends the user back to the home page after doing the operation
 @app.route('/update', methods=["GET", "POST"])
 def updateTable():
   if request.method == 'POST':
@@ -518,6 +524,7 @@ def updateTable():
 #e.g. if it's like update table A set B = C where D = E
 #then you would call updateTable('A', 'B', 'C', 'D', 'E')
 
+#coming from the delete html pages, this method sends the user back to the home page after doing the operation
 @app.route('/delete', methods=["GET", "POST"])
 def deleteFromTable():
   if request.method == 'POST':
@@ -536,6 +543,8 @@ def deleteFromTable():
   return render_template('error.html')
 
 #these correspond to the queries we need to do in the instructions
+#after the appropriate query .html page has its button clicked, these send the user to a query page to view their query
+#that page DOES NOT EXIST yet as of the morning of 12/1, but it will link the user back home
 
 @app.route('/query1', methods=["GET", "POST"])
 def query1():
