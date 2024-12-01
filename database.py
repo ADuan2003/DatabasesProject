@@ -190,6 +190,9 @@ conn.commit()
 #to blend the html requests with the python, we'll need https://stackoverflow.com/questions/5615228/call-a-python-function-within-a-html-file
 
 #the below will also need@app.route -- basically the above app routes took someone to the non-home pages; these take them back from the non-home pages
+@app.route('/')
+def home():
+  return render_template('home.html')
 
 @app.route('/selection', methods=["GET", "POST"])
 def selection():
