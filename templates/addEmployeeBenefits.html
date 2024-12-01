@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Company Database</title>
+    <title>Add Employee Benefit Relation</title>
 </head>
 <div>
 <h2>Add: </h2>
-<form action="/url" method="GET">
+<form action="{{ url_for('insertIntoEmployeeBenefits') }}" method="post">
    <p>Please enter the new EmployeeID:</p>
    <input type="text" name="i1"/> <br>
    <p>Please enter the new Benefit:</p>
@@ -17,11 +17,9 @@
    <input type="text" name="i3"/> <br>
    <p>Please enter the new End Date as yyyy-mm-dd:</p>
    <input type="text" name="i4"/> <br>
+    <button type="submit">Finalize selection</button>
 </form>
 </div>
-<div>
-      <!-- Will need some change to make sure it gets the right values -->
-  <a href="'/insert-EmployeeBenefits/'">Finalize selection</a>
-</div>
+
 </body>
 </html>
