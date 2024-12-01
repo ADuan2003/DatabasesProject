@@ -4,20 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Company Database</title>
+    <title>Add Address</title>
 </head>
 <div>
 <h2>Add: </h2>
-<form action="/url" method="GET">
+<form action="{{ url_for('insertIntoAddresses') }}" method="post">
    <p>Please enter the new Address:</p>
    <input type="text" name="i1"/> <br>
    <p>Please enter the new ZIP code:</p>
    <input type="text" name="i2"/> <br>
+    <button type="submit">Finalize selection</button>
 </form>
 </div>
-<div>
-      <!-- Will need some change to make sure it gets the right values -->
-  <a href="'/insert-Addresses/'">Finalize selection</a>
-</div>
+
 </body>
 </html>
