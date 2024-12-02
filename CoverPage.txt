@@ -1,5 +1,5 @@
 Hi! This is Elin and Anthony's Database Design Project.
 
-Elin's part: wrote up templates for and some of the HTML files showcasing their ideal functionality and tested these templates; <add more>
+Elin's part: edited and completed SQL commands wrote up templates for and some of the HTML files showcasing their ideal functionality and tested these templates; <add more>
 
-Anthony's part: wrote up the SQL commands and python functions in databases.py, filled in some of the HTML files with app routes to python functions; <add more>
+Anthony's part: wrote up the initial set of SQL commands and python functions in databases.py, filled in some of the HTML files with app routes to python functions; <add more>
