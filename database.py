@@ -711,7 +711,7 @@ def query14():
 @app.route('/query15', methods=["GET", "POST"])
 def query15():
   if request.method == 'POST':
-    tryL
+    try:
       role = request.form['i1']
       lev = request.form['i2']
       #not sure if this is how you'd solve the issue
