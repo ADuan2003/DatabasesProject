@@ -1,0 +1,28 @@
+{%extends "template.html"%}
+{%block title%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Query Result!</title>
+</head>
+<div>
+<table>
+  {% for row in rows %}
+  <tr>
+    {% for r in row %}
+    <td> {{ r }} </td>
+  </tr>
+</table>
+<form action="{{ url_for('error') }}" method="post">
+    <button type="submit">Return to home page</button>
+</form>
+</div>
+</body>
+</html>
+{%endblock%}
+{%block content%}
+
+{%endblock%}
