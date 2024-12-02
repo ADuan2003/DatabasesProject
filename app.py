@@ -2,6 +2,131 @@ from flask import Flask
 from flask import render_template, request, redirect, url_for
 import sqlite3
 
+#Connect to sqlLite database (or create if it doesn't exist)
+conn = sqlite3.connect('database.db')
+
+#Create a cursor object
+cursor = conn.cursor()
+
+#Create a table
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS Addresses
+  (address TEXT NOT NULL,
+  zipCode TEXT NOT NULL,
+  PRIMARY KEY (address));
+''')
+
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS Positions 
+(position TEXT NOT NULL,
+  minSalary INT NOT NULL,
+  maxSalary INT NOT NULL,
+  PRIMARY KEY (position),
+  CHECK (0 < minSalary),
+  CHECK (minSalary <= maxSalary));
+''')
+
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS HealthInsurance
+(coverage TEXT NOT NULL,
+  PRIMARY KEY (coverage));
+''')
+
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS EmployeeInfo
+(EmployeeID TEXT NOT NULL,
+  SSN TEXT NOT NULL,
+  Name TEXT NOT NULL,
+  gender TEXT NOT NULL,
+  DoB DATE NOT NULL,
+  PrimaryAddress TEXT NOT NULL,
+  PhoneNumber TEXT NOT NULL,
+  HighestDegree TEXT NOT NULL,
+  YearsExperience SMALLINT NOT NULL,
+  HiringPosition TEXT NOT NULL,
+  HiringSalary INT NOT NULL,
+  CurrentPosition TEXT NOT NULL,
+  CurrentSalary INT NOT NULL,
+  Coverage TEXT NOT NULL,
+  FOREIGN KEY (HiringPosition) REFERENCES Positions(position) ON DELETE CASCADE,
+  FOREIGN KEY (CurrentPosition) REFERENCES Positions(position) ON DELETE CASCADE,
+  FOREIGN KEY (Coverage) REFERENCES HealthInsurance(coverage) ON DELETE CASCADE,
+  PRIMARY KEY (EmployeeID));
+''')
+
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS Departments
+(department TEXT NOT NULL,
+  PRIMARY KEY (department));
+''')
+
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS EmployeeAssignments
+(EmployeeID TEXT NOT NULL,
+  Department TEXT NOT NULL,
+  StartDate DATE NOT NULL,
+  EndDate DATE, 
+  FOREIGN KEY (EmployeeID) REFERENCES EmployeeInfo(EmployeeID) ON DELETE CASCADE,
+  FOREIGN KEY (Department) REFERENCES Departments(department) ON DELETE CASCADE,
+  PRIMARY KEY (EmployeeID, Department, StartDate)); 
+''')
+
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS Benefits
+(benefit TEXT NOT NULL,
+  PRIMARY KEY (benefit));
+''')
+
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS EmployeeBenefits 
+(EmployeeID TEXT NOT NULL,
+  Benefit TEXT NOT NULL,
+  StartDate DATE NOT NULL,
+  EndDate DATE,
+  FOREIGN KEY (EmployeeID) REFERENCES EmployeeInfo(EmployeeID) ON DELETE CASCADE,
+  FOREIGN KEY (Benefit) REFERENCES Benefits(benefit) ON DELETE CASCADE,
+  PRIMARY KEY (EmployeeID, Benefit, StartDate)); 
+''')
+
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS ProjectStatus
+(status TEXT NOT NULL,
+  PRIMARY KEY (status));
+''')
+
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS Projects
+(Project TEXT NOT NULL,
+  Department TEXT NOT NULL,
+  ProjectLeader TEXT NOT NULL,
+  Status TEXT NOT NULL,
+  FOREIGN KEY (Department) REFERENCES Department(department) ON DELETE CASCADE,
+  FOREIGN KEY (ProjectLeader) REFERENCES EmployeeInfo(EmployeeID) ON DELETE CASCADE,
+  FOREIGN KEY (Status) REFERENCES ProjectStatus(status) ON DELETE CASCADE,
+  PRIMARY KEY (Project));
+''')
+
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS Roles
+(role TEXT NOT NULL,
+  PRIMARY KEY (role));
+''')
+
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS EmployeeProjects
+(EmployeeID TEXT NOT NULL,
+  Project TEXT NOT NULL,
+  Role TEXT NOT NULL,
+  StartDate DATE NOT NULL,
+  EndDate DATE, 
+  FOREIGN KEY (EmployeeID) REFERENCES EmployeeInfo(EmployeeID) ON DELETE CASCADE,
+  FOREIGN KEY (Project) REFERENCES Projects(Project) ON DELETE CASCADE,
+  FOREIGN KEY (Role) REFERENCES Roles(role) ON DELETE CASCADE,
+  PRIMARY KEY (EmployeeID, Project, Role)); 
+''')
+
+conn.commit()
+
 app = Flask(__name__)
 
 @app.route("/")
@@ -16,6 +141,12 @@ def queryPage():
 @app.route("/showall/", methods=['POST'])
 def showall():
     table = request.form.get("show")
+    if request.method == "POST":
+        try:
+            #cursor.execute('select * from HealthInsurance')
+            cursor.execute('insert into HealthInsurance values (\'test\');')
+        except:
+            return render_template("error.html")
     return render_template("query.html", query = table)
 ###
 
