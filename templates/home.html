@@ -27,7 +27,7 @@
   </div>
   <div>
     <h2>Update: </h2>
-    <form>
+    <form method = "POST">
       <select name = "updateRow">
         <option updateTable = "insurance">Health Insurance</option>
         <option updateTable = "benefit">Benefit Type</option>
@@ -42,11 +42,12 @@
         <option updateTable = "empProject">Employee's Project</option>
         <option updateTable = "empDep">Employee's Department</option>
       </select>
+      <input type = "submit" value = "Go">
     </form>
   </div>
   <div>
   <h2>Delete: </h2>
-  <form>
+  <form method = "POST">
     <select name = "deleteRow">
       <option deletingTable = "insurance">Health Insurance</option>
       <option deletingTable = "benefit">Benefit Type</option>
@@ -61,6 +62,7 @@
       <option deletingTable = "empProject">Employee's Project</option>
       <option deletingTable = "empDep">Employee's Department</option>
     </select>
+    <input type = "submit" value = "Go">
   </form>
   </div>
   <div>
