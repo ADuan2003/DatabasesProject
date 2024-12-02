@@ -22,10 +22,30 @@ def showall():
 @app.route("/add/", methods=["POST"])
 def add():
     try:
-        if request.form.get("addRow") == "Health Insurance":
+        if request.form.get("addRow") == "insurance":
             return redirect(url_for("insertIntoHealthInsurance"))
-        elif request.form.get("addRow") == "BenefitType":
-            return render_template("add.html")
+        elif request.form.get("addRow") == "benefit":
+            return redirect(url_for("insertIntoBenefits"))
+        elif request.form.get("addRow") == "status":
+            return redirect(url_for("insertIntoProjectStatus"))
+        elif request.form.get("addRow") == "address":
+            return redirect(url_for("insertIntoAddresses"))
+        elif request.form.get("addRow") == "position":
+            return redirect(url_for("insertIntoPositions"))
+        elif request.form.get("addRow") == "department":
+            return redirect(url_for("insertIntoDepartments"))
+        elif request.form.get("addRow") == "employee":
+            return redirect(url_for("insertIntoEmployeeInfo"))
+        elif request.form.get("addRow") == "empBenefit":
+            return redirect(url_for("insertIntoEmployeeBenefits"))
+        elif request.form.get("addRow") == "project":
+            return redirect(url_for("insertIntoProjects"))
+        elif request.form.get("addRow") == "role":
+            return redirect(url_for("insertIntoRoles"))
+        elif request.form.get("addRow") == "empProject":
+            return redirect(url_for("insertIntoEmployeeProjects"))
+        elif request.form.get("addRow") == "empDep":
+            return redirect(url_for("insertIntoEmployeeAssignments"))
     except:
         return render_template("error.html")
     return render_template("add.html")
@@ -85,7 +105,7 @@ def insertIntoPositions():
         return render_template("addPosition.html")
 
 @app.route("/addProjects/", methods=['GET', 'POST'])
-def insertIntoDepartments():
+def insertIntoProjects():
     if request.method == 'POST':
         try:
             project = request.form.get('projectName') 
