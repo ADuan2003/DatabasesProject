@@ -10,10 +10,15 @@
 <h2>Add: </h2>
 <form method="post"> <!--action="{{ url_for('insertIntoHealthInsurance') }}",-->
    <p>Please enter the new type of coverage:</p>
-   <input type="text" name="i1"/> <br>
+   <input type="text" name="insertHI"/> <br>
     <button type="submit">Finalize selection</button>
 </form>
 </div>
-
+{%if added%}
+    Added
+{%endif%}
+<div>
+    <a href="{{url_for("home")}}">Return Home</a href>
+</div>
 </body>
 </html>

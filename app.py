@@ -1,6 +1,6 @@
 from flask import Flask
 from flask import render_template, request
-from database import * 
+import sqlite3
 
 app = Flask(__name__)
 
@@ -10,6 +10,7 @@ def home():
 
 @app.route("/add/", methods=["POST"])
 def add():
+    operation = None
     try:
         if request.form.get("addRow") == "Health Insurance":
             return render_template("addHealthInsurance.html")
@@ -17,6 +18,7 @@ def add():
             return render_template("home.html")
     except:
         return render_template("error.html")
+    return render_template("home.html")
 
 @app.route("/update/", methods=["POST"])
 def update():
@@ -37,4 +39,12 @@ def showall():
 
 @app.route("/addHealthInsurance/", methods=['GET', 'POST'])
 def insertIntoHealthInsurance():
-    return render_template("addHealthInsurance.html")
+    if request.method == 'POST':
+        try:
+            coverage = request.form.get('insertHI') #request.form['insertHI']
+            added = insertIntoHealthInsurance(coverage)
+            return render_template("addHealthInsurance.html", added = added)
+        except:
+            return render_template('error.html')
+    else: 
+        return render_template("addHealthInsurance.html")

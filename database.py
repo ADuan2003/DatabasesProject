@@ -321,86 +321,35 @@ def selection():
       return render_template('error.html') #I'll try to expand these blocks to other functions Saturday
   return render_template('error.html')
 
-#if an error is found, this method takes the user back to the home page after notifying them of the error
-@app.route('/error', methods=["GET", "POST"]) 
-def error():
-  return render_template('home.html')
+def insertIntoHealthInsurance(coverage):
+  cursor.execute('INSERT INTO HealthInsurance (coverage) VALUES (?)', (coverage))
+  conn.commit()
+  return cursor.fetchone()[0]
 
-#these insertion methods come from add .html files; they take the user back to the home page after doing their operation
-@app.route('/insertIntoHealthInsurance', methods=["GET", "POST"])
-def insertIntoHealthInsurance():
-  if request.method == 'POST':
-    try:
-      coverage = request.form['i1']
-      cursor.execute('INSERT INTO HealthInsurance (coverage) VALUES (?)', (coverage))
-      conn.commit()
-      return render_template('home.html')
-    except:
-      return render_template('error.html')
-  return render_template('error.html')
+def insertIntoBenefits(benefit):
+  cursor.execute('INSERT INTO Benefits (benefit) VALUES (?)', (benefit))
+  conn.commit()
+  return cursor.fetchone()[0]
 
-@app.route('/insertIntoBenefits', methods=["GET", "POST"])
-def insertIntoBenefits():
-  if request.method == 'POST':
-    try:
-      benefit = request.form['i1']
-      cursor.execute('INSERT INTO Benefits (benefit) VALUES (?)', (benefit))
-      conn.commit()
-      return render_template('home.html')
-    except:
-      return render_template('error.html')
-  return render_template('error.html')
+def insertIntoProjectStatus(status):
+  cursor.execute('INSERT INTO ProjectStatus (status) VALUES (?)', (status))
+  conn.commit()
+  return cursor.fetchone()[0]
 
-@app.route('/insertIntoProjectStatus', methods=["GET", "POST"])
-def insertIntoProjectStatus():
-  if request.method == 'POST':
-    try:
-      status = request.form['i1']
-      cursor.execute('INSERT INTO ProjectStatus (status) VALUES (?)', (status))
-      conn.commit()
-      return render_template('home.html')
-    except:
-      return render_template('error.html')
-  return render_template('error.html')
+def insertIntoAddresses(address, zipcode):
+  cursor.execute('INSERT INTO Addresses (address, zipCode) VALUES (?, ?)', (address, zipcode))
+  conn.commit()
+  return cursor.fetchone()[0]
 
-@app.route('/insertIntoAddresses', methods=["GET", "POST"])
-def insertIntoAddresses():
-  if request.method == 'POST':
-    try:
-      address = request.form['i1']
-      zipcode = request.form['i2']
-      cursor.execute('INSERT INTO Addresses (address, zipCode) VALUES (?, ?)', (address, zipcode))
-      conn.commit()
-      return render_template('home.html')
-    except:
-      return render_template('error.html')
-  return render_template('error.html')
+def insertIntoPositions(position, minSalary, maxSalary):
+  cursor.execute('INSERT INTO Positions (position, minSalary, maxSalary) VALUES (?, ?, ?)', (position, int(minSalary), int(maxSalary)))
+  conn.commit()
+  return cursor.fetchone()[0]
 
-@app.route('/insertIntoPositions', methods=["GET", "POST"])
-def insertIntoPositions():
-  if request.method == 'POST':
-    try:
-      position = request.form['i1']
-      minSalary = request.form['i2']
-      maxSalary = request.form['i3']
-      cursor.execute('INSERT INTO Positions (position, minSalary, maxSalary) VALUES (?, ?, ?)', (position, int(minSalary), int(maxSalary)))
-      conn.commit()
-      return render_template('home.html')
-    except:
-      return render_template('error.html')
-  return render_template('error.html')
-
-@app.route('/insertIntoDepartments', methods=["GET", "POST"])
-def insertIntoDepartments():
-  if request.method == 'POST':
-    try:
-      department = request.form['i1']
-      cursor.execute('INSERT INTO Departments (department) VALUES (?)', (department))
-      conn.commit()
-      return render_template('home.html')
-    except:
-      return render_template('error.html')
-  return render_template('error.html')
+def insertIntoDepartments(department):
+  cursor.execute('INSERT INTO Departments (department) VALUES (?)', (department))
+  conn.commit()
+  return cursor.fetchone()[0]
 
 @app.route('/insertIntoEmployeeInfo', methods=["GET", "POST"])
 def insertIntoEmployeeInfo():

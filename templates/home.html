@@ -66,10 +66,22 @@
   </form>
   </div>
   <div>
-    <h2><a href="/query/">Query</href></h2>
+    <h2><a href="/query/">Query</a href></h2>
   </div>
+  
 </body>
 </html>
+
+<!--Attempt to show latest added/deleted/updated row
+<div>
+    <h3>Latest operation: </h3>
+    {%if operation%}
+      {%for x in operation%}
+      <td>{{x}}</td>
+      {% endfor %}
+    {%endif%}
+  </div>
+-->
 
 <!-- 
 <h1>Add a new type of Health Insurance coverage!</h1>
