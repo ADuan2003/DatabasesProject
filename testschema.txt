@@ -1,0 +1,28 @@
+*This is a document created to plot an outline of the tests to do*
+
+Step 1: Open app. Home screen should be visible.
+Step 2: Add to Addresses (51 Main Street, 30033)
+Step 3: Add to Addresses (6 Broadway, 30174)
+Step 4: Add to Addresses (16 Broadway, 30174)
+*steps 5 - 11 are sort of taken care of by the code*
+Step 5: Add to Positions (Research Scientist, 50000, 100000)
+Step 6: Add to Positions (Applied Scientist, 50000, 75000)
+Step 7: Add to Positions (Engineer / Programmer, 80000, 150000)
+Step 8: Add to Positions (Director, 100000, 200000)
+Step 9: Add to Health Insurance (Affordable Care Act)
+Step 10: Add to Health Insurance (company)
+Step 11: Add to Health Insurance (family)
+Step 12: Add to Employee Info (E75, 1010101010, Rachel Smith, Female, 1956-07-02, 16 Broadway, 404-303-2002, PhD, 40, Applied Scientist, 50000, Research Scientist, 95000, company)
+Step 13: Add to Employee Info (BB3, 2020202020, John Lewis, Male, 1945-03-13, 51 Main Street, 403-302-2001, Masters, 40, Applied Scientist, 70000, Research Scientist, 92000, Affordable Care Act)
+Step 14: Add to Employee Info (CAA1, 3030303030, Hannah Stewart, Female, 1960-01-01, 6 Broadway, 424-242-4242, Bachelors, 35, Engineer / Programmer, 85000, Director, 160000, company)
+Step 15: Add to Employee Info (65, 4040404040, Arthur Stewart, Male, 1963-02-02, 6 Broadway, 242-424-2424, Masters, 33, Engineer / Programmer, 140000, Director, 190000, family)
+Step 16: Add to Departments (Dep1)
+Step 17: Add to Departments (Dep2)
+Step 18: Add to Departments (Dep3)
+Step 19: Add to Employee Assignments (E75, Dep1, 2003-01-07, 2020-05-05)
+Step 20: Add to Employee Assignments (E75, Dep2, 2020-05-06, 2026-01-01)
+Step 21: Add to Employee Assignments (BB3, Dep2, 2005-01-01, 2018-02-02)
+Step 22: Add to Employee Assignments (BB3, Dep3, 2018-02-03, 2030-04-04)
+Step 23: Add to Employee Assignments (CAA1, Dep1, 2005-06-06, 2009-01-01)
+Step 24: Add to Employee Assignments (65, Dep3, 2012-01-01, 2025-01-01)
+Step 25: 
