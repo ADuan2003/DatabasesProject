@@ -4,9 +4,21 @@ from database import *
 
 app = Flask(__name__)
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/")
 def home():
     return render_template("home.html")
+
+@app.route("/add/", methods=["POST"])
+def add():
+    return render_template("query.html", query = "add")
+
+@app.route("/update/", methods=["POST"])
+def update():
+    return render_template("query.html", query = "update")
+
+@app.route("/delete/", methods=["POST"])
+def delete():
+    return render_template("query.html", query = "delete")
 
 @app.route("/query/")
 def queryPage():
