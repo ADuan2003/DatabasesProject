@@ -1,0 +1,88 @@
+*This is a document created to plot an outline of the tests to do*
+
+Open app. Home screen should be visible.
+Add to Addresses (51 Main Street, 30033)
+Add to Addresses (6 Broadway, 30174)
+Add to Addresses (16 Broadway, 30174)
+*next 7 steps are sort of taken care of by the code*
+Add to Positions (Research Scientist, 50000, 100000)
+Add to Positions (Applied Scientist, 50000, 75000)
+Add to Positions (Engineer / Programmer, 80000, 150000)
+Add to Positions (Director, 100000, 200000)
+Add to Health Insurance (Affordable Care Act)
+Add to Health Insurance (company)
+Add to Health Insurance (family)
+Add to Employee Info (E75, 1010101010, Rachel Smith, Female, 1956-07-02, 16 Broadway, 404-303-2002, PhD, 40, Applied Scientist, 50000, Research Scientist, 95000, company)
+Add to Employee Info (BB3, 2020202020, John Lewis, Male, 1945-03-13, 51 Main Street, 403-302-2001, Masters, 40, Applied Scientist, 70000, Research Scientist, 92000, Affordable Care Act)
+Add to Employee Info (CAA1, 3030303030, Hannah Stewart, Female, 1960-01-01, 6 Broadway, 424-242-4242, Bachelors, 35, Engineer / Programmer, 85000, Director, 160000, company)
+Add to Employee Info (65, 4040404040, Arthur Stewart, Male, 1963-02-02, 6 Broadway, 242-424-2424, Masters, 33, Engineer / Programmer, 140000, Director, 190000, family)
+============QUERY 1 TEST===========
+Call query 1 for CAA1; should return (CAA1, 3030303030, Hannah Stewart, Female, 1960-01-01, 6 Broadway, 424-242-4242, Bachelors, 35, Engineer / Programmer, 85000, Director, 160000, company)
+
+============QUERY 4 TEST===========
+Call query 4; should return 30174
+
+Add to Departments (Dep1)
+Add to Departments (Dep2)
+Add to Departments (Dep3)
+Add to Departments (Dep4)
+Add to Employee Assignments (E75, Dep1, 2003-01-07, 2020-05-05)
+Add to Employee Assignments (E75, Dep2, 2020-05-06, 2026-01-01)
+Add to Employee Assignments (BB3, Dep2, 2005-01-01, 2018-02-02)
+Add to Employee Assignments (BB3, Dep3, 2018-02-03, 2030-04-04)
+Add to Employee Assignments (CAA1, Dep1, 2005-06-06, 2009-01-01)
+Add to Employee Assignments (65, Dep3, 2012-01-01, 2025-01-01)
+Update EmployeeAssignments --> where department = Dep3, department = Dep4
+============QUERY 2 TEST===========
+Call query 2 for CAA1; should return BB3 and 65
+
+*next 3 steps are sort of taken care of by the code*
+Add to Benefits (health)
+Add to Benefits (dental)
+Add to Benefits (life insurance)
+Add to Employee Benefits (E75, health, 2006-01-01, 2009-12-12)
+Add to Employee Benefits (BB3, dental, 2017-01-01, 2030-12-12)
+Add to Employee Benefits (BB3, life insurance, 2020-01-01, 2030-01-01)
+Add to Employee Benefits (CAA1, life insurance, 2001-01-01, 2030-01-01)
+Add to Employee Benefits (65, dental, 2015-01-01, 2025-02-02)
+*next 3 steps are sort of taken care of by the code*
+Add to Project Status (in progress)
+Add to Project Status (completed)
+Add to Project Status (new)
+Add to Projects (Project1, Dep1, CAA1, in progress)
+Add to Projects (Project2, Dep2, E75, completed)
+Add to Projects (Project3, Dep3, BB3, completed)
+Add to Projects (Project4, Dep3, BB3, new)
+Add to Projects (Project5, Dep3, CAA1, new)
+============QUERY 5 TEST===========
+Call query5 on Project 2, should return (Project2, Dep2, E75, completed)
+
+Delete from Employee Benefits all life insurance.
+============QUERY 7 TEST===========
+Call query7 on life insurance, should return 0
+
+Add to Roles (role1)
+Add to Roles (role2)
+Add to Roles (role3)
+Add to Employee Projects (CAA1, Project1, role1, 2020-01-01, 2030-02-12)
+Add to Employee Projects (CAA1, Project2, role2, 2022-01-10, 2025-10-10)
+Add to Employee Projects (BB3, Project2, role1, 2022-01-10, 2030-02-12)
+Add to Employee Projects (BB3, Project3, role3, 2020-01-01, 2025-10-10)
+Add to Employee Projects (E75, Project4, role2, 2020-01-01, 2025-10-10)
+Add to Employee Projects (65, Project1, role3, 2020-01-01, 2031-02-12)
+
+============QUERY 3 TEST===========
+Call query3 on Project1, return CAA1 and 65
+
+Update Employee Projects so that all role = role3 become project = Project1
+
+============QUERY 6 TEST===========
+Call query6 on Project1 at 2025-01-01; return 3
+
+============QUERY 8 TEST===========
+Call query8 on Project2 and role1; return BB3
+
+Delete from Projects project = Project3, project = Project4
+
+============QUERY 9 TEST===========
+Call query9; return Project1 and Project5
