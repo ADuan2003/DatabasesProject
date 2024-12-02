@@ -549,150 +549,241 @@ def delete():
 @app.route('/query1', methods=["GET", "POST"])
 def query1():
   if request.method == 'POST':
-    emp = request.form['i1']
-    cursor.execute('SELECT * FROM EmployeeInfo WHERE EmployeeID = ?', (emp))
-    conn.commit()
-  #return render_template('home.html')
+    try:
+      emp = request.form['i1']
+      cursor.execute('SELECT * FROM EmployeeInfo WHERE EmployeeID = ?', (emp))
+      info = cursor.fetchall()
+      return render_template('info.html', rows=info)
+    except:
+      return render_template('error.html')
+  return render_template('error.html')
 
 @app.route('/query2', methods=["GET", "POST"])
 def query2():
   if request.method == 'POST':
-    dept = request.form['i1']
-    cursor.execute('SELECT DISTINCT EmployeeID FROM EmployeeInfo WHERE (EndDate IS NULL OR EndDate >= GetDate()) && Department = ?', dept)
-    conn.commit()
+    try:
+      dept = request.form['i1']
+      cursor.execute('SELECT DISTINCT EmployeeID FROM EmployeeInfo WHERE (EndDate IS NULL OR EndDate >= GetDate()) && Department = ?', dept)
+      info = cursor.fetchall()
+      return render_template('info.html', rows=info)
+    except:
+      return render_template('error.html')
+  return render_template('error.html')
 
 @app.route('/query3', methods=["GET", "POST"])
 def query3():
   if request.method == 'POST':
-    proj = request.form['i1']
-    cursor.execute('SELECT (EmployeeID, Name) FROM EmployeeProjects WHERE Project = ? AND (EndDate IS NULL OR EndDate >= GetDate())', proj)
-    conn.commit()
+    try:
+      proj = request.form['i1']
+      cursor.execute('SELECT (EmployeeID, Name) FROM EmployeeProjects WHERE Project = ? AND (EndDate IS NULL OR EndDate >= GetDate())', proj)
+      info = cursor.fetchall()
+      return render_template('info.html', rows=info)
+    except:
+      return render_template('error.html')
+  return render_template('error.html')
 
 @app.route('/query4', methods=["GET", "POST"])
 def query4():
   if request.method == 'POST':
-    cursor.execute('SELECT distinct(zipCode) FROM Addresses GROUP BY zipCode HAVING count(zipCode) >= ALL (SELECT count(zipCode) FROM Addresses GROUP BY zipCode)')
-    conn.commit()
+    try:
+      cursor.execute('SELECT distinct(zipCode) FROM Addresses GROUP BY zipCode HAVING count(zipCode) >= ALL (SELECT count(zipCode) FROM Addresses GROUP BY zipCode)')
+      info = cursor.fetchall()
+      return render_template('info.html', rows=info)
+    except:
+      return render_template('error.html')
+  return render_template('error.html')
 
 @app.route('/query5', methods=["GET", "POST"])
 def query5():
   if request.method == 'POST':
-    proj = request.form['i1']
-    cursor.execute('SELECT * FROM Projects WHERE Project = ?;', proj)
-    conn.commit()
+    try:
+      proj = request.form['i1']
+      cursor.execute('SELECT * FROM Projects WHERE Project = ?;', proj)
+      info = cursor.fetchall()
+      return render_template('info.html', rows=info)
+    except:
+      return render_template('error.html')
+  return render_template('error.html')
 
 @app.route('/query6', methods=["GET", "POST"])
 def query6():
   if request.method == 'POST':
-    proj = request.form['i1']
-    date = request.form['i2']
-    cursor.execute('SELECT COUNT (EmployeeID) FROM EmployeeProjects WHERE Project = ? AND (EndDate IS NULL OR EndDate >= ?) AND (StartDate <= ?)', proj, date, date)
-    conn.commit()
+    try:
+      proj = request.form['i1']
+      date = request.form['i2']
+      cursor.execute('SELECT COUNT (EmployeeID) FROM EmployeeProjects WHERE Project = ? AND (EndDate IS NULL OR EndDate >= ?) AND (StartDate <= ?)', proj, date, date)
+      info = cursor.fetchall()
+      return render_template('info.html', rows=info)
+    except:
+      return render_template('error.html')
+  return render_template('error.html')
 
 @app.route('/query7', methods=["GET", "POST"])
 def query7():
   if request.method == 'POST':
-    ben = request.form['i1']
-    cursor.execute('SELECT COUNT (DISTINCT EmployeeID) FROM EmployeeBenefits WHERE (EndDate IS NULL OR EndDate >= GetDate()) AND Benefit = ?', ben)
-    conn.commit()
+    try:
+      ben = request.form['i1']
+      cursor.execute('SELECT COUNT (DISTINCT EmployeeID) FROM EmployeeBenefits WHERE (EndDate IS NULL OR EndDate >= GetDate()) AND Benefit = ?', ben)
+      info = cursor.fetchall()
+      return render_template('info.html', rows=info)
+    except:
+      return render_template('error.html')
+  return render_template('error.html')
 
 @app.route('/query8', methods=["GET", "POST"])
 def query8():
   if request.method == 'POST':
-    proj = request.form['i1']
-    role = request.form['i2']
-    cursor.execute('SELECT EmployeeID FROM EmployeeProjects WHERE (EndDate IS NULL OR EndDate >= GetDate()) AND Project = ? AND Role = ?', proj, role)
-    conn.commit()
+    try:
+      proj = request.form['i1']
+      role = request.form['i2']
+      cursor.execute('SELECT EmployeeID FROM EmployeeProjects WHERE (EndDate IS NULL OR EndDate >= GetDate()) AND Project = ? AND Role = ?', proj, role)
+      info = cursor.fetchall()
+      return render_template('info.html', rows=info)
+    except:
+      return render_template('error.html')
+  return render_template('error.html')
 
 @app.route('/query9', methods=["GET", "POST"])
 def query9():
   if request.method == 'POST':
-    cursor.execute('SELECT Project FROM Projects WHERE Status = \'in-progress\' OR Status = \'new\'')
-    conn.commit()
+    try:
+      cursor.execute('SELECT Project FROM Projects WHERE Status = \'in-progress\' OR Status = \'new\'')
+      info = cursor.fetchall()
+      return render_template('info.html', rows=info)
+    except:
+      return render_template('error.html')
+  return render_template('error.html')
 
 @app.route('/query10', methods=["GET", "POST"])
 def query10():
   if request.method == 'POST':
-    cursor.execute('SELECT Department, EmployeeID, StartDate, EndDate FROM EmployeeAssignments GROUP BY Department')
-    cursor.execute('SELECT Department, Project, ProjectLeader, Status FROM Projects GROUP BY DEPARTMENT')
-    conn.commit()
+    try:
+      cursor.execute('SELECT Department, EmployeeID, StartDate, EndDate FROM EmployeeAssignments GROUP BY Department; SELECT Department, Project, ProjectLeader, Status FROM Projects GROUP BY DEPARTMENT')
+      info = cursor.fetchall()
+      return render_template('info.html', rows=info)
+    except:
+      return render_template('error.html')
+  return render_template('error.html')
 
 @app.route('/query11', methods=["GET", "POST"])
 def query11():
   if request.method == 'POST':
-    emp = request.form['i1']
-    cursor.execute('SELECT Role FROM EmployeeProjects WHERE (EndDate IS NULL OR EndDate >= GetDate()) AND EmployeeID = ?', emp)
-    conn.commit()
+    try:
+      emp = request.form['i1']
+      cursor.execute('SELECT Role FROM EmployeeProjects WHERE (EndDate IS NULL OR EndDate >= GetDate()) AND EmployeeID = ?', emp)
+      return render_template('info.html', rows=info)
+    except:
+      return render_template('error.html')
+  return render_template('error.html')
 
 @app.route('/query12', methods=["GET", "POST"])
 def query12():
   if request.method == 'POST':
-    emp = request.form['i1']
-    cursor.execute('select role, startdate, enddate from EmployeeProjects where EmployeeID = ?', emp)
-    conn.commit()
+    try:
+      emp = request.form['i1']
+      cursor.execute('select role, startdate, enddate from EmployeeProjects where EmployeeID = ?', emp)
+      return render_template('info.html', rows=info)
+    except:
+      return render_template('error.html')
+  return render_template('error.html')
 
 @app.route('/query13', methods=["GET", "POST"])
 def query13():
   if request.method == 'POST':
-    HealthPlan = request.form['i1']
-    cursor.execute('SELECT COUNT(EmployeeInfo) FROM EmployeeInfo WHERE Coverage = ?', HealthPlan)
-    conn.commit()
+    try:
+      HealthPlan = request.form['i1']
+      cursor.execute('SELECT COUNT(EmployeeInfo) FROM EmployeeInfo WHERE Coverage = ?', HealthPlan)
+      return render_template('info.html', rows=info)
+    except:
+      return render_template('error.html')
+  return render_template('error.html')
 
 @app.route('/query14', methods=["GET", "POST"])
 def query14():
   if request.method == 'POST':
-    cursor.execute('select count(distinct employeeid), coverage from employeeInfo group by coverage')
-    conn.commit()
+    try:
+      cursor.execute('select count(distinct employeeid), coverage from employeeInfo group by coverage')
+      return render_template('info.html', rows=info)
+    except:
+      return render_template('error.html')
+  return render_template('error.html')
 
 @app.route('/query15', methods=["GET", "POST"])
 def query15():
   if request.method == 'POST':
-    role = request.form['i1']
-    lev = request.form['i2']
-  #not sure if this is how you'd solve the issue
-    cursor.execute('SELECT AVG(CurrentSalary) FROM EmployeeInfo WHERE Gender = \'Female\' AND CurrentPosition = ? AND YearsExperience = ?', role, lev)
-    #this was giving me errors regarding the '' with female and male -- yeah needed the \' oops
-    cursor.execute('SELECT AVG(CurrentSalary) FROM EmployeeInfo WHERE Gender = \'Male\' AND CurrentPosition = ? AND YearsExperience = ?', role, lev)
-    conn.commit()
+    tryL
+      role = request.form['i1']
+      lev = request.form['i2']
+      #not sure if this is how you'd solve the issue
+      cursor.execute('SELECT AVG(CurrentSalary) FROM EmployeeInfo WHERE Gender = \'Female\' AND CurrentPosition = ? AND YearsExperience = ?; SELECT AVG(CurrentSalary) FROM EmployeeInfo WHERE Gender = \'Male\' AND CurrentPosition = ? AND YearsExperience = ?', role, lev, role, lev)
+      return render_template('info.html', rows=info)
+    except:
+      return render_template('error.html')
+  return render_template('error.html')
 
 @app.route('/query16', methods=["GET", "POST"])
 def query16():
   if request.method == 'POST':
-    pos = request.form['i1']
-    cursor.execute('SELECT (minSalary, maxSalary) FROM Positions WHERE position = ?;', pos)
-    conn.commit()
+    try:
+      pos = request.form['i1']
+      cursor.execute('SELECT (minSalary, maxSalary) FROM Positions WHERE position = ?;', pos)
+      return render_template('info.html', rows=info)
+    except:
+      return render_template('error.html')
+  return render_template('error.html')
 
 @app.route('/query17', methods=["GET", "POST"])
 def query17():
   if request.method == 'POST':
-    cursor.execute('select count(distinct project), status from projects group by status')
-    conn.commit()
+    try:
+      cursor.execute('select count(distinct project), status from projects group by status')
+      return render_template('info.html', rows=info)
+    except:
+      return render_template('error.html')
+  return render_template('error.html')
 
 @app.route('/query18', methods=["GET", "POST"])
 def query18():
   if request.method == 'POST':
-    emp = request.form['i1']
-    dep = request.form['i2']
-    cursor.execute('SELECT (StartDate, EndDate) FROM EmployeeAssignments WHERE EmployeeID = ? AND Department = ?', emp, dep)
-    conn.commit()
+    try:
+      emp = request.form['i1']
+      dep = request.form['i2']
+      cursor.execute('SELECT (StartDate, EndDate) FROM EmployeeAssignments WHERE EmployeeID = ? AND Department = ?', emp, dep)
+      return render_template('info.html', rows=info)
+    except:
+      return render_template('error.html')
+  return render_template('error.html')
 
 @app.route('/query19', methods=["GET", "POST"])
 def query19():
   if request.method == 'POST':
-    cursor.execute('SELECT (a.Project, b.Name) FROM Projects a, EmployeeID b, WHERE a.ProjectLeader == b.EmployeeID')
-    conn.commit()
+    try:
+      cursor.execute('SELECT (a.Project, b.Name) FROM Projects a, EmployeeID b, WHERE a.ProjectLeader == b.EmployeeID')
+      return render_template('info.html', rows=info)
+    except:
+      return render_template('error.html')
+  return render_template('error.html')
 
 @app.route('/query20', methods=["GET", "POST"])
 def query20():
   if request.method == 'POST':
-    cursor.execute('SELECT (EmployeeID, Name) FROM EmployeeInfo WHERE 5*CurrentSalary >= 6*HiringSalary')
-    conn.commit()
+    try:
+      cur = conn.cursor
+      cursor.execute('SELECT (EmployeeID, Name) FROM EmployeeInfo WHERE 5*CurrentSalary >= 6*HiringSalary')
+      return render_template('info.html', rows=info)
+    except:
+      return render_template('error.html')
+  return render_template('error.html')
 
 @app.route('/query21', methods=["GET", "POST"])
 def query21():
   if request.method == 'POST':
-    cursor.execute('select max(avg(CurrentSalary)) from ( select avg(CurrentSalary)  from EmployeeInfo group by CurrentPosition)')
-    conn.commit()
+    try:
+      cursor.execute('select max(avg(CurrentSalary)) from ( select avg(CurrentSalary)  from EmployeeInfo group by CurrentPosition)')
+      return render_template('info.html', rows=info)
+    except:
+      return render_template('error.html')
+  return render_template('error.html')
 
 def main ():
     insertIntoPositions('Research Scientist', 50000, 100000)
