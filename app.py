@@ -98,11 +98,13 @@ def insertIntoPositions():
     if request.method == 'POST':
         try:
             position = request.form.get('i1') 
+            min = request.form.get('i2')
+            max = request.form.get('i3')
             return render_template("addPositions.html", added = position)
         except:
             return render_template('error.html')
     else: 
-        return render_template("addPosition.html")
+        return render_template("addPositions.html")
 
 @app.route("/addProjects/", methods=['GET', 'POST'])
 def insertIntoProjects():
@@ -217,4 +219,4 @@ def insertIntoEmployeeAssignments():
         except:
             return render_template('error.html')
     else: 
-        return render_template("addEmployeeAssignment.html")
+        return render_template("addEmployeeAssignments.html")
