@@ -7,9 +7,7 @@
     <title>Error in Operation!</title>
 </head>
 <div>
-<form action="{{ url_for('error') }}" method="post">
-    <button type="submit">Error Detected! Return to home page</button>
-</form>
+<h2>Error detected. <a href="{{url_for("home")}}">Return to home page</a href></h2>
 </div>
 </body>
 </html>
