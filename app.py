@@ -38,6 +38,7 @@ def update():
 def delete():
     return render_template("query.html", query = "delete") #placeholder
 
+#Add pages
 @app.route("/addHealthInsurance/", methods=['GET', 'POST'])
 def insertIntoHealthInsurance():
     if request.method == 'POST':
@@ -119,6 +120,18 @@ def insertIntoProjectStatus():
     else: 
         return render_template("addProjectStatus.html")
     
+@app.route("/addAddress/", methods=['GET', 'POST'])
+def insertIntoAddresses():
+    if request.method == 'POST':
+        try:
+            address = request.form.get('i1') 
+            zip = request.form.get('i2')
+            return render_template("addAddresses.html", added = address)
+        except:
+            return render_template('error.html')
+    else: 
+        return render_template("addAddresses.html")
+    
 @app.route("/addEmployeeProjects/", methods=['GET', 'POST'])
 def insertIntoEmployeeProjects():
     if request.method == 'POST':
@@ -133,3 +146,55 @@ def insertIntoEmployeeProjects():
             return render_template('error.html')
     else: 
         return render_template("addEmployeeProjects.html")
+    
+@app.route("/addEmployeeInfo/", methods=['GET', 'POST'])
+def insertIntoEmployeeInfo():
+    if request.method == 'POST':
+        try:
+            id = request.form.get('id') 
+            ssn = request.form.get('ssn')
+            name = request.form.get('name')
+            gender = request.form.get('gender')
+            birth = request.form.get('birth')
+            address = request.form.get('address')
+            phone = request.form.get('phone')
+            degree = request.form.get('degree')
+            hPosition = request.form.get('hPosition')
+            hSalary = request.form.get('hSalary')
+            experience = request.form.get('experience')
+            position = request.form.get('position')
+            salary = request.form.get('salary')
+            insurance = request.form.get('insurance')
+            return render_template("addEmployeeInfo.html", added = name)
+        except:
+            return render_template('error.html')
+    else: 
+        return render_template("addEmployeeInfo.html")
+    
+@app.route("/addEmployeeBenefits/", methods=['GET', 'POST'])
+def insertIntoEmployeeBenefits():
+    if request.method == 'POST':
+        try:
+            emp = request.form.get('employee') 
+            ben = request.form.get('benefit')
+            start = request.form.get('start')
+            end = request.form.get('end')
+            return render_template("addEmployeeBenefits.html", added = emp)
+        except:
+            return render_template('error.html')
+    else: 
+        return render_template("addEmployeeBenefits.html")
+    
+@app.route("/addEmpAssignment/", methods=['GET', 'POST'])
+def insertIntoEmployeeAssignments():
+    if request.method == 'POST':
+        try:
+            emp = request.form.get('emp') 
+            dep = request.form.get('dep')
+            start = request.form.get('start')
+            end = request.form.get('end')
+            return render_template("addEmployeeAssignment.html", added = emp)
+        except:
+            return render_template('error.html')
+    else: 
+        return render_template("addEmployeeAssignment.html")
