@@ -40,6 +40,13 @@
     <button type="submit">Finalize selection</button>
 </form>
 </div>
-
+<div>
+    {%if added%}
+        Added {{added}}
+    {%endif%}
+    </div>
+    <div>
+        <a href="{{url_for("home")}}">Return Home</a href>
+    </div>
 </body>
 </html>

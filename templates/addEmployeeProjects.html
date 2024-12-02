@@ -10,18 +10,25 @@
 <h2>Add: </h2>
 <form action="{{ url_for('insertIntoEmployeeProjects') }}" method="post">
    <p>Please enter the new EmployeeID:</p>
-   <input type="text" name="i1"/> <br>
+   <input type="text" name="employee"/> <br>
    <p>Please enter the new Project:</p>
-   <input type="text" name="i2"/> <br>
+   <input type="text" name="project"/> <br>
    <p>Please enter the new Role:</p>
-   <input type="text" name="i3"/> <br>
+   <input type="text" name="role"/> <br>
    <p>Please enter the new Start Date as yyyy-mm-dd:</p>
-   <input type="text" name="i4"/> <br>
+   <input type="text" name="start"/> <br>
    <p>Please enter the new End Date as yyyy-mm-dd:</p>
-   <input type="text" name="i5"/> <br>
+   <input type="text" name="end"/> <br>
     <button type="submit">Finalize selection</button>
 </form>
 </div>
-
+<div>
+    {%if added%}
+        Added {{added}}
+    {%endif%}
+    </div>
+    <div>
+        <a href="{{url_for("home")}}">Return Home</a href>
+    </div>
 </body>
 </html>

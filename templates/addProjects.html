@@ -10,16 +10,23 @@
 <h2>Add: </h2>
 <form action="{{ url_for('insertIntoProjects') }}" method="post">
    <p>Please enter the new Project:</p>
-   <input type="text" name="i1"/> <br>
+   <input type="text" name="projectName"/> <br>
    <p>Please enter the new Department:</p>
-   <input type="text" name="i2"/> <br>
+   <input type="text" name="department"/> <br>
    <p>Please enter the new ProjectLeader:</p>
-   <input type="text" name="i3"/> <br>
+   <input type="text" name="leader"/> <br>
    <p>Please enter the new Status:</p>
-   <input type="text" name="i4"/> <br>
+   <input type="text" name="status"/> <br>
     <button type="submit">Finalize selection</button>
 </form>
 </div>
-
+<div>
+    {%if added%}
+        Added {{added}}
+    {%endif%}
+    </div>
+    <div>
+        <a href="{{url_for("home")}}">Return Home</a href>
+    </div>
 </body>
 </html>
