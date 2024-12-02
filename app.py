@@ -4,8 +4,10 @@ from database import *
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def home():
+    if request.method=="POST":
+        return render_template()
     return render_template("home.html")
 
 @app.route("/query/")
