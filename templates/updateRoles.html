@@ -8,23 +8,13 @@
 </head>
 <body>
   <div>
- <form action = "{{ url_for('update') }}" method="post">
-     <h2>"Select" the table (it's for the code): </h2>
-         <select name = "i1">
-             <option attribute = "Roles">Roles</option>
-         </select>
-     <h2>Add the attribute to be updated upon</h2>
-         <select name = "i2">
-             <option attribute = "role">Role</option>
-         </select>
+ <form action = "{{ url_for('updateRoles') }}" method="post">
+     
      <h2>Please enter the new role:</h2>
-         <input type="text" placeholder="0" name="i3">
-     <h2>Add the attribute to of the condition be updated upon</h2>
-         <select name = "i4">
-              <option attribute = "role">Role</option>
-         </select>
+         <input type="text" placeholder="0" name="new">
+     
      <h2>Add the old role to replace:</h2>
-        <input type="text" placeholder="0" name="i5">
+        <input type="text" placeholder="0" name="old">
      <button type="submit">Finalize selection</button>
  </form>
 </div>
