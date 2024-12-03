@@ -669,13 +669,13 @@ def updateRole():
 @app.route("/deleteHealthInsurance", methods=['GET', 'POST'])
 def deleteHealth():
     if request.method == 'POST':
-        #try:
+        try:
             delete = request.form.get('input')
             conn = sqlite3.connect("database.db")
             cursor = conn.cursor()
             cursor.execute('delete from HealthInsurance where coverage = ?', (delete,))
             conn.commit()
             cursor.close()
-        #except:
-        #    return render_template("error.html")
+        except:
+            return render_template("error.html")
     return render_template("deleteHealthInsurance.html")
