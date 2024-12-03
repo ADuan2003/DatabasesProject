@@ -8,15 +8,18 @@
 </head>
 <body>
   <div>
- <form action = "{{ url_for('updateRoles') }}" method="post">
+ <form action = "{{ url_for('updateRole') }}" method="post">
      
      <h2>Please enter the new role:</h2>
-         <input type="text" placeholder="0" name="new">
+         <input type="text" name="new">
      
      <h2>Add the old role to replace:</h2>
-        <input type="text" placeholder="0" name="old">
+        <input type="text" name="old">
      <button type="submit">Finalize selection</button>
  </form>
+</div>
+<div>
+    <a href="{{url_for("home")}}">Home</a href>
 </div>
 </body>
 </html>
