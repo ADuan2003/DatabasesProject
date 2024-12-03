@@ -559,7 +559,7 @@ def updateEmpBen():
     return render_template("updateEmployeeBenefits.html")
 
 @app.route("/updateEmployeeInfo/", methods=['GET', 'POST'])
-def updateEmpInfo():
+def updateEmp():
     if request.method == 'POST':
         try:
             new = request.form.get('new')
@@ -601,7 +601,7 @@ def updateEmpProj():
     return render_template("updateEmployeeProjects.html")
 
 @app.route("/updatePositions/", methods=['GET', 'POST'])
-def updatePositions():
+def updatePos():
     if request.method == 'POST':
         try:
             new = request.form.get('new')
