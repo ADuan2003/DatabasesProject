@@ -558,9 +558,9 @@ def updateEmpInfo():
             old = request.form.get('old')
             att = request.form.get('i2')
             where = request.form.get('i4')
-            if (where = 'minSalary' or where = 'maxSalary'):
+            if (where = 'CurrentSalary' or where = 'HiringSalary'):
                 old = int(old)
-            if (att = 'minSalary' or att = 'maxSalary'):
+            if (att = 'CurrentSalary' or att = 'HiringSalary'):
                 new = int(new)
             conn = sqlite3.connect("database.db")
             cursor = conn.cursor()
@@ -570,4 +570,42 @@ def updateEmpInfo():
         except:
             return render_template("error.html")
     return render_template("updateEmployeeInfo.html")
+
+@app.route("/updateEmployeeProjects/", methods=['GET', 'POST'])
+def updateEmpProj():
+    if request.method == 'POST':
+        try:
+            new = request.form.get('new')
+            old = request.form.get('old')
+            att = request.form.get('i2')
+            where = request.form.get('i4')
+            conn = sqlite3.connect("database.db")
+            cursor = conn.cursor()
+            cursor.execute('update EmployeeProjects set ' +att+ ' = ? where '+where+' = ?', (new, old,))
+            conn.commit()
+            cursor.close()
+        except:
+            return render_template("error.html")
+    return render_template("updateEmployeeProjects.html")
+
+@app.route("/updatePositions/", methods=['GET', 'POST'])
+def updatePositions():
+    if request.method == 'POST':
+        try:
+            new = request.form.get('new')
+            old = request.form.get('old')
+            att = request.form.get('i2')
+            where = request.form.get('i4')
+            if (where = 'minSalary' or where = 'maxSalary'):
+                old = int(old)
+            if (att = 'minSalary' or att = 'maxSalary'):
+                new = int(new)
+            conn = sqlite3.connect("database.db")
+            cursor = conn.cursor()
+            cursor.execute('update Positions set ' +att+ ' = ? where '+where+' = ?', (new, old,))
+            conn.commit()
+            cursor.close()
+        except:
+            return render_template("error.html")
+    return render_template("updatePositions.html")
 #delete pages
