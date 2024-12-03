@@ -126,6 +126,7 @@ CREATE TABLE IF NOT EXISTS EmployeeProjects
 ''')
 
 conn.commit()
+conn.close()
 
 app = Flask(__name__)
 
@@ -143,11 +144,16 @@ def showall():
     table = request.form.get("show")
     if request.method == "POST":
         try:
-            #cursor.execute('select * from HealthInsurance')
-            cursor.execute('insert into HealthInsurance values (\'test\');')
+            conn = sqlite3.connect("database.db")
+            conn.row_factory = sqlite3.Row
+            cursor = conn.cursor()
+            #cursor.execute('insert into HealthInsurance values (\'test\');') #test
+            cursor.execute('select * from HealthInsurance') #test
+            query = cursor.fetchall()
+            cursor.close()
         except:
             return render_template("error.html")
-    return render_template("query.html", query = table)
+    return render_template("query.html", query = query) #test; edit this
 ###
 
 @app.route("/add/", methods=["POST"])
@@ -220,12 +226,17 @@ def delete():
 @app.route("/addHealthInsurance/", methods=['GET', 'POST'])
 def insertIntoHealthInsurance():
     if request.method == 'POST':
-        try:
+        #try:
             coverage = request.form.get('insertHI') #request.form['insertHI']
-            #added = insertIntoHealthInsurance(coverage)
+            conn = sqlite3.connect("database.db")
+            conn.row_factory = sqlite3.Row
+            cursor = conn.cursor()
+            cursor.execute('insert into HealthInsurance values (?)', (coverage,)) 
+            conn.commit()
+            cursor.close()
             return render_template("addHealthInsurance.html", added = coverage)
-        except:
-            return render_template('error.html')
+        #except:
+        #    return render_template('error.html')
     else: 
         return render_template("addHealthInsurance.html")
     
