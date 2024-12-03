@@ -664,3 +664,16 @@ def updateRole():
     return render_template("updateRoles.html")
 
 #delete pages
+@app.route("/deleteHealthInsurance")
+def deleteHealth():
+    if request.method == 'POST':
+        try:
+            delete = request.form.get('input')
+            conn = sqlite3.connect("database.db")
+            cursor = conn.cursor()
+            cursor.execute('delete HealthInsurance where coverage = ?', (delete,))
+            conn.commit()
+            cursor.close()
+        except:
+            return render_template("error.html")
+    return render_template("deleteHealthInsurance.html")
