@@ -148,7 +148,7 @@ def showall():
             conn.row_factory = sqlite3.Row
             cursor = conn.cursor()
             #cursor.execute('insert into HealthInsurance values (\'test\');') #test
-            cursor.execute('select * from Projects') #test
+            cursor.execute('select * from Addresses') #test
             query = cursor.fetchall()
             cursor.close()
         except:
@@ -458,7 +458,7 @@ def updateHealth():
             conn = sqlite3.connect("database.db")
             conn.row_factory = sqlite3.Row
             cursor = conn.cursor()
-            cursor.execute('UPDATE HealthInsurance SET ? = ? WHERE ? = ?', (attribute, value, where, whereVal))
+            cursor.execute('UPDATE HealthInsurance SET ? = ? WHERE ? = ?', (attribute, value, where, whereVal,))
             conn.commit()
             cursor.close()
         except:
@@ -468,19 +468,23 @@ def updateHealth():
 @app.route("/updateAddresses/", methods=['GET', 'POST'])
 def updateAddress():
     if request.method == "POST":
-        try:
+        #try:
             att = request.form.get('attribute')
-            value = request.form.get('value')
+            value = request.form.get('input')
+            #if(att == "zipCode"):
+            #    value = int(value)
             whereAtt = request.form.get('position')
             whereVal = request.form.get('input2')
+            #if(whereAtt == "zipCode"):
+            #    whereVal = int(whereVal)
             conn = sqlite3.connect("database.db")
             conn.row_factory = sqlite3.Row
             cursor = conn.cursor()
-            cursor.execute('UPDATE Addresses SET ? = ? WHERE ? = ?', (att, value, whereAtt, whereVal))
+            cursor.execute('UPDATE Addresses SET ' +att+  '=? WHERE ' +whereAtt+ '=?;', (value, whereVal,))
             conn.commit()
             cursor.close()
-        except:
-            return render_template("error.html")
+        #except:
+        #    return render_template("error.html")
     return render_template("updateAddresses.html")
 
 
