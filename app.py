@@ -532,4 +532,21 @@ def updateEmpDep():
         except:
             return render_template("error.html")
     return render_template("updateEmployeeAssignments.html")
+
+@app.route("/updateEmployeeBenefits/", methods=['GET', 'POST'])
+def updateEmpBen():
+    if request.method == 'POST':
+        try:
+            new = request.form.get('new')
+            old = request.form.get('old')
+            att = request.form.get('i2')
+            where = request.form.get('i4')
+            conn = sqlite3.connect("database.db")
+            cursor = conn.cursor()
+            cursor.execute('update EmployeeBenefits set ' +att+ ' = ? where '+where+' = ?', (new, old,))
+            conn.commit()
+            cursor.close()
+        except:
+            return render_template("error.html")
+    return render_template("updateEmployeeBenefits.html")
 #delete pages
