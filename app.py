@@ -179,6 +179,30 @@ def queryMenu():
         return redirect(url_for("query8"))
     elif request.form.get("q") == "9":
         return redirect(url_for("query9"))
+    elif request.form.get("q") == "10":
+        return redirect(url_for("query10"))
+    elif request.form.get("q") == "11":
+        return redirect(url_for("query11"))
+    elif request.form.get("q") == "12":
+        return redirect(url_for("query12"))
+    elif request.form.get("q") == "13":
+        return redirect(url_for("query13"))
+    elif request.form.get("q") == "14":
+        return redirect(url_for("query14"))
+    elif request.form.get("q") == "15":
+        return redirect(url_for("query15"))
+    elif request.form.get("q") == "16":
+        return redirect(url_for("query16"))
+    elif request.form.get("q") == "17":
+        return redirect(url_for("query17"))
+    elif request.form.get("q") == "18":
+        return redirect(url_for("query18"))
+    elif request.form.get("q") == "19":
+        return redirect(url_for("query19"))
+    elif request.form.get("q") == "20":
+        return redirect(url_for("query20"))
+    elif request.form.get("q") == "21":
+        return redirect(url_for("query21"))
     else:
         return render_template("query.html")
 
