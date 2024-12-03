@@ -157,6 +157,12 @@ def showall():
 
 @app.route("/query/search/", methods = ["GET", "POST"])
 def genQuery():
+    query = None
+    if request.method == "POST":
+        try:
+            att = request.form.get("attribute")
+        except:
+            return render_template("error.html", query=query)
     return render_template("query.html")
 
 @app.route("/query/menu/", methods=["POST"])
