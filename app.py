@@ -162,23 +162,25 @@ def genQuery():
 @app.route("/query/menu/", methods=["POST"])
 def queryMenu():
     if request.form.get("q") == "1":
-        redirect(url_for("query1"))
+        return redirect(url_for("query1"))
     elif request.form.get("q") == "2":
-        redirect(url_for("query2"))
+        return redirect(url_for("query2"))
     elif request.form.get("q") == "3":
-        redirect(url_for("query3"))
+        return redirect(url_for("query3"))
     elif request.form.get("q") == "4":
-        redirect(url_for("query4"))
+        return redirect(url_for("query4"))
     elif request.form.get("q") == "5":
-        redirect(url_for("query5"))
+        return redirect(url_for("query5"))
     elif request.form.get("q") == "6":
-        redirect(url_for("query6"))
+        return redirect(url_for("query6"))
     elif request.form.get("q") == "7":
-        redirect(url_for("query7"))
+        return redirect(url_for("query7"))
     elif request.form.get("q") == "8":
-        redirect(url_for("query8"))
+        return redirect(url_for("query8"))
     elif request.form.get("q") == "9":
-        redirect(url_for("query9"))
+        return redirect(url_for("query9"))
+    else:
+        return render_template("query.html")
 
 @app.route("/query/sql/", methods=['POST'])
 def sql():
