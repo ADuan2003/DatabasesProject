@@ -148,7 +148,7 @@ def showall():
             conn.row_factory = sqlite3.Row
             cursor = conn.cursor()
             #cursor.execute('insert into HealthInsurance values (\'test\');') #test
-            cursor.execute('select * from HealthInsurance') #test
+            cursor.execute('select * from Projects') #test
             query = cursor.fetchall()
             cursor.close()
         except:
@@ -280,6 +280,7 @@ def insertIntoPositions():
             min = request.form.get('i2')
             max = request.form.get('i3')
             conn = sqlite3.connect("database.db")
+            conn.row_factory = sqlite3.Row
             cursor = conn.cursor()
             cursor.execute('insert into Positions values (?, ?, ?)', (position, min, max,)) 
             conn.commit()
@@ -314,6 +315,11 @@ def insertIntoRoles():
     if request.method == 'POST':
         try:
             role = request.form.get('i1') 
+            conn = sqlite3.connect("database.db")
+            cursor = conn.cursor()
+            cursor.execute('insert into Roles values (?)', (role,)) 
+            conn.commit()
+            cursor.close()
             return render_template("addRoles.html", added = role)
         except:
             return render_template('error.html')
@@ -325,6 +331,11 @@ def insertIntoProjectStatus():
     if request.method == 'POST':
         try:
             status = request.form.get('i1') 
+            conn = sqlite3.connect("database.db")
+            cursor = conn.cursor()
+            cursor.execute('insert into ProjectStatus values (?)', (status,)) 
+            conn.commit()
+            cursor.close()
             return render_template("addProjectStatus.html", added = status)
         except:
             return render_template('error.html')
@@ -337,6 +348,11 @@ def insertIntoAddresses():
         try:
             address = request.form.get('i1') 
             zip = request.form.get('i2')
+            conn = sqlite3.connect("database.db")
+            cursor = conn.cursor()
+            cursor.execute('insert into Addresses values (?, ?)', (address, zip,)) 
+            conn.commit()
+            cursor.close()
             return render_template("addAddresses.html", added = address)
         except:
             return render_template('error.html')
@@ -352,6 +368,11 @@ def insertIntoEmployeeProjects():
             role = request.form.get('role')
             start = request.form.get('start')
             end = request.form.get('end')
+            conn = sqlite3.connect("database.db")
+            cursor = conn.cursor()
+            cursor.execute('insert into EmployeeProjects values (?, ?, ?, ?, ?)', (employee, project, role, start, end,)) 
+            conn.commit()
+            cursor.close()
             return render_template("addEmployeeProjects.html", added = employee)
         except:
             return render_template('error.html')
@@ -370,12 +391,17 @@ def insertIntoEmployeeInfo():
             address = request.form.get('address')
             phone = request.form.get('phone')
             degree = request.form.get('degree')
+            experience = request.form.get('experience')
             hPosition = request.form.get('hPosition')
             hSalary = request.form.get('hSalary')
-            experience = request.form.get('experience')
             position = request.form.get('position')
             salary = request.form.get('salary')
             insurance = request.form.get('insurance')
+            conn = sqlite3.connect("database.db")
+            cursor = conn.cursor()
+            cursor.execute('insert into EmployeeInfo values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', (id, ssn, name, gender, birth, address, phone, degree, experience, hPosition, hSalary, position, salary, insurance,)) 
+            conn.commit()
+            cursor.close()
             return render_template("addEmployeeInfo.html", added = name)
         except:
             return render_template('error.html')
@@ -390,6 +416,11 @@ def insertIntoEmployeeBenefits():
             ben = request.form.get('benefit')
             start = request.form.get('start')
             end = request.form.get('end')
+            conn = sqlite3.connect("database.db")
+            cursor = conn.cursor()
+            cursor.execute('insert into EmployeeBenefits values (?, ?, ?, ?)', (emp, ben, start, end,)) 
+            conn.commit()
+            cursor.close()
             return render_template("addEmployeeBenefits.html", added = emp)
         except:
             return render_template('error.html')
@@ -404,6 +435,11 @@ def insertIntoEmployeeAssignments():
             dep = request.form.get('dep')
             start = request.form.get('start')
             end = request.form.get('end')
+            conn = sqlite3.connect("database.db")
+            cursor = conn.cursor()
+            cursor.execute('insert into EmployeeAssignments values (?, ?, ?, ?)', (emp, dep, start, end,)) 
+            conn.commit()
+            cursor.close()
             return render_template("addEmployeeAssignment.html", added = emp)
         except:
             return render_template('error.html')
