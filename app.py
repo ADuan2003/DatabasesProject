@@ -220,7 +220,7 @@ def update():
 
 @app.route("/delete/", methods=["POST"])
 def delete():
-    return render_template("query.html", query = "delete") #placeholder
+    return render_template("home.html") #placeholder
 
 #Add pages
 @app.route("/addHealthInsurance/", methods=['GET', 'POST'])
@@ -662,4 +662,5 @@ def updateRole():
         except:
             return render_template("error.html")
     return render_template("updateRoles.html")
+
 #delete pages
