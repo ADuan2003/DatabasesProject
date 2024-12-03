@@ -549,4 +549,25 @@ def updateEmpBen():
         except:
             return render_template("error.html")
     return render_template("updateEmployeeBenefits.html")
+
+@app.route("/updateEmployeeInfo/", methods=['GET', 'POST'])
+def updateEmpInfo():
+    if request.method == 'POST':
+        try:
+            new = request.form.get('new')
+            old = request.form.get('old')
+            att = request.form.get('i2')
+            where = request.form.get('i4')
+            if (where = 'minSalary' or where = 'maxSalary'):
+                old = int(old)
+            if (att = 'minSalary' or att = 'maxSalary'):
+                new = int(new)
+            conn = sqlite3.connect("database.db")
+            cursor = conn.cursor()
+            cursor.execute('update EmployeeInfo set ' +att+ ' = ? where '+where+' = ?', (new, old,))
+            conn.commit()
+            cursor.close()
+        except:
+            return render_template("error.html")
+    return render_template("updateEmployeeInfo.html")
 #delete pages
