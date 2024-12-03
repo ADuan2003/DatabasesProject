@@ -179,11 +179,38 @@ def add():
             return redirect(url_for("insertIntoEmployeeAssignments"))
     except:
         return render_template("error.html")
-    return render_template("add.html")
+    return render_template("home.html")
 
 @app.route("/update/", methods=["GET", "POST"])
 def update():
-    return render_template("query.html", query = "update") #placeholder
+    try:
+        if request.form.get("updateRow") == "insurance":
+            return redirect(url_for("updateHealthInsurance"))
+        elif request.form.get("updateRow") == "benefit":
+            return redirect(url_for("updateBenefits"))
+        elif request.form.get("updateRow") == "status":
+            return redirect(url_for("updateProjectStatus"))
+        elif request.form.get("updateRow") == "address":
+            return redirect(url_for("updateAddresses"))
+        elif request.form.get("updateRow") == "position":
+            return redirect(url_for("updatePositions"))
+        elif request.form.get("updateRow") == "department":
+            return redirect(url_for("updateDepartments"))
+        elif request.form.get("updateRow") == "employee":
+            return redirect(url_for("updateEmployeeInfo"))
+        elif request.form.get("updateRow") == "empBenefit":
+            return redirect(url_for("updateEmployeeBenefits"))
+        elif request.form.get("updateRow") == "project":
+            return redirect(url_for("updateProjects"))
+        elif request.form.get("updateRow") == "role":
+            return redirect(url_for("updateRoles"))
+        elif request.form.get("updateRow") == "empProject":
+            return redirect(url_for("updateEmployeeProjects"))
+        elif request.form.get("updateRow") == "empDep":
+            return redirect(url_for("updateEmployeeAssignments"))
+    except:
+        return render_template("error.html")
+    return render_template("home.html")
 
 @app.route("/delete/", methods=["POST"])
 def delete():
