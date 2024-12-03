@@ -6,7 +6,7 @@
 </head>
 <body>
   <h2>Show all: </h2>
-  <form action = "/showall/" method="POST">
+  <form action = "{{url_for("showall")}}" method="POST">
     <select name = "show">
       <option value = "HealthInsurance">Health Insurance</option>
       <option value = "Benefits">Benefit Type</option>
