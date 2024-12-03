@@ -148,7 +148,7 @@ def showall():
             conn.row_factory = sqlite3.Row
             cursor = conn.cursor()
             #cursor.execute('insert into HealthInsurance values (\'test\');') #test
-            cursor.execute('select * from Addresses') #test
+            cursor.execute('select * from ' + table) #test
             query = cursor.fetchall()
             cursor.close()
         except:
@@ -458,7 +458,7 @@ def updateHealth():
             conn = sqlite3.connect("database.db")
             conn.row_factory = sqlite3.Row
             cursor = conn.cursor()
-            cursor.execute('UPDATE HealthInsurance SET ? = ? WHERE ? = ?', (attribute, value, where, whereVal,))
+            cursor.execute('UPDATE HealthInsurance SET ' +attribute+ '= ? WHERE ' +where+ '= ?', (value, whereVal,))
             conn.commit()
             cursor.close()
         except:
@@ -468,7 +468,7 @@ def updateHealth():
 @app.route("/updateAddresses/", methods=['GET', 'POST'])
 def updateAddress():
     if request.method == "POST":
-        #try:
+        try:
             att = request.form.get('attribute')
             value = request.form.get('input')
             #if(att == "zipCode"):
@@ -478,14 +478,27 @@ def updateAddress():
             #if(whereAtt == "zipCode"):
             #    whereVal = int(whereVal)
             conn = sqlite3.connect("database.db")
-            conn.row_factory = sqlite3.Row
             cursor = conn.cursor()
             cursor.execute('UPDATE Addresses SET ' +att+  '=? WHERE ' +whereAtt+ '=?;', (value, whereVal,))
             conn.commit()
             cursor.close()
-        #except:
-        #    return render_template("error.html")
+        except:
+            return render_template("error.html")
     return render_template("updateAddresses.html")
 
+@app.route("/updateBenefits/", methods=['GET', 'POST'])
+def updateBen():
+    if request.method == 'POST':
+        try:
+            new = request.form.get('new')
+            old = request.form.get('old')
+            conn = sqlite3.connect("database.db")
+            cursor = conn.cursor()
+            cursor.execute('update Benefits set benefit = ? where benefit = ?', (new, old,))
+            conn.commit()
+            cursor.close()
+        except:
+            return render_template("error.html")
+    return render_template("updateBenefits.html")
 
 #delete pages
