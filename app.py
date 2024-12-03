@@ -220,14 +220,16 @@ def update():
 
 @app.route("/delete/", methods=["POST"])
 def delete():
-    if request.form.get('deleteRow') == "insurance":
+    if request.form.get("deleteRow") == "insurance":
         return redirect(url_for("deleteHealth"))
-    elif request.form.get('deleteRow') == "benefit":
+    elif request.form.get("deleteRow") == "benefit":
         return redirect(url_for("deleteBen"))
-    elif request.form.get('deleteRow') == "department":
+    elif request.form.get("deleteRow") == "department":
         return redirect(url_for("deleteDep"))
-    elif request.form.get('deleteRow') == "status":
+    elif request.form.get("deleteRow") == "status":
         return redirect(url_for("deleteStatus"))
+    elif request.form.get("deleteRow") == "role":
+        return redirect(url_for("deleteRole"))
     return render_template("home.html") #placeholder
 
 #Add pages
@@ -727,3 +729,17 @@ def deleteStatus():
         except:
             return render_template("error.html")
     return render_template("deleteProjectStatus.html")
+
+@app.route("/deleteRoles/", methods=['GET','POST'])
+def deleteRole():
+    if request.method == 'POST':
+        try:
+            delete = request.form.get('input')
+            conn = sqlite3.connect("database.db")
+            cursor = conn.cursor()
+            cursor.execute('delete from Roles where role = ?', (delete,))
+            conn.commit()
+            cursor.close()
+        except:
+            return render_template("error.html")
+    return render_template("deleteRoles.html")
