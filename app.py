@@ -608,4 +608,51 @@ def updatePositions():
         except:
             return render_template("error.html")
     return render_template("updatePositions.html")
+
+@app.route("/updateProjects/", methods=['GET', 'POST'])
+def updateProjects():
+    if request.method == 'POST':
+        try:
+            new = request.form.get('new')
+            old = request.form.get('old')
+            att = request.form.get('i2')
+            where = request.form.get('i4')
+            conn = sqlite3.connect("database.db")
+            cursor = conn.cursor()
+            cursor.execute('update Projects set ' +att+ ' = ? where '+where+' = ?', (new, old,))
+            conn.commit()
+            cursor.close()
+        except:
+            return render_template("error.html")
+    return render_template("updateProjects.html")
+
+@app.route("/updateProjectStatus/", methods=['GET', 'POST'])
+def updateProjStat():
+    if request.method == 'POST':
+        try:
+            new = request.form.get('new')
+            old = request.form.get('old')
+            conn = sqlite3.connect("database.db")
+            cursor = conn.cursor()
+            cursor.execute('update ProjectStatus set status = ? where status = ?', (new, old,))
+            conn.commit()
+            cursor.close()
+        except:
+            return render_template("error.html")
+    return render_template("updateProjectStatus.html")
+
+@app.route("/updateRoles/", methods=['GET', 'POST'])
+def updateRole():
+    if request.method == 'POST':
+        try:
+            new = request.form.get('new')
+            old = request.form.get('old')
+            conn = sqlite3.connect("database.db")
+            cursor = conn.cursor()
+            cursor.execute('update Roles set role = ? where role = ?', (new, old,))
+            conn.commit()
+            cursor.close()
+        except:
+            return render_template("error.html")
+    return render_template("updateRoles.html")
 #delete pages
