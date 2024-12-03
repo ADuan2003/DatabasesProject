@@ -712,20 +712,6 @@ def deleteBen():
             return render_template("error.html")
     return render_template("deleteBenefits.html")
 
-@app.route("/deleteDepartments/", methods=['GET','POST'])
-def deleteDep():
-    if request.method == 'POST':
-        try:
-            delete = request.form.get('input')
-            conn = sqlite3.connect("database.db")
-            cursor = conn.cursor()
-            cursor.execute('delete from Departments where department = ?', (delete,))
-            conn.commit()
-            cursor.close()
-        except:
-            return render_template("error.html")
-    return render_template("deleteDepartments.html")
-
 @app.route("/deleteStatus/", methods=['GET','POST'])
 def deleteStatus():
     if request.method == 'POST':
@@ -826,3 +812,33 @@ def deleteEmpProj():
         except:
             return render_template("error.html")
     return render_template("deleteEmployeeProjects.html")
+
+@app.route("/deleteProjects/", methods=['GET','POST'])
+def deleteProj():
+    if request.method == 'POST':
+        try:
+            delete = request.form.get('old')
+            att = request.form.get('att')
+            conn = sqlite3.connect("database.db")
+            cursor = conn.cursor()
+            cursor.execute('delete from Projects where ' + att + ' = ?', (delete,))
+            conn.commit()
+            cursor.close()
+        except:
+            return render_template("error.html")
+    return render_template("deleteProjects.html")
+
+@app.route("/deleteAddresses/", methods=['GET','POST'])
+def deleteAddress():
+    if request.method == 'POST':
+        try:
+            delete = request.form.get('old')
+            att = request.form.get('att')
+            conn = sqlite3.connect("database.db")
+            cursor = conn.cursor()
+            cursor.execute('delete from Projects where ' + att + ' = ?', (delete,))
+            conn.commit()
+            cursor.close()
+        except:
+            return render_template("error.html")
+    return render_template("deleteAddresses.html")
