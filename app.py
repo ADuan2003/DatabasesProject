@@ -913,7 +913,7 @@ def query1():
       cursor.close()
     except:
       return render_template('error.html')
-  return render_template('query.html', query=info)
+  return render_template('query1.html', query=info)
 
 @app.route('/query2', methods=["GET", "POST"])
 def query2():
@@ -929,7 +929,7 @@ def query2():
       cursor.close()
     except:
       return render_template('error.html')
-  return render_template('query.html', query=info)
+  return render_template('query2.html', query=info)
 
 @app.route('/query3', methods=["GET", "POST"])
 def query3():
@@ -945,7 +945,7 @@ def query3():
       cursor.close()
     except:
       return render_template('error.html')
-  return render_template('query.html', query=info)
+  return render_template('query3.html', query=info)
 
 @app.route('/query4', methods=["GET", "POST"])
 def query4():
@@ -960,7 +960,7 @@ def query4():
       cursor.close()
     except:
       return render_template('error.html')
-  return render_template('query.html', query=info)
+  return render_template('query4.html', query=info)
 
 @app.route('/query5', methods=["GET", "POST"])
 def query5():
@@ -976,7 +976,7 @@ def query5():
       cursor.close()
     except:
       return render_template('error.html')
-  return render_template('query.html', query=info)
+  return render_template('query5.html', query=info)
 
 @app.route('/query6', methods=["GET", "POST"])
 def query6():
@@ -993,7 +993,7 @@ def query6():
       cursor.close()
     except:
       return render_template('error.html')
-  return render_template('query.html', query=info)
+  return render_template('query6.html', query=info)
 
 @app.route('/query7', methods=["GET", "POST"])
 def query7():
@@ -1009,7 +1009,7 @@ def query7():
       cursor.close()
     except:
       return render_template('error.html')
-  return render_template('query.html', query=info)
+  return render_template('query7.html', query=info)
 
 @app.route('/query8', methods=["GET", "POST"])
 def query8():
@@ -1026,7 +1026,7 @@ def query8():
       cursor.close()
     except:
       return render_template('error.html')
-  return render_template('query.html', query=info)
+  return render_template('query8.html', query=info)
 
 @app.route('/query9', methods=["GET", "POST"])
 def query9():
@@ -1041,7 +1041,7 @@ def query9():
       cursor.close()
     except:
       return render_template('error.html')
-  return render_template('query.html', query=info)
+  return render_template('query9.html', query=info)
 
 @app.route('/query10', methods=["GET", "POST"])
 def query10():
@@ -1056,7 +1056,7 @@ def query10():
       cursor.close()
     except:
       return render_template('error.html')
-  return render_template('query.html', query=query)
+  return render_template('query10.html', query=query)
 
 @app.route('/query11', methods=["GET", "POST"])
 def query11():
@@ -1072,7 +1072,7 @@ def query11():
       cursor.close()
     except:
       return render_template('error.html')
-  return render_template('query.html', query=query)
+  return render_template('query11.html', query=query)
 
 @app.route('/query12', methods=["GET", "POST"])
 def query12():
@@ -1088,7 +1088,7 @@ def query12():
       cursor.close()
     except:
       return render_template('error.html')
-  return render_template('query.html', query=query)
+  return render_template('query12.html', query=query)
 
 @app.route('/query13', methods=["GET", "POST"])
 def query13():
@@ -1104,7 +1104,7 @@ def query13():
       cursor.close()
     except:
       return render_template('error.html')
-  return render_template('query.html', query=query)
+  return render_template('query13.html', query=query)
 
 @app.route('/query14', methods=["GET", "POST"])
 def query14():
@@ -1119,7 +1119,7 @@ def query14():
       cursor.close()
     except:
       return render_template('error.html')
-  return render_template('query.html', query=query)
+  return render_template('query14.html', query=query)
 
 @app.route('/query15', methods=["GET", "POST"])
 def query15():
@@ -1137,7 +1137,7 @@ def query15():
       cursor.close()
     except:
       return render_template('error.html')
-  return render_template('query.html', query=query)
+  return render_template('query15.html', query=query)
 
 @app.route('/query16', methods=["GET", "POST"])
 def query16():
@@ -1153,7 +1153,7 @@ def query16():
       cursor.close()
     except:
       return render_template('error.html')
-  return render_template('query.html', query=query)
+  return render_template('query16.html', query=query)
 
 @app.route('/query17', methods=["GET", "POST"])
 def query17():
@@ -1168,7 +1168,7 @@ def query17():
       cursor.close()
     except:
       return render_template('error.html')
-  return render_template('query.html', query=query)
+  return render_template('query17.html', query=query)
 
 @app.route('/query18', methods=["GET", "POST"])
 def query18():
@@ -1185,7 +1185,7 @@ def query18():
       cursor.close()
     except:
       return render_template('error.html')
-  return render_template('query.html', query=query)
+  return render_template('query18.html', query=query)
 
 @app.route('/query19', methods=["GET", "POST"])
 def query19():
@@ -1200,7 +1200,7 @@ def query19():
       cursor.close()
     except:
       return render_template('error.html')
-  return render_template('query.html', query=query)
+  return render_template('query19.html', query=query)
 
 @app.route('/query20', methods=["GET", "POST"])
 def query20():
@@ -1215,7 +1215,7 @@ def query20():
       cursor.close()
     except:
       return render_template('error.html')
-  return render_template('query.html', query=query)
+  return render_template('query20.html', query=query)
 
 @app.route('/query21', methods=["GET", "POST"])
 def query21():
@@ -1230,4 +1230,4 @@ def query21():
       cursor.close()
     except:
       return render_template('error.html')
-  return render_template('query.html', query=query)
+  return render_template('query21.html', query=query)
