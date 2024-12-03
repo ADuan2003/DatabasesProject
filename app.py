@@ -501,4 +501,19 @@ def updateBen():
             return render_template("error.html")
     return render_template("updateBenefits.html")
 
+@app.route("/updateDepartments/", methods=['GET', 'POST'])
+def updateDep():
+    if request.method == 'POST':
+        try:
+            new = request.form.get('new')
+            old = request.form.get('old')
+            conn = sqlite3.connect("database.db")
+            cursor = conn.cursor()
+            cursor.execute('update Departments set department = ? where department = ?', (new, old,))
+            conn.commit()
+            cursor.close()
+        except:
+            return render_template("error.html")
+    return render_template("updateDepartments.html")
+
 #delete pages
