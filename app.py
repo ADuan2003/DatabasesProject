@@ -820,21 +820,6 @@ def deleteProj():
             return render_template("error.html")
     return render_template("deleteProjects.html")
 
-@app.route("/deleteProjects/", methods=['GET','POST'])
-def deleteProj():
-    if request.method == 'POST':
-        try:
-            delete = request.form.get('old')
-            att = request.form.get('att')
-            conn = sqlite3.connect("database.db")
-            cursor = conn.cursor()
-            cursor.execute('delete from Projects where ' + att + ' = ?', (delete,))
-            conn.commit()
-            cursor.close()
-        except:
-            return render_template("error.html")
-    return render_template("deleteProjects.html")
-
 @app.route("/deleteAddresses/", methods=['GET','POST'])
 def deleteAddress():
     if request.method == 'POST':
