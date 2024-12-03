@@ -634,7 +634,7 @@ def updateProj():
     return render_template("updateProjects.html")
 
 @app.route("/updateProjectStatus/", methods=['GET', 'POST'])
-def updateProjStat():
+def updateStatus():
     if request.method == 'POST':
         try:
             new = request.form.get('new')
