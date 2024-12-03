@@ -321,34 +321,58 @@ def selection():
       return render_template('error.html') #I'll try to expand these blocks to other functions Saturday
   return render_template('error.html')
 
+@app.route('/insertIntoHealthInsurance/', methods=["GET", "POST"])
 def insertIntoHealthInsurance(coverage):
+  con = sqlite3.connect(“database.db”)
+  con.row_factory = sqlite3.Row
+  cursor = con.cursor()
   cursor.execute('INSERT INTO HealthInsurance (coverage) VALUES (?)', (coverage))
-  conn.commit()
+  cursor.close()
   return cursor.fetchone()[0]
 
+@app.route('/insertIntoBenefits/', methods=["GET", "POST"])
 def insertIntoBenefits(benefit):
+  con = sqlite3.connect(“database.db”)
+  con.row_factory = sqlite3.Row
+  cursor = con.cursor()
   cursor.execute('INSERT INTO Benefits (benefit) VALUES (?)', (benefit))
-  conn.commit()
+  cursor.close()
   return cursor.fetchone()[0]
 
+@app.route('/insertIntoProjectStatus/', methods=["GET", "POST"])
 def insertIntoProjectStatus(status):
+  con = sqlite3.connect(“database.db”)
+  con.row_factory = sqlite3.Row
+  cursor = con.cursor()
   cursor.execute('INSERT INTO ProjectStatus (status) VALUES (?)', (status))
-  conn.commit()
+  cursor.close()
   return cursor.fetchone()[0]
 
+@app.route('/insertIntoAddresses/', methods=["GET", "POST"])
 def insertIntoAddresses(address, zipcode):
+  con = sqlite3.connect(“database.db”)
+  con.row_factory = sqlite3.Row
+  cursor = con.cursor()
   cursor.execute('INSERT INTO Addresses (address, zipCode) VALUES (?, ?)', (address, zipcode))
-  conn.commit()
+  cursor.close()
   return cursor.fetchone()[0]
 
+@app.route('/insertIntoPositions/', methods=["GET", "POST"])
 def insertIntoPositions(position, minSalary, maxSalary):
+  con = sqlite3.connect(“database.db”)
+  con.row_factory = sqlite3.Row
+  cursor = con.cursor()
   cursor.execute('INSERT INTO Positions (position, minSalary, maxSalary) VALUES (?, ?, ?)', (position, int(minSalary), int(maxSalary)))
-  conn.commit()
+  cursor.close()
   return cursor.fetchone()[0]
 
+@app.route('/insertIntoDepartments/', methods=["GET", "POST"])
 def insertIntoDepartments(department):
+  con = sqlite3.connect(“database.db”)
+  con.row_factory = sqlite3.Row
+  cursor = con.cursor()
   cursor.execute('INSERT INTO Departments (department) VALUES (?)', (department))
-  conn.commit()
+  cursor.close()
   return cursor.fetchone()[0]
 
 @app.route('/insertIntoEmployeeInfo', methods=["GET", "POST"])
@@ -369,8 +393,11 @@ def insertIntoEmployeeInfo():
       currentPosition = request.form['i12']
       currentSalary = request.form['i13']
       coverage = request.form['i14']
+      con = sqlite3.connect(“database.db”)
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
       cursor.execute('INSERT INTO EmployeeInfo (EmployeeID, SSN, Name, gender, DoB, PrimaryAddress, PhoneNumber, HighestDegree, YearsExperience, HiringPosition, HiringSalary, CurrentPosition, CurrentSalary, Coverage) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', (employeeID, ssn, name, gender, DoB, address, phone, degree, int(years), hiringPosition, int(hiringSalary), currentPosition, int(currentSalary), coverage))
-      conn.commit()
+      cursor.close()
       return render_template('home.html')
     except:
       return render_template('error.html')
@@ -384,8 +411,11 @@ def insertIntoEmployeeAssignments():
       department = request.form['i2']
       startDate = request.form['i3']
       endDate = request.form['i4']
+      con = sqlite3.connect(“database.db”)
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
       cursor.execute('INSERT INTO EmployeeAssignments (EmployeeID, Department, StartDate, EndDate) VALUES (?, ?, ?, ?)', (employeeID, department, startDate, endDate))
-      conn.commit()
+      cursor.close()
       return render_template('home.html')
     except:
       return render_template('error.html')
@@ -399,8 +429,11 @@ def insertIntoEmployeeBenefits():
       benefit = request.form['i2']
       startDate = request.form['i3']
       endDate = request.form['i4']
+      con = sqlite3.connect(“database.db”)
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
       cursor.execute('INSERT INTO EmployeeBenefits (EmployeeID, Benefit, StartDate, EndDate) VALUES (?, ?, ?, ?)', (employeeID, benefit, startDate, endDate))
-      conn.commit()
+      cursor.close()
       return render_template('home.html')
     except:
       return render_template('error.html')
@@ -414,8 +447,11 @@ def insertIntoProjects():
       department = request.form['i2']
       projectLeader = request.form['i3']
       status = request.form['i4']
+      con = sqlite3.connect(“database.db”)
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
       cursor.execute('INSERT INTO Projects (Project, Department, ProjectLeader, Status) VALUES (?, ?, ?, ?)', (project, department, projectLeader, status))
-      conn.commit()
+      cursor.close()
       return render_template('home.html')
     except:
       return render_template('error.html')
@@ -426,8 +462,11 @@ def insertIntoRoles():
   if request.method == 'POST':
     try:
       role = request.form['i1']
+      con = sqlite3.connect(“database.db”)
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
       cursor.execute('INSERT INTO Roles (role) VALUES (?)', (role))
-      conn.commit()
+      cursor.close()
       return render_template('home.html')
     except:
       return render_template('error.html')
@@ -442,8 +481,11 @@ def insertIntoEmployeeProjects():
       role = request.form['i3']
       startDate = request.form['i4']
       endDate = request.form['i5']
+      con = sqlite3.connect(“database.db”)
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
       cursor.execute('INSERT INTO EmployeeProjects (EmployeeID, Project, Role, StartDate, EndDate) VALUES (?, ?, ?, ?, ?)', (employeeID, project, role, startDate, endDate))
-      conn.commit()
+      cursor.close()
       return render_template('home.html')
     except:
       return render_template('error.html')
@@ -459,13 +501,16 @@ def update():
       value = request.form['i3']
       cond1 = request.form['i4']
       cond2 = request.form['i5']
+      con = sqlite3.connect(“database.db”)
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
       if column == 'CurrentSalary' or column == 'HiringSalary' or column == 'YearsExperience' or column == 'minSalary' or column == 'maxSalary':
         value = int(value)
       if cond1 == 'CurrentSalary' or cond1 == 'HiringSalary' or cond1 == 'YearsExperience' or cond1 == 'minSalary' or cond1 == 'maxSalary':
         cond2 = int(cond2)
        #proper int formatting
       cursor.execute('UPDATE ? SET ? = ? WHERE ? = ?', (table, column, value, cond1, cond2))
-      conn.commit()
+      cursor.close()
       return render_template('home.html')
     except:
       return render_template('error.html')
@@ -481,11 +526,14 @@ def delete():
       table = request.form['i1']
       column = request.form['i2']
       value = request.form['i3']
+      con = sqlite3.connect(“database.db”)
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
       if cond1 == 'CurrentSalary' or cond1 == 'HiringSalary' or cond1 == 'YearsExperience' or cond1 == 'minSalary' or cond1 == 'maxSalary':
         cond2 = int(cond2)
         #proper int formatting
       cursor.execute('DELETE FROM ? WHERE ? = ?', (table, cond1, cond2))
-      conn.commit()
+      cursor.close()
       return render_template('home.html')
     except:
       return render_template('error.html')
@@ -500,8 +548,12 @@ def query1():
   if request.method == 'POST':
     try:
       emp = request.form['i1']
+      con = sqlite3.connect(“database.db”)
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
       cursor.execute('SELECT * FROM EmployeeInfo WHERE EmployeeID = ?', (emp))
       info = cursor.fetchall()
+      cursor.close()
       return render_template('info.html', rows=info)
     except:
       return render_template('error.html')
@@ -512,8 +564,12 @@ def query2():
   if request.method == 'POST':
     try:
       dept = request.form['i1']
+      con = sqlite3.connect(“database.db”)
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
       cursor.execute('SELECT DISTINCT EmployeeID FROM EmployeeInfo WHERE (EndDate IS NULL OR EndDate >= GetDate()) && Department = ?', dept)
       info = cursor.fetchall()
+      cursor.close()
       return render_template('info.html', rows=info)
     except:
       return render_template('error.html')
@@ -524,8 +580,12 @@ def query3():
   if request.method == 'POST':
     try:
       proj = request.form['i1']
+      con = sqlite3.connect(“database.db”)
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
       cursor.execute('SELECT (EmployeeID, Name) FROM EmployeeProjects WHERE Project = ? AND (EndDate IS NULL OR EndDate >= GetDate())', proj)
       info = cursor.fetchall()
+      cursor.close()
       return render_template('info.html', rows=info)
     except:
       return render_template('error.html')
@@ -535,8 +595,12 @@ def query3():
 def query4():
   if request.method == 'POST':
     try:
+      con = sqlite3.connect(“database.db”)
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
       cursor.execute('SELECT distinct(zipCode) FROM Addresses GROUP BY zipCode HAVING count(zipCode) >= ALL (SELECT count(zipCode) FROM Addresses GROUP BY zipCode)')
       info = cursor.fetchall()
+      cursor.close()
       return render_template('info.html', rows=info)
     except:
       return render_template('error.html')
@@ -547,8 +611,12 @@ def query5():
   if request.method == 'POST':
     try:
       proj = request.form['i1']
+      con = sqlite3.connect(“database.db”)
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
       cursor.execute('SELECT * FROM Projects WHERE Project = ?;', proj)
       info = cursor.fetchall()
+      cursor.close()
       return render_template('info.html', rows=info)
     except:
       return render_template('error.html')
@@ -560,8 +628,12 @@ def query6():
     try:
       proj = request.form['i1']
       date = request.form['i2']
+      con = sqlite3.connect(“database.db”)
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
       cursor.execute('SELECT COUNT (EmployeeID) FROM EmployeeProjects WHERE Project = ? AND (EndDate IS NULL OR EndDate >= ?) AND (StartDate <= ?)', proj, date, date)
       info = cursor.fetchall()
+      cursor.close()
       return render_template('info.html', rows=info)
     except:
       return render_template('error.html')
@@ -572,8 +644,12 @@ def query7():
   if request.method == 'POST':
     try:
       ben = request.form['i1']
+      con = sqlite3.connect(“database.db”)
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
       cursor.execute('SELECT COUNT (DISTINCT EmployeeID) FROM EmployeeBenefits WHERE (EndDate IS NULL OR EndDate >= GetDate()) AND Benefit = ?', ben)
       info = cursor.fetchall()
+      cursor.close()
       return render_template('info.html', rows=info)
     except:
       return render_template('error.html')
@@ -585,8 +661,12 @@ def query8():
     try:
       proj = request.form['i1']
       role = request.form['i2']
+      con = sqlite3.connect(“database.db”)
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
       cursor.execute('SELECT EmployeeID FROM EmployeeProjects WHERE (EndDate IS NULL OR EndDate >= GetDate()) AND Project = ? AND Role = ?', proj, role)
       info = cursor.fetchall()
+      cursor.close()
       return render_template('info.html', rows=info)
     except:
       return render_template('error.html')
@@ -596,8 +676,12 @@ def query8():
 def query9():
   if request.method == 'POST':
     try:
+      con = sqlite3.connect(“database.db”)
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
       cursor.execute('SELECT Project FROM Projects WHERE Status = \'in-progress\' OR Status = \'new\'')
       info = cursor.fetchall()
+      cursor.close()
       return render_template('info.html', rows=info)
     except:
       return render_template('error.html')
@@ -607,9 +691,13 @@ def query9():
 def query10():
   if request.method == 'POST':
     try:
+      con = sqlite3.connect(“database.db”)
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
       cursor.execute('SELECT Department, EmployeeID, StartDate, EndDate FROM EmployeeAssignments GROUP BY Department; SELECT Department, Project, ProjectLeader, Status FROM Projects GROUP BY DEPARTMENT')
-      info = cursor.fetchall()
-      return render_template('info.html', rows=info)
+      rows = cursor.fetchall()
+      cursor.close()
+      return render_template('info.html', rows=rows)
     except:
       return render_template('error.html')
   return render_template('error.html')
@@ -619,8 +707,13 @@ def query11():
   if request.method == 'POST':
     try:
       emp = request.form['i1']
+      con = sqlite3.connect(“database.db”)
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
       cursor.execute('SELECT Role FROM EmployeeProjects WHERE (EndDate IS NULL OR EndDate >= GetDate()) AND EmployeeID = ?', emp)
-      return render_template('info.html', rows=info)
+      rows = cursor.fetchall()
+      cursor.close()
+      return render_template('info.html', rows=rows)
     except:
       return render_template('error.html')
   return render_template('error.html')
@@ -630,8 +723,13 @@ def query12():
   if request.method == 'POST':
     try:
       emp = request.form['i1']
+      con = sqlite3.connect(“database.db”)
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
       cursor.execute('select role, startdate, enddate from EmployeeProjects where EmployeeID = ?', emp)
-      return render_template('info.html', rows=info)
+      rows = cursor.fetchall()
+      cursor.close()
+      return render_template('info.html', rows=rows)
     except:
       return render_template('error.html')
   return render_template('error.html')
@@ -641,8 +739,13 @@ def query13():
   if request.method == 'POST':
     try:
       HealthPlan = request.form['i1']
+      con = sqlite3.connect(“database.db”)
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
       cursor.execute('SELECT COUNT(EmployeeInfo) FROM EmployeeInfo WHERE Coverage = ?', HealthPlan)
-      return render_template('info.html', rows=info)
+      rows = cursor.fetchall()
+      cursor.close()
+      return render_template('info.html', rows=rows)
     except:
       return render_template('error.html')
   return render_template('error.html')
@@ -651,8 +754,13 @@ def query13():
 def query14():
   if request.method == 'POST':
     try:
+      con = sqlite3.connect(“database.db”)
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
       cursor.execute('select count(distinct employeeid), coverage from employeeInfo group by coverage')
-      return render_template('info.html', rows=info)
+      rows = cursor.fetchall()
+      cursor.close()
+      return render_template('info.html', rows=rows)
     except:
       return render_template('error.html')
   return render_template('error.html')
@@ -663,9 +771,14 @@ def query15():
     try:
       role = request.form['i1']
       lev = request.form['i2']
+      con = sqlite3.connect(“database.db”)
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
       #not sure if this is how you'd solve the issue
       cursor.execute('SELECT AVG(CurrentSalary) FROM EmployeeInfo WHERE Gender = \'Female\' AND CurrentPosition = ? AND YearsExperience = ?; SELECT AVG(CurrentSalary) FROM EmployeeInfo WHERE Gender = \'Male\' AND CurrentPosition = ? AND YearsExperience = ?', role, lev, role, lev)
-      return render_template('info.html', rows=info)
+      rows = cursor.fetchall()
+      cursor.close()
+      return render_template('info.html', rows=rows)
     except:
       return render_template('error.html')
   return render_template('error.html')
@@ -675,8 +788,13 @@ def query16():
   if request.method == 'POST':
     try:
       pos = request.form['i1']
+      con = sqlite3.connect(“database.db”)
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
       cursor.execute('SELECT (minSalary, maxSalary) FROM Positions WHERE position = ?;', pos)
-      return render_template('info.html', rows=info)
+      rows = cursor.fetchall()
+      cursor.close()
+      return render_template('info.html', rows=rows)
     except:
       return render_template('error.html')
   return render_template('error.html')
@@ -685,8 +803,13 @@ def query16():
 def query17():
   if request.method == 'POST':
     try:
+      con = sqlite3.connect(“database.db”)
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
       cursor.execute('select count(distinct project), status from projects group by status')
-      return render_template('info.html', rows=info)
+      rows = cursor.fetchall()
+      cursor.close()
+      return render_template('info.html', rows=rows)
     except:
       return render_template('error.html')
   return render_template('error.html')
@@ -697,8 +820,13 @@ def query18():
     try:
       emp = request.form['i1']
       dep = request.form['i2']
+      con = sqlite3.connect(“database.db”)
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
       cursor.execute('SELECT (StartDate, EndDate) FROM EmployeeAssignments WHERE EmployeeID = ? AND Department = ?', emp, dep)
-      return render_template('info.html', rows=info)
+      rows = cursor.fetchall()
+      cursor.close()
+      return render_template('info.html', rows=rows)
     except:
       return render_template('error.html')
   return render_template('error.html')
@@ -707,8 +835,13 @@ def query18():
 def query19():
   if request.method == 'POST':
     try:
+      con = sqlite3.connect(“database.db”)
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
       cursor.execute('SELECT (a.Project, b.Name) FROM Projects a, EmployeeID b, WHERE a.ProjectLeader == b.EmployeeID')
-      return render_template('info.html', rows=info)
+      rows = cursor.fetchall()
+      cursor.close()
+      return render_template('info.html', rows=rows)
     except:
       return render_template('error.html')
   return render_template('error.html')
@@ -717,9 +850,13 @@ def query19():
 def query20():
   if request.method == 'POST':
     try:
-      cur = conn.cursor
+      con = sqlite3.connect(“database.db”)
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
       cursor.execute('SELECT (EmployeeID, Name) FROM EmployeeInfo WHERE 5*CurrentSalary >= 6*HiringSalary')
-      return render_template('info.html', rows=info)
+      rows = cursor.fetchall()
+      cursor.close()
+      return render_template('info.html', rows=rows)
     except:
       return render_template('error.html')
   return render_template('error.html')
@@ -728,8 +865,13 @@ def query20():
 def query21():
   if request.method == 'POST':
     try:
+      con = sqlite3.connect(“database.db”)
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
       cursor.execute('select max(avg(CurrentSalary)) from ( select avg(CurrentSalary)  from EmployeeInfo group by CurrentPosition)')
-      return render_template('info.html', rows=info)
+      rows = cursor.fetchall()
+      cursor.close()
+      return render_template('info.html', rows=rows)
     except:
       return render_template('error.html')
   return render_template('error.html')
@@ -753,3 +895,4 @@ def main ():
     insertIntoHealthInsurance('Medicare')
     insertIntoHealthInsurance('family')
     insertIntoHealthInsurance('company')
+    cur.close()
