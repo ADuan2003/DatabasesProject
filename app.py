@@ -155,6 +155,10 @@ def showall():
             return render_template("error.html")
     return render_template("query.html", query = query) #test; edit this
 
+@app.route("/query/search/")
+def genQuery():
+    return render_template("query.html")
+
 @app.route("/query/sql/", methods=['POST'])
 def sql():
     input = request.form.get("input")
