@@ -2,7 +2,7 @@ Hi! This is Elin and Anthony's Database Design Project.
 
 Elin's part: 
 -Edited and completed SQL commands, particularly for queries, while handling user interface functionality, appearance, sending of information.
--Wrote up templates for HTML files showcasing their ideal functionality; tested HTML files' functionality.
+-Wrote up templates for HTML files showcasing their ideal functionality; tested HTML files' functionality and improved design.
 
 
 Anthony's part: 
