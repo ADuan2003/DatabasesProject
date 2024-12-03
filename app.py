@@ -901,6 +901,7 @@ def deleteAddress():
 
 @app.route('/query1', methods=["GET", "POST"])
 def query1():
+  info = None
   if request.method == 'POST':
     try:
       emp = request.form['i1']
@@ -916,6 +917,7 @@ def query1():
 
 @app.route('/query2', methods=["GET", "POST"])
 def query2():
+  info = None
   if request.method == 'POST':
     try:
       dept = request.form['i1']
@@ -931,6 +933,7 @@ def query2():
 
 @app.route('/query3', methods=["GET", "POST"])
 def query3():
+  info = None
   if request.method == 'POST':
     try:
       proj = request.form['i1']
@@ -946,6 +949,7 @@ def query3():
 
 @app.route('/query4', methods=["GET", "POST"])
 def query4():
+  info = None
   if request.method == 'POST':
     try:
       con = sqlite3.connect("database.db")
@@ -960,6 +964,7 @@ def query4():
 
 @app.route('/query5', methods=["GET", "POST"])
 def query5():
+  info = None
   if request.method == 'POST':
     try:
       proj = request.form['i1']
@@ -975,6 +980,7 @@ def query5():
 
 @app.route('/query6', methods=["GET", "POST"])
 def query6():
+  info = None
   if request.method == 'POST':
     try:
       proj = request.form['i1']
@@ -991,6 +997,7 @@ def query6():
 
 @app.route('/query7', methods=["GET", "POST"])
 def query7():
+  info = None
   if request.method == 'POST':
     try:
       ben = request.form['i1']
@@ -1006,6 +1013,7 @@ def query7():
 
 @app.route('/query8', methods=["GET", "POST"])
 def query8():
+  info = None
   if request.method == 'POST':
     try:
       proj = request.form['i1']
@@ -1022,6 +1030,7 @@ def query8():
 
 @app.route('/query9', methods=["GET", "POST"])
 def query9():
+  info = None
   if request.method == 'POST':
     try:
       con = sqlite3.connect("database.db")
@@ -1036,6 +1045,7 @@ def query9():
 
 @app.route('/query10', methods=["GET", "POST"])
 def query10():
+  query = None
   if request.method == 'POST':
     try:
       con = sqlite3.connect("database.db")
@@ -1050,6 +1060,7 @@ def query10():
 
 @app.route('/query11', methods=["GET", "POST"])
 def query11():
+  query = None
   if request.method == 'POST':
     try:
       emp = request.form['i1']
@@ -1065,6 +1076,7 @@ def query11():
 
 @app.route('/query12', methods=["GET", "POST"])
 def query12():
+  query = None
   if request.method == 'POST':
     try:
       emp = request.form['i1']
@@ -1080,6 +1092,7 @@ def query12():
 
 @app.route('/query13', methods=["GET", "POST"])
 def query13():
+  query = None
   if request.method == 'POST':
     try:
       HealthPlan = request.form['i1']
@@ -1095,6 +1108,7 @@ def query13():
 
 @app.route('/query14', methods=["GET", "POST"])
 def query14():
+  query = None
   if request.method == 'POST':
     try:
       con = sqlite3.connect("database.db")
@@ -1109,6 +1123,7 @@ def query14():
 
 @app.route('/query15', methods=["GET", "POST"])
 def query15():
+  query = None
   if request.method == 'POST':
     try:
       role = request.form['i1']
@@ -1126,6 +1141,7 @@ def query15():
 
 @app.route('/query16', methods=["GET", "POST"])
 def query16():
+  query = None
   if request.method == 'POST':
     try:
       pos = request.form['i1']
@@ -1141,6 +1157,7 @@ def query16():
 
 @app.route('/query17', methods=["GET", "POST"])
 def query17():
+  query = None
   if request.method == 'POST':
     try:
       con = sqlite3.connect("database.db")
@@ -1155,6 +1172,7 @@ def query17():
 
 @app.route('/query18', methods=["GET", "POST"])
 def query18():
+  query = None
   if request.method == 'POST':
     try:
       emp = request.form['i1']
@@ -1171,6 +1189,7 @@ def query18():
 
 @app.route('/query19', methods=["GET", "POST"])
 def query19():
+  query = None
   if request.method == 'POST':
     try:
       con = sqlite3.connect("database.db")
@@ -1185,6 +1204,7 @@ def query19():
 
 @app.route('/query20', methods=["GET", "POST"])
 def query20():
+  query = None
   if request.method == 'POST':
     try:
       con = sqlite3.connect("database.db")
@@ -1199,6 +1219,7 @@ def query20():
 
 @app.route('/query21', methods=["GET", "POST"])
 def query21():
+  query = None
   if request.method == 'POST':
     try:
       con = sqlite3.connect("database.db")
