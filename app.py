@@ -245,6 +245,11 @@ def insertIntoBenefits():
     if request.method == 'POST':
         try:
             benefit = request.form.get('i1') 
+            conn = sqlite3.connect("database.db")
+            cursor = conn.cursor()
+            cursor.execute('insert into Benefits values (?)', (benefit,)) 
+            conn.commit()
+            cursor.close()
             return render_template("addBenefits.html", added = benefit)
         except:
             return render_template('error.html')
@@ -256,6 +261,11 @@ def insertIntoDepartments():
     if request.method == 'POST':
         try:
             dep = request.form.get('i1') 
+            conn = sqlite3.connect("database.db")
+            cursor = conn.cursor()
+            cursor.execute('insert into Benefits values (?)', (dep,)) 
+            conn.commit()
+            cursor.close()
             return render_template("addDepartments.html", added = dep)
         except:
             return render_template('error.html')
@@ -269,6 +279,11 @@ def insertIntoPositions():
             position = request.form.get('i1') 
             min = request.form.get('i2')
             max = request.form.get('i3')
+            conn = sqlite3.connect("database.db")
+            cursor = conn.cursor()
+            cursor.execute('insert into Positions values (?, ?, ?)', (position, min, max,)) 
+            conn.commit()
+            cursor.close()
             return render_template("addPositions.html", added = position)
         except:
             return render_template('error.html')
@@ -283,6 +298,11 @@ def insertIntoProjects():
             dep = request.form.get('department')
             leader = request.form.get('leader')
             status = request.form.get('status')
+            conn = sqlite3.connect("database.db")
+            cursor = conn.cursor()
+            cursor.execute('insert into Projects values (?, ?, ?, ?)', (project, dep, leader, status,)) 
+            conn.commit()
+            cursor.close()
             return render_template("addProjects.html", added = project)
         except:
             return render_template('error.html')
