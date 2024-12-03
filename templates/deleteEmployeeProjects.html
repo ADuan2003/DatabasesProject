@@ -9,7 +9,7 @@
 <body>
   <div>
  <form action = "{{ url_for('deleteEmpProj') }}" method="post">
-     <h2>Add the attribute to be deleted upon</h2>
+     <h2>Delete Employee Project with</h2>
          <select name = "att">
               <option attribute = "EmployeeID">Employee ID</option>
               <option attribute = "Project">Project</option>
@@ -17,7 +17,7 @@
               <option attribute = "StartDate">Start Date (yyyy-mm-dd)</option>
               <option attribute = "EndDate">End Date (yyyy-mm-dd)</option>
          </select>
-     <h2>Please enter the value to be deleted:</h2>
+     <h2>Equaling:</h2>
          <input type="text" placeholder="0" name="old">
      
      <button type="submit">Finalize selection</button>
