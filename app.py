@@ -232,7 +232,15 @@ def delete():
         return redirect(url_for("deleteRole"))
     elif request.form.get("deleteRow") == "position":
         return redirect(url_for("deletePos"))
-    return render_template("home.html") #placeholder
+    elif request.form.get("deleteRow") == "empDep":
+        return redirect(url_for("deleteEmpDep"))
+    elif request.form.get("deleteRow") == "empBenefit":
+        return redirect(url_for("deleteEmpBen"))
+    elif request.form.get("deleteRow") == "employee":
+        return redirect(url_for("deleteEmpInfo"))
+    elif request.form.get("deleteRow") == "empProject":
+        return redirect(url_for("deleteEmpProj"))
+    return render_template("home.html") 
 
 #Add pages
 @app.route("/addHealthInsurance/", methods=['GET', 'POST'])
