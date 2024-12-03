@@ -8,20 +8,15 @@
 </head>
 <body>
 <div>
-<form action = "{{ url_for('delete') }}" method="post">
- <h2>"Select" the table (it's for the code): </h2>
- <select name = "i1">
-     <option attribute = "ProjectStatus">Project Status</option>
- </select>
- <h2>Add the attribute to be deleted upon</h2>
- <select name = "i2">
-      <option attribute = "status">Status</option>
- </select>
+<form action = "{{ url_for('deleteStatus') }}" method="post">
  <h2>Please enter the status to be deleted:</h2>
-        <input type="text" placeholder="0" name = "i3">
+        <input type="text" name = "i3">
 
   <button type="submit">Finalize selection</button>
-  </div>
 </form>
+</div>
+<div>
+    <a href="{{url_for("home")}}">Home</a href>
+</div>
 </body>
 </html>

@@ -220,8 +220,14 @@ def update():
 
 @app.route("/delete/", methods=["POST"])
 def delete():
-    if request.form.get('deleteRow'):
+    if request.form.get('deleteRow') == "insurance":
         return redirect(url_for("deleteHealth"))
+    elif request.form.get('deleteRow') == "benefit":
+        return redirect(url_for("deleteBen"))
+    elif request.form.get('deleteRow') == "department":
+        return redirect(url_for("deleteDep"))
+    elif request.form.get('deleteRow') == "status":
+        return redirect(url_for("deleteStatus"))
     return render_template("home.html") #placeholder
 
 #Add pages
@@ -679,3 +685,45 @@ def deleteHealth():
         except:
             return render_template("error.html")
     return render_template("deleteHealthInsurance.html")
+
+@app.route("/deleteBenefits/", methods=['GET', 'POST'])
+def deleteBen():
+    if request.method == 'POST':
+        try:
+            delete = request.form.get('input')
+            conn = sqlite3.connect("database.db")
+            cursor = conn.cursor()
+            cursor.execute('delete from Benefits where benefit = ?', (delete,))
+            conn.commit()
+            cursor.close()
+        except:
+            return render_template("error.html")
+    return render_template("deleteBenefits.html")
+
+@app.route("/deleteDepartments/", methods=['GET','POST'])
+def deleteDep():
+    if request.method == 'POST':
+        try:
+            delete = request.form.get('input')
+            conn = sqlite3.connect("database.db")
+            cursor = conn.cursor()
+            cursor.execute('delete from Departments where department = ?', (delete,))
+            conn.commit()
+            cursor.close()
+        except:
+            return render_template("error.html")
+    return render_template("deleteDepartments.html")
+
+@app.route("//", methods=['GET','POST'])
+def deleteStatus():
+    if request.method == 'POST':
+        try:
+            delete = request.form.get('input')
+            conn = sqlite3.connect("database.db")
+            cursor = conn.cursor()
+            cursor.execute('delete from ProjectStatus where status = ?', (delete,))
+            conn.commit()
+            cursor.close()
+        except:
+            return render_template("error.html")
+    return render_template("deleteProjectStatus.html")
