@@ -773,3 +773,33 @@ def deleteEmpBen():
         except:
             return render_template("error.html")
     return render_template("deleteEmployeeBenefits.html")
+
+@app.route("/deleteEmployeeInfo/", methods=['GET','POST'])
+def deleteEmpInfo():
+    if request.method == 'POST':
+        try:
+            delete = request.form.get('old')
+            att = request.form.get('att')
+            conn = sqlite3.connect("database.db")
+            cursor = conn.cursor()
+            cursor.execute('delete from EmployeeInfo where ' + att + ' = ?', (delete,))
+            conn.commit()
+            cursor.close()
+        except:
+            return render_template("error.html")
+    return render_template("deleteEmployeeInfo.html")
+
+@app.route("/deleteEmployeeProjects/", methods=['GET','POST'])
+def deleteEmpProj():
+    if request.method == 'POST':
+        try:
+            delete = request.form.get('old')
+            att = request.form.get('att')
+            conn = sqlite3.connect("database.db")
+            cursor = conn.cursor()
+            cursor.execute('delete from EmployeeProjects where ' + att + ' = ?', (delete,))
+            conn.commit()
+            cursor.close()
+        except:
+            return render_template("error.html")
+    return render_template("deleteEmployeeProjects.html")
