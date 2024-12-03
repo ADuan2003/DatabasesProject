@@ -220,6 +220,8 @@ def update():
 
 @app.route("/delete/", methods=["POST"])
 def delete():
+    if request.form.get('deleteRow'):
+        return redirect(url_for("deleteHealth"))
     return render_template("home.html") #placeholder
 
 #Add pages
@@ -664,16 +666,16 @@ def updateRole():
     return render_template("updateRoles.html")
 
 #delete pages
-@app.route("/deleteHealthInsurance")
+@app.route("/deleteHealthInsurance", methods=['GET', 'POST'])
 def deleteHealth():
     if request.method == 'POST':
-        try:
+        #try:
             delete = request.form.get('input')
             conn = sqlite3.connect("database.db")
             cursor = conn.cursor()
-            cursor.execute('delete HealthInsurance where coverage = ?', (delete,))
+            cursor.execute('delete from HealthInsurance where coverage = ?', (delete,))
             conn.commit()
             cursor.close()
-        except:
-            return render_template("error.html")
+        #except:
+        #    return render_template("error.html")
     return render_template("deleteHealthInsurance.html")
