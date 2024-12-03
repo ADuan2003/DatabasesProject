@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS EmployeeInfo
   PrimaryAddress TEXT NOT NULL,
   PhoneNumber TEXT NOT NULL,
   HighestDegree TEXT NOT NULL,
-  YearsExperience SMALLINT NOT NULL,
+  YearsExperience INT NOT NULL,
   HiringPosition TEXT NOT NULL,
   HiringSalary INT NOT NULL,
   CurrentPosition TEXT NOT NULL,
@@ -520,10 +520,14 @@ def updateDep():
 def updateEmpDep():
     if request.method == 'POST':
         try:
-            new = request.form.get('new')
-            old = request.form.get('old')
             att = request.form.get('i2')
             where = request.form.get('i4')
+            new = request.form.get('new')
+            if(att == "EmployeeID"): #might not need this due to sqlite's flexible typing
+                new = int(new)
+            old = request.form.get('old')
+            if(where == "EmployeeID"):
+                old = int(old)
             conn = sqlite3.connect("database.db")
             cursor = conn.cursor()
             cursor.execute('update EmployeeAssignments set ' +att+ ' = ? where '+where+' = ?', (new, old,))
@@ -541,6 +545,10 @@ def updateEmpBen():
             old = request.form.get('old')
             att = request.form.get('i2')
             where = request.form.get('i4')
+            if(att == "EmployeeID"):
+                new = int(new)
+            if(where == "EmployeeID"):
+                old = int(old)
             conn = sqlite3.connect("database.db")
             cursor = conn.cursor()
             cursor.execute('update EmployeeBenefits set ' +att+ ' = ? where '+where+' = ?', (new, old,))
@@ -558,10 +566,10 @@ def updateEmpInfo():
             old = request.form.get('old')
             att = request.form.get('i2')
             where = request.form.get('i4')
-            if (where = 'CurrentSalary' or where = 'HiringSalary'):
-                old = int(old)
-            if (att = 'CurrentSalary' or att = 'HiringSalary'):
+            if(att == "YearsExperience" or att == "HiringSalary" or att == "CurrentSalary"):
                 new = int(new)
+            if(where == "YearsExperience" or where == "HiringSalary" or where == "CurrentSalary"):
+                old = int(old)
             conn = sqlite3.connect("database.db")
             cursor = conn.cursor()
             cursor.execute('update EmployeeInfo set ' +att+ ' = ? where '+where+' = ?', (new, old,))
@@ -579,6 +587,10 @@ def updateEmpProj():
             old = request.form.get('old')
             att = request.form.get('i2')
             where = request.form.get('i4')
+            if(att == "EmployeeID"):
+                new = int(new)
+            if(where == "EmployeeID"):
+                old = int(old)
             conn = sqlite3.connect("database.db")
             cursor = conn.cursor()
             cursor.execute('update EmployeeProjects set ' +att+ ' = ? where '+where+' = ?', (new, old,))
@@ -596,10 +608,6 @@ def updatePositions():
             old = request.form.get('old')
             att = request.form.get('i2')
             where = request.form.get('i4')
-            if (where = 'minSalary' or where = 'maxSalary'):
-                old = int(old)
-            if (att = 'minSalary' or att = 'maxSalary'):
-                new = int(new)
             conn = sqlite3.connect("database.db")
             cursor = conn.cursor()
             cursor.execute('update Positions set ' +att+ ' = ? where '+where+' = ?', (new, old,))

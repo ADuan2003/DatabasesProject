@@ -9,8 +9,8 @@
 <body>
   <div>
  <form action = "{{ url_for('updateEmpProj') }}" method="post">
-     
-     <h2>Add the attribute to be updated upon</h2>
+     <h2>Update Employee Projects</h2>
+     <h2>Set</h2>
          <select name = "i2">
               <option attribute = "EmployeeID">Employee ID</option>
               <option attribute = "Project">Project</option>
@@ -18,9 +18,9 @@
               <option attribute = "StartDate">Start Date (yyyy-mm-dd)</option>
               <option attribute = "EndDate">End Date (yyyy-mm-dd)</option>
          </select>
-     <h2>Please enter the new value:</h2>
-         <input type="text" placeholder="0" name="new">
-     <h2>Add the attribute to of the condition be updated upon</h2>
+     <h2>As:</h2>
+         <input type="text" name="new">
+     <h2>Replacing</h2>
          <select name = "i4">
               <option attribute = "EmployeeID">Employee ID</option>
               <option attribute = "Project">Project</option>
@@ -28,10 +28,13 @@
               <option attribute = "StartDate">Start Date (yyyy-mm-dd)</option>
               <option attribute = "EndDate">End Date (yyyy-mm-dd)</option>
          </select>
-     <h2>Add the condition's value:</h2>
-        <input type="text" placeholder="0" name="old">
+     <h2>Equaling:</h2>
+        <input type="text" name="old">
      <button type="submit">Finalize selection</button>
  </form>
+</div>
+<div>
+    <a href="{{url_for("home")}}">Home</a href>
 </div>
 </body>
 </html>
