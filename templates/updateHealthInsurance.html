@@ -8,25 +8,25 @@
 </head>
 <body>
   <div>
- <form action = "{{ url_for('update') }}" method="post">
-     <h2>"Select" the table (it's for the code): </h2>
-         <select name = "i1">
-             <option attribute = "HealthInsurance">Health Insurance</option>
-         </select>
-     <h2>Add the attribute to be updated upon</h2>
+ <form action = "{{ url_for('updateHealth') }}" method="post">
+    <h2>Update Health Insurance: </h2>
+     <h2>Set</h2>
          <select name = "i2">
              <option attribute = "coverage">Coverage</option>
          </select>
-     <h2>Please enter the new coverage:</h2>
-         <input type="text" placeholder="0" name="i3">
-     <h2>Add the attribute to of the condition be updated upon</h2>
+     <h2>As:</h2>
+         <input type="text" name="i3">
+     <h2>For</h2>
          <select name = "i4">
               <option attribute = "coverage">Coverage</option>
          </select>
-     <h2>Add the old coverage to replace:</h2>
-        <input type="text" placeholder="0" name="i5">
+     <h2>Equaling:</h2>
+        <input type="text" name="i5">
      <button type="submit">Finalize selection</button>
  </form>
+</div>
+<div>
+<a href="{{url_for("home")}}">Home</a href>
 </div>
 </body>
 </html>

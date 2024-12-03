@@ -187,33 +187,33 @@ def add():
         return render_template("error.html")
     return render_template("home.html")
 
-@app.route("/update/", methods=["GET", "POST"])
+@app.route("/update/", methods=["POST"])
 def update():
     try:
         if request.form.get("updateRow") == "insurance":
-            return redirect(url_for("updateHealthInsurance"))
+            return redirect(url_for("updateHealth"))
         elif request.form.get("updateRow") == "benefit":
-            return redirect(url_for("updateBenefits"))
+            return redirect(url_for("updateBen"))
         elif request.form.get("updateRow") == "status":
-            return redirect(url_for("updateProjectStatus"))
+            return redirect(url_for("updateStatus"))
         elif request.form.get("updateRow") == "address":
-            return redirect(url_for("updateAddresses"))
+            return redirect(url_for("updateAddress"))
         elif request.form.get("updateRow") == "position":
-            return redirect(url_for("updatePositions"))
+            return redirect(url_for("updatePos"))
         elif request.form.get("updateRow") == "department":
-            return redirect(url_for("updateDepartments"))
+            return redirect(url_for("updateDep"))
         elif request.form.get("updateRow") == "employee":
-            return redirect(url_for("updateEmployeeInfo"))
+            return redirect(url_for("updateEmp"))
         elif request.form.get("updateRow") == "empBenefit":
-            return redirect(url_for("updateEmployeeBenefits"))
+            return redirect(url_for("updateEmpBen"))
         elif request.form.get("updateRow") == "project":
-            return redirect(url_for("updateProjects"))
+            return redirect(url_for("updateProj"))
         elif request.form.get("updateRow") == "role":
-            return redirect(url_for("updateRoles"))
+            return redirect(url_for("updateRole"))
         elif request.form.get("updateRow") == "empProject":
-            return redirect(url_for("updateEmployeeProjects"))
+            return redirect(url_for("updateEmpProj"))
         elif request.form.get("updateRow") == "empDep":
-            return redirect(url_for("updateEmployeeAssignments"))
+            return redirect(url_for("updateEmpDep"))
     except:
         return render_template("error.html")
     return render_template("home.html")
@@ -391,5 +391,41 @@ def insertIntoEmployeeAssignments():
         return render_template("addEmployeeAssignments.html")
     
 #update pages
+@app.route("/updateHealthInsurance/", methods=['GET', 'POST'])
+def updateHealth():
+    if request.method == 'POST':
+        try:
+            attribute = request.form.get('i2')
+            value = request.form.get('i3')
+            where = request.form.get('i4')
+            whereVal = request.form.get('i5')
+            conn = sqlite3.connect("database.db")
+            conn.row_factory = sqlite3.Row
+            cursor = conn.cursor()
+            cursor.execute('UPDATE HealthInsurance SET ? = ? WHERE ? = ?', (attribute, value, where, whereVal))
+            conn.commit()
+            cursor.close()
+        except:
+            render_template("error.html")
+    return render_template("updateHealthInsurance.html")
+
+@app.route("/updateAddresses/", methods=['GET', 'POST'])
+def updateAddress():
+    if request.method == "POST":
+        try:
+            att = request.form.get('attribute')
+            value = request.form.get('value')
+            whereAtt = request.form.get('position')
+            whereVal = request.form.get('input2')
+            conn = sqlite3.connect("database.db")
+            conn.row_factory = sqlite3.Row
+            cursor = conn.cursor()
+            cursor.execute('UPDATE Addresses SET ? = ? WHERE ? = ?', (att, value, whereAtt, whereVal))
+            conn.commit()
+            cursor.close()
+        except:
+            return render_template("error.html")
+    return render_template("updateAddresses.html")
+
 
 #delete pages
