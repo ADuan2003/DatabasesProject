@@ -327,6 +327,7 @@ def insertIntoHealthInsurance(coverage):
   con.row_factory = sqlite3.Row
   cursor = con.cursor()
   cursor.execute('INSERT INTO HealthInsurance (coverage) VALUES (?)', (coverage))
+  con.commit()
   cursor.close()
   return cursor.fetchone()[0]
 
@@ -336,6 +337,7 @@ def insertIntoBenefits(benefit):
   con.row_factory = sqlite3.Row
   cursor = con.cursor()
   cursor.execute('INSERT INTO Benefits (benefit) VALUES (?)', (benefit))
+  con.commit()
   cursor.close()
   return cursor.fetchone()[0]
 
@@ -345,6 +347,7 @@ def insertIntoProjectStatus(status):
   con.row_factory = sqlite3.Row
   cursor = con.cursor()
   cursor.execute('INSERT INTO ProjectStatus (status) VALUES (?)', (status))
+  con.commit()
   cursor.close()
   return cursor.fetchone()[0]
 
@@ -354,6 +357,7 @@ def insertIntoAddresses(address, zipcode):
   con.row_factory = sqlite3.Row
   cursor = con.cursor()
   cursor.execute('INSERT INTO Addresses (address, zipCode) VALUES (?, ?)', (address, zipcode))
+  con.commit()
   cursor.close()
   return cursor.fetchone()[0]
 
@@ -363,6 +367,7 @@ def insertIntoPositions(position, minSalary, maxSalary):
   con.row_factory = sqlite3.Row
   cursor = con.cursor()
   cursor.execute('INSERT INTO Positions (position, minSalary, maxSalary) VALUES (?, ?, ?)', (position, int(minSalary), int(maxSalary)))
+  con.commit()
   cursor.close()
   return cursor.fetchone()[0]
 
@@ -372,6 +377,7 @@ def insertIntoDepartments(department):
   con.row_factory = sqlite3.Row
   cursor = con.cursor()
   cursor.execute('INSERT INTO Departments (department) VALUES (?)', (department))
+  con.commit()
   cursor.close()
   return cursor.fetchone()[0]
 
@@ -397,6 +403,7 @@ def insertIntoEmployeeInfo():
       con.row_factory = sqlite3.Row
       cursor = con.cursor()
       cursor.execute('INSERT INTO EmployeeInfo (EmployeeID, SSN, Name, gender, DoB, PrimaryAddress, PhoneNumber, HighestDegree, YearsExperience, HiringPosition, HiringSalary, CurrentPosition, CurrentSalary, Coverage) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', (employeeID, ssn, name, gender, DoB, address, phone, degree, int(years), hiringPosition, int(hiringSalary), currentPosition, int(currentSalary), coverage))
+      con.commit()
       cursor.close()
       return render_template('home.html')
     except:
@@ -415,6 +422,7 @@ def insertIntoEmployeeAssignments():
       con.row_factory = sqlite3.Row
       cursor = con.cursor()
       cursor.execute('INSERT INTO EmployeeAssignments (EmployeeID, Department, StartDate, EndDate) VALUES (?, ?, ?, ?)', (employeeID, department, startDate, endDate))
+      con.commit()
       cursor.close()
       return render_template('home.html')
     except:
@@ -433,6 +441,7 @@ def insertIntoEmployeeBenefits():
       con.row_factory = sqlite3.Row
       cursor = con.cursor()
       cursor.execute('INSERT INTO EmployeeBenefits (EmployeeID, Benefit, StartDate, EndDate) VALUES (?, ?, ?, ?)', (employeeID, benefit, startDate, endDate))
+      con.commit()
       cursor.close()
       return render_template('home.html')
     except:
@@ -451,6 +460,7 @@ def insertIntoProjects():
       con.row_factory = sqlite3.Row
       cursor = con.cursor()
       cursor.execute('INSERT INTO Projects (Project, Department, ProjectLeader, Status) VALUES (?, ?, ?, ?)', (project, department, projectLeader, status))
+      con.commit()
       cursor.close()
       return render_template('home.html')
     except:
@@ -466,6 +476,7 @@ def insertIntoRoles():
       con.row_factory = sqlite3.Row
       cursor = con.cursor()
       cursor.execute('INSERT INTO Roles (role) VALUES (?)', (role))
+      con.commit()
       cursor.close()
       return render_template('home.html')
     except:
@@ -485,6 +496,7 @@ def insertIntoEmployeeProjects():
       con.row_factory = sqlite3.Row
       cursor = con.cursor()
       cursor.execute('INSERT INTO EmployeeProjects (EmployeeID, Project, Role, StartDate, EndDate) VALUES (?, ?, ?, ?, ?)', (employeeID, project, role, startDate, endDate))
+      con.commit()
       cursor.close()
       return render_template('home.html')
     except:
@@ -510,6 +522,7 @@ def update():
         cond2 = int(cond2)
        #proper int formatting
       cursor.execute('UPDATE ? SET ? = ? WHERE ? = ?', (table, column, value, cond1, cond2))
+      con.commit()
       cursor.close()
       return render_template('home.html')
     except:
@@ -533,6 +546,7 @@ def delete():
         cond2 = int(cond2)
         #proper int formatting
       cursor.execute('DELETE FROM ? WHERE ? = ?', (table, cond1, cond2))
+      con.commit()
       cursor.close()
       return render_template('home.html')
     except:
