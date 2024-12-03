@@ -134,7 +134,7 @@ app = Flask(__name__)
 def home():
     return render_template("home.html")
 
-###remove later? 
+###query page 
 @app.route("/query/")
 def queryPage():
     return render_template("query.html")
@@ -154,6 +154,21 @@ def showall():
         except:
             return render_template("error.html")
     return render_template("query.html", query = query) #test; edit this
+
+@app.route("/query/sql/", methods=['POST'])
+def sql():
+    input = request.form.get("input")
+    if request.method == "POST":
+        try:
+            conn = sqlite3.connect("database.db")
+            conn.row_factory = sqlite3.Row
+            cursor = conn.cursor()
+            cursor.execute(input) #test
+            query = cursor.fetchall()
+            cursor.close()
+        except:
+            return render_template("error.html")
+    return render_template("query.html", query = query)
 ###
 
 @app.route("/add/", methods=["POST"])
