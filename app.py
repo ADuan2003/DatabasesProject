@@ -875,3 +875,315 @@ def deleteAddress():
         except:
             return render_template("error.html")
     return render_template("deleteAddresses.html")
+
+@app.route('/query1', methods=["GET", "POST"])
+def query1():
+  if request.method == 'POST':
+    try:
+      emp = request.form['i1']
+      con = sqlite3.connect("database.db")
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
+      cursor.execute('SELECT * FROM EmployeeInfo WHERE EmployeeID = ?', (emp))
+      info = cursor.fetchall()
+      cursor.close()
+    except:
+      return render_template('error.html')
+  return render_template('query.html', query=info)
+
+@app.route('/query2', methods=["GET", "POST"])
+def query2():
+  if request.method == 'POST':
+    try:
+      dept = request.form['i1']
+      con = sqlite3.connect("database.db")
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
+      cursor.execute('SELECT DISTINCT EmployeeID FROM EmployeeInfo WHERE (EndDate IS NULL OR EndDate >= GetDate()) && Department = ?', dept)
+      info = cursor.fetchall()
+      cursor.close()
+    except:
+      return render_template('error.html')
+  return render_template('query.html', query=info)
+
+@app.route('/query3', methods=["GET", "POST"])
+def query3():
+  if request.method == 'POST':
+    try:
+      proj = request.form['i1']
+      con = sqlite3.connect("database.db")
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
+      cursor.execute('SELECT (EmployeeID, Name) FROM EmployeeProjects WHERE Project = ? AND (EndDate IS NULL OR EndDate >= GetDate())', proj)
+      info = cursor.fetchall()
+      cursor.close()
+    except:
+      return render_template('error.html')
+  return render_template('query.html', query=info)
+
+@app.route('/query4', methods=["GET", "POST"])
+def query4():
+  if request.method == 'POST':
+    try:
+      con = sqlite3.connect("database.db")
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
+      cursor.execute('SELECT distinct(zipCode) FROM Addresses GROUP BY zipCode HAVING count(zipCode) >= ALL (SELECT count(zipCode) FROM Addresses GROUP BY zipCode)')
+      info = cursor.fetchall()
+      cursor.close()
+    except:
+      return render_template('error.html')
+  return render_template('query.html', query=info)
+
+@app.route('/query5', methods=["GET", "POST"])
+def query5():
+  if request.method == 'POST':
+    try:
+      proj = request.form['i1']
+      con = sqlite3.connect("database.db")
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
+      cursor.execute('SELECT * FROM Projects WHERE Project = ?;', proj)
+      info = cursor.fetchall()
+      cursor.close()
+    except:
+      return render_template('error.html')
+  return render_template('query.html', query=info)
+
+@app.route('/query6', methods=["GET", "POST"])
+def query6():
+  if request.method == 'POST':
+    try:
+      proj = request.form['i1']
+      date = request.form['i2']
+      con = sqlite3.connect("database.db")
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
+      cursor.execute('SELECT COUNT (EmployeeID) FROM EmployeeProjects WHERE Project = ? AND (EndDate IS NULL OR EndDate >= ?) AND (StartDate <= ?)', proj, date, date)
+      info = cursor.fetchall()
+      cursor.close()
+    except:
+      return render_template('error.html')
+  return render_template('query.html', query=info)
+
+@app.route('/query7', methods=["GET", "POST"])
+def query7():
+  if request.method == 'POST':
+    try:
+      ben = request.form['i1']
+      con = sqlite3.connect("database.db")
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
+      cursor.execute('SELECT COUNT (DISTINCT EmployeeID) FROM EmployeeBenefits WHERE (EndDate IS NULL OR EndDate >= GetDate()) AND Benefit = ?', ben)
+      info = cursor.fetchall()
+      cursor.close()
+    except:
+      return render_template('error.html')
+  return render_template('query.html', query=info)
+
+@app.route('/query8', methods=["GET", "POST"])
+def query8():
+  if request.method == 'POST':
+    try:
+      proj = request.form['i1']
+      role = request.form['i2']
+      con = sqlite3.connect("database.db")
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
+      cursor.execute('SELECT EmployeeID FROM EmployeeProjects WHERE (EndDate IS NULL OR EndDate >= GetDate()) AND Project = ? AND Role = ?', proj, role)
+      info = cursor.fetchall()
+      cursor.close()
+    except:
+      return render_template('error.html')
+  return render_template('query.html', query=info)
+
+@app.route('/query9', methods=["GET", "POST"])
+def query9():
+  if request.method == 'POST':
+    try:
+      con = sqlite3.connect("database.db")
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
+      cursor.execute('SELECT Project FROM Projects WHERE Status = \'in-progress\' OR Status = \'new\'')
+      info = cursor.fetchall()
+      cursor.close()
+    except:
+      return render_template('error.html')
+  return render_template('query.html', query=info)
+
+@app.route('/query10', methods=["GET", "POST"])
+def query10():
+  if request.method == 'POST':
+    try:
+      con = sqlite3.connect("database.db")
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
+      cursor.execute('SELECT Department, EmployeeID, StartDate, EndDate FROM EmployeeAssignments GROUP BY Department; SELECT Department, Project, ProjectLeader, Status FROM Projects GROUP BY DEPARTMENT')
+      query = cursor.fetchall()
+      cursor.close()
+    except:
+      return render_template('error.html')
+  return render_template('query.html', query=query)
+
+@app.route('/query11', methods=["GET", "POST"])
+def query11():
+  if request.method == 'POST':
+    try:
+      emp = request.form['i1']
+      con = sqlite3.connect("database.db")
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
+      cursor.execute('SELECT Role FROM EmployeeProjects WHERE (EndDate IS NULL OR EndDate >= GetDate()) AND EmployeeID = ?', emp)
+      query = cursor.fetchall()
+      cursor.close()
+    except:
+      return render_template('error.html')
+  return render_template('query.html', query=query)
+
+@app.route('/query12', methods=["GET", "POST"])
+def query12():
+  if request.method == 'POST':
+    try:
+      emp = request.form['i1']
+      con = sqlite3.connect("database.db")
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
+      cursor.execute('select role, startdate, enddate from EmployeeProjects where EmployeeID = ?', emp)
+      query = cursor.fetchall()
+      cursor.close()
+    except:
+      return render_template('error.html')
+  return render_template('query.html', query=query)
+
+@app.route('/query13', methods=["GET", "POST"])
+def query13():
+  if request.method == 'POST':
+    try:
+      HealthPlan = request.form['i1']
+      con = sqlite3.connect("database.db")
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
+      cursor.execute('SELECT COUNT(EmployeeInfo) FROM EmployeeInfo WHERE Coverage = ?', HealthPlan)
+      query = cursor.fetchall()
+      cursor.close()
+    except:
+      return render_template('error.html')
+  return render_template('query.html', query=query)
+
+@app.route('/query14', methods=["GET", "POST"])
+def query14():
+  if request.method == 'POST':
+    try:
+      con = sqlite3.connect("database.db")
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
+      cursor.execute('select count(distinct employeeid), coverage from employeeInfo group by coverage')
+      query = cursor.fetchall()
+      cursor.close()
+    except:
+      return render_template('error.html')
+  return render_template('query.html', query=query)
+
+@app.route('/query15', methods=["GET", "POST"])
+def query15():
+  if request.method == 'POST':
+    try:
+      role = request.form['i1']
+      lev = request.form['i2']
+      con = sqlite3.connect("database.db")
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
+      #not sure if this is how you'd solve the issue
+      cursor.execute('SELECT AVG(CurrentSalary) FROM EmployeeInfo WHERE Gender = \'Female\' AND CurrentPosition = ? AND YearsExperience = ?; SELECT AVG(CurrentSalary) FROM EmployeeInfo WHERE Gender = \'Male\' AND CurrentPosition = ? AND YearsExperience = ?', role, lev, role, lev)
+      query = cursor.fetchall()
+      cursor.close()
+    except:
+      return render_template('error.html')
+  return render_template('query.html', query=query)
+
+@app.route('/query16', methods=["GET", "POST"])
+def query16():
+  if request.method == 'POST':
+    try:
+      pos = request.form['i1']
+      con = sqlite3.connect("database.db")
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
+      cursor.execute('SELECT (minSalary, maxSalary) FROM Positions WHERE position = ?;', pos)
+      query = cursor.fetchall()
+      cursor.close()
+    except:
+      return render_template('error.html')
+  return render_template('query.html', query=query)
+
+@app.route('/query17', methods=["GET", "POST"])
+def query17():
+  if request.method == 'POST':
+    try:
+      con = sqlite3.connect("database.db")
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
+      cursor.execute('select count(distinct project), status from projects group by status')
+      query = cursor.fetchall()
+      cursor.close()
+    except:
+      return render_template('error.html')
+  return render_template('query.html', query=query)
+
+@app.route('/query18', methods=["GET", "POST"])
+def query18():
+  if request.method == 'POST':
+    try:
+      emp = request.form['i1']
+      dep = request.form['i2']
+      con = sqlite3.connect("database.db")
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
+      cursor.execute('SELECT (StartDate, EndDate) FROM EmployeeAssignments WHERE EmployeeID = ? AND Department = ?', emp, dep)
+      query = cursor.fetchall()
+      cursor.close()
+    except:
+      return render_template('error.html')
+  return render_template('query.html', query=query)
+
+@app.route('/query19', methods=["GET", "POST"])
+def query19():
+  if request.method == 'POST':
+    try:
+      con = sqlite3.connect("database.db")
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
+      cursor.execute('SELECT (a.Project, b.Name) FROM Projects a, EmployeeID b, WHERE a.ProjectLeader == b.EmployeeID')
+      query = cursor.fetchall()
+      cursor.close()
+    except:
+      return render_template('error.html')
+  return render_template('query.html', query=query)
+
+@app.route('/query20', methods=["GET", "POST"])
+def query20():
+  if request.method == 'POST':
+    try:
+      con = sqlite3.connect("database.db")
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
+      cursor.execute('SELECT (EmployeeID, Name) FROM EmployeeInfo WHERE 5*CurrentSalary >= 6*HiringSalary')
+      query = cursor.fetchall()
+      cursor.close()
+    except:
+      return render_template('error.html')
+  return render_template('query.html', query=query)
+
+@app.route('/query21', methods=["GET", "POST"])
+def query21():
+  if request.method == 'POST':
+    try:
+      con = sqlite3.connect("database.db")
+      con.row_factory = sqlite3.Row
+      cursor = con.cursor()
+      cursor.execute('select max(avg(CurrentSalary)) from ( select avg(CurrentSalary)  from EmployeeInfo group by CurrentPosition)')
+      query = cursor.fetchall()
+      cursor.close()
+    except:
+      return render_template('error.html')
+  return render_template('query.html', query=query)
