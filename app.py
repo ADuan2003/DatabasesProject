@@ -456,7 +456,6 @@ def updateHealth():
             where = request.form.get('i4')
             whereVal = request.form.get('i5')
             conn = sqlite3.connect("database.db")
-            conn.row_factory = sqlite3.Row
             cursor = conn.cursor()
             cursor.execute('UPDATE HealthInsurance SET ' +attribute+ '= ? WHERE ' +where+ '= ?', (value, whereVal,))
             conn.commit()
