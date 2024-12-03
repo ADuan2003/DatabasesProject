@@ -24,7 +24,13 @@
     <input type = "submit" value = "Show"> <!--The problem is actually making this form submit things...-->
   </form>
   {%if query%}
-    Show {{query}}
+  <table border="1px">
+    {% for row in query %}
+    <tr>
+      {% for r in row %}
+      <td> {{ r }} </td>
+    </tr>
+  </table>
   {%endif%}
   <br>
   <h2><a href="{{url_for("home")}}">Home</a href></h2>
