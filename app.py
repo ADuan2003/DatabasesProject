@@ -718,7 +718,7 @@ def deleteDep():
             return render_template("error.html")
     return render_template("deleteDepartments.html")
 
-@app.route("//", methods=['GET','POST'])
+@app.route("/deleteStatus/", methods=['GET','POST'])
 def deleteStatus():
     if request.method == 'POST':
         try:
@@ -755,8 +755,36 @@ def deletePos():
             conn = sqlite3.connect("database.db")
             cursor = conn.cursor()
             cursor.execute('delete from Positions where ' +att+ ' = ?', (delete,))
+        except:
+            return render_template("error.html")
+    return render_template("deletePositions.html")
+
+@app.route("/deleteEmployeeAssignments/", methods=['GET','POST'])
+def deleteEmpDep():
+    if request.method == 'POST':
+        try:
+            delete = request.form.get('old')
+            att = request.form.get('att')
+            conn = sqlite3.connect("database.db")
+            cursor = conn.cursor()
+            cursor.execute('delete from EmployeeAssignments where ' + att + ' = ?', (delete,))
             conn.commit()
             cursor.close()
         except:
             return render_template("error.html")
-    return render_template("deletePositions.html")
+    return render_template("deleteEmployeeAssignments.html")
+
+@app.route("/deleteEmployeeBenefits/", methods=['GET','POST'])
+def deleteEmpBen():
+    if request.method == 'POST':
+        try:
+            delete = request.form.get('old')
+            att = request.form.get('att')
+            conn = sqlite3.connect("database.db")
+            cursor = conn.cursor()
+            cursor.execute('delete from EmployeeBenefits where ' + att + ' = ?', (delete,))
+            conn.commit()
+            cursor.close()
+        except:
+            return render_template("error.html")
+    return render_template("deleteEmployeeBenefits.html")
