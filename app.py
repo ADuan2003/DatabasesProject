@@ -230,6 +230,8 @@ def delete():
         return redirect(url_for("deleteStatus"))
     elif request.form.get("deleteRow") == "role":
         return redirect(url_for("deleteRole"))
+    elif request.form.get("deleteRow") == "position":
+        return redirect(url_for("deletePos"))
     return render_template("home.html") #placeholder
 
 #Add pages
@@ -743,3 +745,18 @@ def deleteRole():
         except:
             return render_template("error.html")
     return render_template("deleteRoles.html")
+
+@app.route("/deletePositions/", methods=['GET','POST'])
+def deletePos():
+    if request.method == 'POST':
+        try:
+            delete = request.form.get('input')
+            att = request.form.get('att')
+            conn = sqlite3.connect("database.db")
+            cursor = conn.cursor()
+            cursor.execute('delete from Positions where ' +att+ ' = ?', (delete,))
+            conn.commit()
+            cursor.close()
+        except:
+            return render_template("error.html")
+    return render_template("deletePositions.html")
