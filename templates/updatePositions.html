@@ -9,10 +9,7 @@
 <body>
   <div>
  <form action = "{{ url_for('update') }}" method="post">
-     <h2>"Select" the table (it's for the code): </h2>
-         <select name = "i1">
-             <option attribute = "Positions">Positions</option>
-         </select>
+     
      <h2>Add the attribute to be updated upon</h2>
          <select name = "i2">
             <option attribute = "Position">position</option>
@@ -20,7 +17,7 @@
             <option attribute = "maxSalary">maximum salary</option>
          </select>
      <h2>Please enter the new value:</h2>
-         <input type="text" placeholder="0" name="i3">
+         <input type="text" placeholder="0" name="new">
      <h2>Add the attribute to of the condition be updated upon</h2>
          <select name = "i4">
             <option attribute = "Position">position</option>
@@ -28,7 +25,7 @@
             <option attribute = "maxSalary">maximum salary</option>
          </select>
      <h2>Add the condition's value:</h2>
-        <input type="text" placeholder="0" name="i5">
+        <input type="text" placeholder="0" name="old">
      <button type="submit">Finalize selection</button>
  </form>
 </div>
