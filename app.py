@@ -312,7 +312,7 @@ def delete():
 @app.route("/addHealthInsurance/", methods=['GET', 'POST'])
 def insertIntoHealthInsurance():
     if request.method == 'POST':
-        #try:
+        try:
             coverage = request.form.get('insertHI') #request.form['insertHI']
             conn = sqlite3.connect("database.db")
             conn.row_factory = sqlite3.Row
@@ -321,8 +321,8 @@ def insertIntoHealthInsurance():
             conn.commit()
             cursor.close()
             return render_template("addHealthInsurance.html", added = coverage)
-        #except:
-        #    return render_template('error.html')
+        except:
+            return render_template('error.html')
     else: 
         return render_template("addHealthInsurance.html")
     
