@@ -1000,8 +1000,8 @@ def query2():
       cursor.execute('SELECT DISTINCT EmployeeID FROM EmployeeInfo WHERE (EndDate IS NULL OR EndDate >= GetDate()) && Department = ?', dept)
       info = cursor.fetchall()
       cursor.close()
-    except:
-      return render_template('error.html')
+    except Exception as e:
+      return render_template('error.html', e=e)
   return render_template('query2.html', query=info)
 
 @app.route('/query3', methods=["GET", "POST"])
