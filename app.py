@@ -1268,7 +1268,7 @@ def query19():
       con = sqlite3.connect("database.db")
       con.row_factory = sqlite3.Row
       cursor = con.cursor()
-      cursor.execute('SELECT a.Project, b.Name FROM Projects a, EmployeeID b, WHERE a.ProjectLeader = b.EmployeeID')
+      cursor.execute('SELECT a.Project, b.Name FROM Projects a, EmployeeInfo b WHERE a.ProjectLeader = b.EmployeeID')
       query = cursor.fetchall()
       cursor.close()
     except Exception as e:
