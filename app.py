@@ -997,7 +997,7 @@ def query2():
       con = sqlite3.connect("database.db")
       con.row_factory = sqlite3.Row
       cursor = con.cursor()
-      cursor.execute('SELECT DISTINCT EmployeeID FROM EmployeeInfo e, employeeAssignments d WHERE e.employeeID = d.employeeID and (d.EndDate IS NULL OR d.EndDate >= GetDate()) and d.Department = ?', dept)
+      cursor.execute('SELECT DISTINCT EmployeeID FROM EmployeeInfo e, EmployeeAssignments d WHERE e.employeeID = d.employeeID and (d.EndDate IS NULL OR d.EndDate >= GetDate()) and d.Department = ?', dept)
       info = cursor.fetchall()
       cursor.close()
     except Exception as e:
@@ -1016,8 +1016,8 @@ def query3():
       cursor.execute('SELECT (EmployeeID, Name) FROM EmployeeProjects WHERE Project = ? AND (EndDate IS NULL OR EndDate >= GetDate())', proj)
       info = cursor.fetchall()
       cursor.close()
-    except:
-      return render_template('error.html')
+    except Exception as e:
+      return render_template('error.html', e=e)
   return render_template('query3.html', query=info)
 
 @app.route('/query4', methods=["GET", "POST"])
