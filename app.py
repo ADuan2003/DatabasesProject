@@ -576,9 +576,9 @@ def insertIntoEmployeeAssignments():
             cursor.execute('insert into EmployeeAssignments values (?, ?, ?, ?)', (emp, dep, start, end,)) 
             conn.commit()
             cursor.close()
-            return render_template("addEmployeeAssignment.html", added = emp)
-        except:
-            return render_template('error.html')
+            return render_template("addEmployeeAssignments.html", added = emp)
+        except Exception as e:
+            return render_template('error.html', e=e)
     else: 
         return render_template("addEmployeeAssignments.html")
     
