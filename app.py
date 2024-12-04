@@ -1140,11 +1140,11 @@ def query11():
       con = sqlite3.connect("database.db")
       con.row_factory = sqlite3.Row
       cursor = con.cursor()
-      cursor.execute('SELECT Role FROM EmployeeProjects WHERE (EndDate IS NULL OR EndDate >= GetDate()) AND EmployeeID = ?', (emp,))
+      cursor.execute('SELECT Role FROM EmployeeProjects WHERE (EndDate IS NULL OR EndDate >= date()) AND EmployeeID = ?', (emp,))
       query = cursor.fetchall()
       cursor.close()
-    except:
-      return render_template('error.html')
+    except Exception as e:
+      return render_template('error.html', e=e)
   return render_template('query11.html', query=query)
 
 @app.route('/query12', methods=["GET", "POST"])
@@ -1156,7 +1156,7 @@ def query12():
       con = sqlite3.connect("database.db")
       con.row_factory = sqlite3.Row
       cursor = con.cursor()
-      cursor.execute('select role, startdate, enddate from EmployeeProjects where EmployeeID = ?', emp)
+      cursor.execute('select role, startdate, enddate from EmployeeProjects where EmployeeID = ?', (emp,))
       query = cursor.fetchall()
       cursor.close()
     except:
@@ -1172,11 +1172,11 @@ def query13():
       con = sqlite3.connect("database.db")
       con.row_factory = sqlite3.Row
       cursor = con.cursor()
-      cursor.execute('SELECT COUNT(EmployeeInfo) FROM EmployeeInfo WHERE Coverage = ?', HealthPlan)
+      cursor.execute('SELECT COUNT(EmployeeInfo) FROM EmployeeInfo WHERE Coverage = ?', (HealthPlan,))
       query = cursor.fetchall()
       cursor.close()
-    except:
-      return render_template('error.html')
+    except Exception as e:
+      return render_template('error.html', e=e)
   return render_template('query13.html', query=query)
 
 @app.route('/query14', methods=["GET", "POST"])
@@ -1205,11 +1205,11 @@ def query15():
       con.row_factory = sqlite3.Row
       cursor = con.cursor()
       #not sure if this is how you'd solve the issue
-      cursor.execute('SELECT AVG(CurrentSalary) FROM EmployeeInfo WHERE Gender = \'Female\' AND CurrentPosition = ? AND YearsExperience = ?; SELECT AVG(CurrentSalary) FROM EmployeeInfo WHERE Gender = \'Male\' AND CurrentPosition = ? AND YearsExperience = ?', role, lev, role, lev)
+      cursor.execute('SELECT AVG(CurrentSalary) FROM EmployeeInfo WHERE Gender = \'Female\' AND CurrentPosition = ? AND YearsExperience = ?; SELECT AVG(CurrentSalary) FROM EmployeeInfo WHERE Gender = \'Male\' AND CurrentPosition = ? AND YearsExperience = ?', (role, lev, role, lev,))
       query = cursor.fetchall()
       cursor.close()
-    except:
-      return render_template('error.html')
+    except Exception as e:
+      return render_template('error.html', e=e)
   return render_template('query15.html', query=query)
 
 @app.route('/query16', methods=["GET", "POST"])
@@ -1221,11 +1221,11 @@ def query16():
       con = sqlite3.connect("database.db")
       con.row_factory = sqlite3.Row
       cursor = con.cursor()
-      cursor.execute('SELECT (minSalary, maxSalary) FROM Positions WHERE position = ?;', pos)
+      cursor.execute('SELECT (minSalary, maxSalary) FROM Positions WHERE position = ?;', (pos,))
       query = cursor.fetchall()
       cursor.close()
-    except:
-      return render_template('error.html')
+    except Exception as e:
+      return render_template('error.html', e=e)
   return render_template('query16.html', query=query)
 
 @app.route('/query17', methods=["GET", "POST"])
@@ -1253,11 +1253,11 @@ def query18():
       con = sqlite3.connect("database.db")
       con.row_factory = sqlite3.Row
       cursor = con.cursor()
-      cursor.execute('SELECT (StartDate, EndDate) FROM EmployeeAssignments WHERE EmployeeID = ? AND Department = ?', emp, dep)
+      cursor.execute('SELECT (StartDate, EndDate) FROM EmployeeAssignments WHERE EmployeeID = ? AND Department = ?', (emp, dep,))
       query = cursor.fetchall()
       cursor.close()
-    except:
-      return render_template('error.html')
+    except Exception as e:
+      return render_template('error.html', e=e)
   return render_template('query18.html', query=query)
 
 @app.route('/query19', methods=["GET", "POST"])
@@ -1271,8 +1271,8 @@ def query19():
       cursor.execute('SELECT (a.Project, b.Name) FROM Projects a, EmployeeID b, WHERE a.ProjectLeader == b.EmployeeID')
       query = cursor.fetchall()
       cursor.close()
-    except:
-      return render_template('error.html')
+    except Exception as e:
+      return render_template('error.html', e=e)
   return render_template('query19.html', query=query)
 
 @app.route('/query20', methods=["GET", "POST"])
@@ -1286,8 +1286,8 @@ def query20():
       cursor.execute('SELECT (EmployeeID, Name) FROM EmployeeInfo WHERE 5*CurrentSalary >= 6*HiringSalary')
       query = cursor.fetchall()
       cursor.close()
-    except:
-      return render_template('error.html')
+    except Exception as e:
+      return render_template('error.html', e=e)
   return render_template('query20.html', query=query)
 
 @app.route('/query21', methods=["GET", "POST"])
@@ -1298,9 +1298,9 @@ def query21():
       con = sqlite3.connect("database.db")
       con.row_factory = sqlite3.Row
       cursor = con.cursor()
-      cursor.execute('select max(avg(CurrentSalary)) from ( select avg(CurrentSalary)  from EmployeeInfo group by CurrentPosition)')
+      cursor.execute('select max(avg(CurrentSalary)) from ( select avg(CurrentSalary) from EmployeeInfo group by CurrentPosition)')
       query = cursor.fetchall()
       cursor.close()
-    except:
-      return render_template('error.html')
+    except Exception as e:
+      return render_template('error.html', e=e)
   return render_template('query21.html', query=query)
