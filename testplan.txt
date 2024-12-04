@@ -105,9 +105,28 @@ Call query9; return Project1 and Project5
 
 
 ===
-Added employee 
-Updated employee's name from "name" to "N"
+Added employee "name"
+Updated "name"'s name from "name" to "N"
 
-Q1: grabbed employee's info using empID
-Q2: 
-Q4: grabbed 90 when (test, 90) was the only address, then grabbed 12 when (ree, 12) and (www, 12) was added to Addresses
+Q1: returned employee's info using empID
+Q2: returned emp 0 for department="cs" when emp 0 was assigned to cs department
+Q3: returned emp 0 only when only emp 0 was added to project; returned emp 0 and 2 when emp 2 was added
+Q4: returned 90 when (test, 90) was the only address, then grabbed 12 when (ree, 12) and (www, 12) was added to Addresses
+Q5: returned project's info 
+Q6: returned 2 for project at 2020-01-01; returned 0 for a date beyond the end date
+Q7: returned 1 for employees with "dental" when emp 0 was given that benefit
+Q8: failed; returned nothing 
+Q9: failed; returned nothing 
+Q10: returned emp 0's info related to cs department (the only employee assigned to a department)
+Q11: returned role for emp 0's role 
+Q12: returned role and start and end dates for emp 0 
+Q13: company and kaiser returned 1 (only emp 0 and 2, respectively, have it), family member returned 0
+Q14: company and kaiser returned 1
+Q15: with emp 0's experience set to 2 (same as emp 2), showed female v male (in a single column)
+    *current wording of page is misleading; says enter "role", but is meant to take "position"
+Q16: "scientist" gives 100 and 1000
+Q17: returned 1 project in progress 
+Q18: returned start and end dates for emp 0 in cs department
+Q19: returned "project" and emp 0's name ("Test"), who is the leader of that project
+Q20: returned names of emp 0 and emp 2, whose salaries went up by a factor of over 10x (much less 20%)
+Q21: failed; returned 175 (but not the position)

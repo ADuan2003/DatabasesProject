@@ -731,8 +731,8 @@ def updateEmpProj():
             cursor.execute('update EmployeeProjects set ' +att+ ' = ? where '+where+' = ?', (new, old,))
             conn.commit()
             cursor.close()
-        except:
-            return render_template("error.html")
+        except Exception as e:
+            return render_template("error.html", e=e)
     return render_template("updateEmployeeProjects.html")
 
 @app.route("/updatePositions/", methods=['GET', 'POST'])
@@ -1299,7 +1299,7 @@ def query21():
       con = sqlite3.connect("database.db")
       con.row_factory = sqlite3.Row
       cursor = con.cursor()
-      cursor.execute('select max(a) from ( select avg(CurrentSalary) as a from EmployeeInfo group by CurrentPosition)')
+      cursor.execute('select max(a), CurrentPosition from ( select CurrentPosition, avg(CurrentSalary) as a from EmployeeInfo group by CurrentPosition)')
       query = cursor.fetchall()
       cursor.close()
     except Exception as e:
