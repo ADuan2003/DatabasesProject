@@ -177,8 +177,8 @@ def showall():
             cursor.execute('select * from ' + table) #test
             query = cursor.fetchall()
             cursor.close()
-        except:
-            return render_template("error.html")
+        except Exception as e:
+            return render_template("error.html", e = e)
     return render_template("query.html", query = query) #test; edit this
 
 @app.route("/query/search/", methods = ["GET", "POST"])

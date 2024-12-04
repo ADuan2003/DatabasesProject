@@ -9,5 +9,8 @@
 <div>
 <h2>Error detected. <a href="{{url_for("home")}}">Return to home page</a href></h2>
 </div>
+{%if e%}
+{{e}}
+{%endif%}
 </body>
 </html>
