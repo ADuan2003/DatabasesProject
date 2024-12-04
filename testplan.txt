@@ -110,3 +110,4 @@ Updated employee's name from "name" to "N"
 
 Q1: grabbed employee's info using empID
 Q2: 
+Q4: grabbed 90 when (test, 90) was the only address, then grabbed 12 when (ree, 12) and (www, 12) was added to Addresses
