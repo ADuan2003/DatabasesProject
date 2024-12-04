@@ -1205,7 +1205,7 @@ def query15():
       con.row_factory = sqlite3.Row
       cursor = con.cursor()
       #not sure if this is how you'd solve the issue
-      cursor.execute('SELECT AVG(CurrentSalary) FROM EmployeeInfo WHERE CurrentPosition = ? AND YearsExperience = ? group by gender', (role, lev, role, lev,))
+      cursor.execute('SELECT AVG(CurrentSalary) FROM EmployeeInfo WHERE CurrentPosition = ? AND YearsExperience = ? group by gender', (role, lev,))
       query = cursor.fetchall()
       cursor.close()
     except Exception as e:
