@@ -1031,8 +1031,8 @@ def query4():
       cursor.execute('SELECT distinct(zipCode) FROM Addresses GROUP BY zipCode HAVING count(zipCode) >= ALL (SELECT count(zipCode) FROM Addresses GROUP BY zipCode)')
       info = cursor.fetchall()
       cursor.close()
-    except:
-      return render_template('error.html')
+    except Exception as e:
+      return render_template('error.html', e=e)
   return render_template('query4.html', query=info)
 
 @app.route('/query5', methods=["GET", "POST"])
