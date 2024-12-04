@@ -150,6 +150,7 @@ cursor.execute('insert into ProjectStatus values (\'hold\')')
 cursor.execute('insert into ProjectStatus values (\'new\')')
 cursor.execute('insert into Addresses values (\'test\', \'90\')')
 cursor.execute('insert into Roles values (\'role\')')
+cursor.execute('insert into EmployeeInfo values (0, 0, \'Test\', \'male\', 1999-01-01, \'test\', \'202-111-4321\', \'bachelors\', 3, \'temp\', 10, \'scientist\', 150, \'kaiser\')')
 
 conn.commit()
 conn.close()
