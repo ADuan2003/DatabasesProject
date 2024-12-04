@@ -137,6 +137,7 @@ cursor.execute('insert into ProjectStatus values (\'in progress\')')
 cursor.execute('insert into ProjectStatus values (\'completed\')')
 cursor.execute('insert into ProjectStatus values (\'hold\')')
 cursor.execute('insert into Addresses values (\'test\', \'90\')')
+cursor.execute('insert into Roles values (\'role\')')
 
 conn.commit()
 conn.close()
