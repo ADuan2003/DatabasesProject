@@ -86,3 +86,26 @@ Delete from Projects project = Project3, project = Project4
 
 ============QUERY 9 TEST===========
 Call query9; return Project1 and Project5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+===
+Added employee 
+Updated employee's name from "name" to "N"
+
+Q1: grabbed employee's info using empID
