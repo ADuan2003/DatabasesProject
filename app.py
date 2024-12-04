@@ -997,7 +997,7 @@ def query2():
       con = sqlite3.connect("database.db")
       con.row_factory = sqlite3.Row
       cursor = con.cursor()
-      cursor.execute('SELECT DISTINCT EmployeeID FROM EmployeeInfo e, EmployeeAssignments d WHERE e.employeeID = d.employeeID and (d.EndDate IS NULL OR d.EndDate >= GetDate()) and d.Department = ?', dept)
+      cursor.execute('SELECT DISTINCT EmployeeID FROM EmployeeInfo e, EmployeeAssignments d WHERE e.employeeID = d.employeeID and (d.EndDate IS NULL OR d.EndDate >= date()) and d.Department = ?', (dept,))
       info = cursor.fetchall()
       cursor.close()
     except Exception as e:
@@ -1013,7 +1013,7 @@ def query3():
       con = sqlite3.connect("database.db")
       con.row_factory = sqlite3.Row
       cursor = con.cursor()
-      cursor.execute('SELECT (EmployeeID, Name) FROM EmployeeProjects WHERE Project = ? AND (EndDate IS NULL OR EndDate >= GetDate())', proj)
+      cursor.execute('SELECT (EmployeeID) FROM EmployeeProjects WHERE Project = ? AND (EndDate IS NULL OR EndDate >= date())', (proj,))
       info = cursor.fetchall()
       cursor.close()
     except Exception as e:
@@ -1044,7 +1044,7 @@ def query5():
       con = sqlite3.connect("database.db")
       con.row_factory = sqlite3.Row
       cursor = con.cursor()
-      cursor.execute('SELECT * FROM Projects WHERE Project = ?;', proj)
+      cursor.execute('SELECT * FROM Projects WHERE Project = ?;', (proj,))
       info = cursor.fetchall()
       cursor.close()
     except:
