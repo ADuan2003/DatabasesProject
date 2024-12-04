@@ -1221,7 +1221,7 @@ def query16():
       con = sqlite3.connect("database.db")
       con.row_factory = sqlite3.Row
       cursor = con.cursor()
-      cursor.execute('SELECT (minSalary, maxSalary) FROM Positions WHERE position = ?;', (pos,))
+      cursor.execute('SELECT minSalary, maxSalary FROM Positions WHERE position = ?;', (pos,))
       query = cursor.fetchall()
       cursor.close()
     except Exception as e:
