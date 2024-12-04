@@ -204,8 +204,8 @@ def genQuery():
                     cursor.execute('select * from EmployeeInfo where ' +cond+ ' ' +op+ ' ?', (input,))
             query = cursor.fetchall()
             cursor.close()
-        except:
-            return render_template("error.html", query=query)
+        except Exception as e:
+            return render_template("error.html", e=e)
     return render_template("query.html")
 
 @app.route("/query/menu/", methods=["POST"])
@@ -266,8 +266,8 @@ def sql():
             cursor.execute(input) #test
             query = cursor.fetchall()
             cursor.close()
-        except:
-            return render_template("error.html")
+        except Exception as e:
+            return render_template("error.html", e)
     return render_template("query.html", query = query)
 ###
 
