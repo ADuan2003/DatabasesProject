@@ -722,10 +722,6 @@ def updateEmpProj():
             old = request.form.get('old')
             att = request.form.get('i2')
             where = request.form.get('i4')
-            if(att == "EmployeeID"):
-                new = int(new)
-            if(where == "EmployeeID"):
-                old = int(old)
             conn = sqlite3.connect("database.db")
             cursor = conn.cursor()
             cursor.execute('update EmployeeProjects set ' +att+ ' = ? where '+where+' = ?', (new, old,))
