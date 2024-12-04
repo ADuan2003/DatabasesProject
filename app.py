@@ -1028,7 +1028,7 @@ def query4():
       con = sqlite3.connect("database.db")
       con.row_factory = sqlite3.Row
       cursor = con.cursor()
-      cursor.execute('SELECT distinct(zipCode) FROM Addresses GROUP BY zipCode HAVING count(zipCode) >= ALL (SELECT count(zipCode) FROM Addresses GROUP BY zipCode)')
+      cursor.execute('SELECT distinct(zipCode) FROM Addresses GROUP BY zipCode HAVING count(zipCode) >= ALL (SELECT count(zipCode) FROM Addresses GROUP BY zipCode)') #all doesn't exist; reword to fix
       info = cursor.fetchall()
       cursor.close()
     except Exception as e:
@@ -1094,7 +1094,7 @@ def query8():
       con = sqlite3.connect("database.db")
       con.row_factory = sqlite3.Row
       cursor = con.cursor()
-      cursor.execute('SELECT EmployeeID FROM EmployeeProjects WHERE (EndDate IS NULL OR EndDate >= GetDate()) AND Project = ? AND Role = ?', (proj, role,))
+      cursor.execute('SELECT EmployeeID FROM EmployeeProjects WHERE (EndDate IS NULL OR EndDate >= date()) AND Project = ? AND Role = ?', (proj, role,))
       info = cursor.fetchall()
       cursor.close()
     except Exception as e:
