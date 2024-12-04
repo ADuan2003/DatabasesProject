@@ -1028,7 +1028,7 @@ def query4():
       con = sqlite3.connect("database.db")
       con.row_factory = sqlite3.Row
       cursor = con.cursor()
-      cursor.execute('select distinct zipCode from (select max(numZipCode), zipCode from (select count(zipCode) as numZipCode, zipCode from Addresses group by zipCode))') #all doesn't exist; reword to fix::: SELECT distinct(zipCode) FROM Addresses GROUP BY zipCode HAVING count(zipCode) >= ALL (SELECT count(zipCode) FROM Addresses GROUP BY zipCode)
+      cursor.execute('select distinct zipCode from (select max(numZipCode), zipCode from (select count(zipCode) as numZipCode, zipCode from Addresses group by zipCode))') #FIXED--all doesn't exist; reword to fix::: SELECT distinct(zipCode) FROM Addresses GROUP BY zipCode HAVING count(zipCode) >= ALL (SELECT count(zipCode) FROM Addresses GROUP BY zipCode)
       info = cursor.fetchall()
       cursor.close()
     except Exception as e:
