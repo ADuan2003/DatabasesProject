@@ -1047,8 +1047,8 @@ def query5():
       cursor.execute('SELECT * FROM Projects WHERE Project = ?;', (proj,))
       info = cursor.fetchall()
       cursor.close()
-    except:
-      return render_template('error.html')
+    except Exception as e:
+      return render_template('error.html', e=e)
   return render_template('query5.html', query=info)
 
 @app.route('/query6', methods=["GET", "POST"])
@@ -1064,8 +1064,8 @@ def query6():
       cursor.execute('SELECT COUNT (EmployeeID) FROM EmployeeProjects WHERE Project = ? AND (EndDate IS NULL OR EndDate >= ?) AND (StartDate <= ?)', proj, date, date)
       info = cursor.fetchall()
       cursor.close()
-    except:
-      return render_template('error.html')
+    except Exception as e:
+      return render_template('error.html', e=e)
   return render_template('query6.html', query=info)
 
 @app.route('/query7', methods=["GET", "POST"])
@@ -1080,8 +1080,8 @@ def query7():
       cursor.execute('SELECT COUNT (DISTINCT EmployeeID) FROM EmployeeBenefits WHERE (EndDate IS NULL OR EndDate >= GetDate()) AND Benefit = ?', ben)
       info = cursor.fetchall()
       cursor.close()
-    except:
-      return render_template('error.html')
+    except Exception as e:
+      return render_template('error.html', e=e)
   return render_template('query7.html', query=info)
 
 @app.route('/query8', methods=["GET", "POST"])
@@ -1097,8 +1097,8 @@ def query8():
       cursor.execute('SELECT EmployeeID FROM EmployeeProjects WHERE (EndDate IS NULL OR EndDate >= GetDate()) AND Project = ? AND Role = ?', proj, role)
       info = cursor.fetchall()
       cursor.close()
-    except:
-      return render_template('error.html')
+    except Exception as e:
+      return render_template('error.html', e=e)
   return render_template('query8.html', query=info)
 
 @app.route('/query9', methods=["GET", "POST"])
@@ -1112,8 +1112,8 @@ def query9():
       cursor.execute('SELECT Project FROM Projects WHERE Status = \'in-progress\' OR Status = \'new\'')
       info = cursor.fetchall()
       cursor.close()
-    except:
-      return render_template('error.html')
+    except Exception as e:
+      return render_template('error.html', e=e)
   return render_template('query9.html', query=info)
 
 @app.route('/query10', methods=["GET", "POST"])
@@ -1127,8 +1127,8 @@ def query10():
       cursor.execute('SELECT Department, EmployeeID, StartDate, EndDate FROM EmployeeAssignments GROUP BY Department; SELECT Department, Project, ProjectLeader, Status FROM Projects GROUP BY DEPARTMENT')
       query = cursor.fetchall()
       cursor.close()
-    except:
-      return render_template('error.html')
+    except Exception as e:
+      return render_template('error.html', e=e)
   return render_template('query10.html', query=query)
 
 @app.route('/query11', methods=["GET", "POST"])
@@ -1143,8 +1143,8 @@ def query11():
       cursor.execute('SELECT Role FROM EmployeeProjects WHERE (EndDate IS NULL OR EndDate >= GetDate()) AND EmployeeID = ?', emp)
       query = cursor.fetchall()
       cursor.close()
-    except:
-      return render_template('error.html')
+    except Exception as e:
+      return render_template('error.html', e=e)
   return render_template('query11.html', query=query)
 
 @app.route('/query12', methods=["GET", "POST"])
@@ -1159,8 +1159,8 @@ def query12():
       cursor.execute('select role, startdate, enddate from EmployeeProjects where EmployeeID = ?', emp)
       query = cursor.fetchall()
       cursor.close()
-    except:
-      return render_template('error.html')
+    except Exception as e:
+      return render_template('error.html', e=e)
   return render_template('query12.html', query=query)
 
 @app.route('/query13', methods=["GET", "POST"])
@@ -1175,8 +1175,8 @@ def query13():
       cursor.execute('SELECT COUNT(EmployeeInfo) FROM EmployeeInfo WHERE Coverage = ?', HealthPlan)
       query = cursor.fetchall()
       cursor.close()
-    except:
-      return render_template('error.html')
+    except Exception as e:
+      return render_template('error.html', e=e)
   return render_template('query13.html', query=query)
 
 @app.route('/query14', methods=["GET", "POST"])
@@ -1190,8 +1190,8 @@ def query14():
       cursor.execute('select count(distinct employeeid), coverage from employeeInfo group by coverage')
       query = cursor.fetchall()
       cursor.close()
-    except:
-      return render_template('error.html')
+    except Exception as e:
+      return render_template('error.html', e=e)
   return render_template('query14.html', query=query)
 
 @app.route('/query15', methods=["GET", "POST"])
@@ -1208,8 +1208,8 @@ def query15():
       cursor.execute('SELECT AVG(CurrentSalary) FROM EmployeeInfo WHERE Gender = \'Female\' AND CurrentPosition = ? AND YearsExperience = ?; SELECT AVG(CurrentSalary) FROM EmployeeInfo WHERE Gender = \'Male\' AND CurrentPosition = ? AND YearsExperience = ?', role, lev, role, lev)
       query = cursor.fetchall()
       cursor.close()
-    except:
-      return render_template('error.html')
+    except Exception as e:
+      return render_template('error.html', e=e)
   return render_template('query15.html', query=query)
 
 @app.route('/query16', methods=["GET", "POST"])
@@ -1224,8 +1224,8 @@ def query16():
       cursor.execute('SELECT (minSalary, maxSalary) FROM Positions WHERE position = ?;', pos)
       query = cursor.fetchall()
       cursor.close()
-    except:
-      return render_template('error.html')
+    except Exception as e:
+      return render_template('error.html', e=e)
   return render_template('query16.html', query=query)
 
 @app.route('/query17', methods=["GET", "POST"])
@@ -1239,8 +1239,8 @@ def query17():
       cursor.execute('select count(distinct project), status from projects group by status')
       query = cursor.fetchall()
       cursor.close()
-    except:
-      return render_template('error.html')
+    except Exception as e:
+      return render_template('error.html', e=e)
   return render_template('query17.html', query=query)
 
 @app.route('/query18', methods=["GET", "POST"])
@@ -1256,8 +1256,8 @@ def query18():
       cursor.execute('SELECT (StartDate, EndDate) FROM EmployeeAssignments WHERE EmployeeID = ? AND Department = ?', emp, dep)
       query = cursor.fetchall()
       cursor.close()
-    except:
-      return render_template('error.html')
+    except Exception as e:
+      return render_template('error.html', e=e)
   return render_template('query18.html', query=query)
 
 @app.route('/query19', methods=["GET", "POST"])
@@ -1271,8 +1271,8 @@ def query19():
       cursor.execute('SELECT (a.Project, b.Name) FROM Projects a, EmployeeID b, WHERE a.ProjectLeader == b.EmployeeID')
       query = cursor.fetchall()
       cursor.close()
-    except:
-      return render_template('error.html')
+    except Exception as e:
+      return render_template('error.html', e=e)
   return render_template('query19.html', query=query)
 
 @app.route('/query20', methods=["GET", "POST"])
@@ -1286,8 +1286,8 @@ def query20():
       cursor.execute('SELECT (EmployeeID, Name) FROM EmployeeInfo WHERE 5*CurrentSalary >= 6*HiringSalary')
       query = cursor.fetchall()
       cursor.close()
-    except:
-      return render_template('error.html')
+    except Exception as e:
+      return render_template('error.html', e=e)
   return render_template('query20.html', query=query)
 
 @app.route('/query21', methods=["GET", "POST"])
@@ -1301,6 +1301,6 @@ def query21():
       cursor.execute('select max(avg(CurrentSalary)) from ( select avg(CurrentSalary)  from EmployeeInfo group by CurrentPosition)')
       query = cursor.fetchall()
       cursor.close()
-    except:
-      return render_template('error.html')
+    except Exception as e:
+      return render_template('error.html', e=e)
   return render_template('query21.html', query=query)
