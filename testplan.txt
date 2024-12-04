@@ -129,4 +129,4 @@ Q17: returned 1 project in progress
 Q18: returned start and end dates for emp 0 in cs department
 Q19: returned "project" and emp 0's name ("Test"), who is the leader of that project
 Q20: returned names of emp 0 and emp 2, whose salaries went up by a factor of over 10x (much less 20%)
-Q21: failed; returned 175 (but not the position)
+Q21: returned 175 (average of emp 0 and emp 2) and scientist 
