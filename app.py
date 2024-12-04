@@ -161,6 +161,23 @@ def genQuery():
     if request.method == "POST":
         try:
             att = request.form.get("attribute")
+            cond = request.form.get("cond")
+            op = request.form.get("operation")
+            input = request.form.get("input")
+            if op == "like":
+                input = "\'" + input + "\'"
+            conn = sqlite3.connect("database.db")
+            conn.row_factory = sqlite3.Row
+            cursor = conn.cursor()
+            if att == "emp":
+                if cond == "benefit":
+                    cursor.execute('select * from EmployeeInfo e, EmployeeBenefits b where e.EmployeeID = b.EmployeeID and b.Benefit ' +op+ '?', (input,))
+                elif cond == "department":
+                    cursor.execute('select * from EmployeeInfo e, EmployeeAssignments d where e.EmployeeID = d.EmployeeID and d.Department' +op+ '?', (input,))
+                else:
+                    cursor.execute('select * from EmployeeInfo where ' +cond+ ' ' +op+ ' ?', (input,))
+            query = cursor.fetchall()
+            cursor.close()
         except:
             return render_template("error.html", query=query)
     return render_template("query.html")
