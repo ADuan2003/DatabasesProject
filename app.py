@@ -1124,7 +1124,7 @@ def query10():
       con = sqlite3.connect("database.db")
       con.row_factory = sqlite3.Row
       cursor = con.cursor()
-      cursor.execute('SELECT Department, EmployeeID, StartDate, EndDate FROM EmployeeAssignments GROUP BY Department; SELECT Department, Project, ProjectLeader, Status FROM Projects GROUP BY DEPARTMENT')
+      cursor.execute('SELECT Department, EmployeeID, StartDate, EndDate FROM EmployeeAssignments GROUP BY Department')
       query = cursor.fetchall()
       cursor.close()
     except Exception as e:
@@ -1172,7 +1172,7 @@ def query13():
       con = sqlite3.connect("database.db")
       con.row_factory = sqlite3.Row
       cursor = con.cursor()
-      cursor.execute('SELECT COUNT(EmployeeInfo) FROM EmployeeInfo WHERE Coverage = ?', (HealthPlan,))
+      cursor.execute('SELECT COUNT(EmployeeID) FROM EmployeeInfo WHERE Coverage = ?', (HealthPlan,))
       query = cursor.fetchall()
       cursor.close()
     except Exception as e:
