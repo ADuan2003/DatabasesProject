@@ -1047,8 +1047,8 @@ def query5():
       cursor.execute('SELECT * FROM Projects WHERE Project = ?;', (proj,))
       info = cursor.fetchall()
       cursor.close()
-    except:
-      return render_template('error.html')
+    except Exception as e:
+      return render_template('error.html', e=e)
   return render_template('query5.html', query=info)
 
 @app.route('/query6', methods=["GET", "POST"])
@@ -1112,8 +1112,8 @@ def query9():
       cursor.execute('SELECT Project FROM Projects WHERE Status = \'in-progress\' OR Status = \'new\'')
       info = cursor.fetchall()
       cursor.close()
-    except:
-      return render_template('error.html')
+    except Exception as e:
+      return render_template('error.html', e=e)
   return render_template('query9.html', query=info)
 
 @app.route('/query10', methods=["GET", "POST"])
@@ -1159,8 +1159,8 @@ def query12():
       cursor.execute('select role, startdate, enddate from EmployeeProjects where EmployeeID = ?', (emp,))
       query = cursor.fetchall()
       cursor.close()
-    except:
-      return render_template('error.html')
+    except Exception as e:
+      return render_template('error.html', e=e)
   return render_template('query12.html', query=query)
 
 @app.route('/query13', methods=["GET", "POST"])
@@ -1190,8 +1190,8 @@ def query14():
       cursor.execute('select count(distinct employeeid), coverage from employeeInfo group by coverage')
       query = cursor.fetchall()
       cursor.close()
-    except:
-      return render_template('error.html')
+    except Exception as e:
+      return render_template('error.html', e=e)
   return render_template('query14.html', query=query)
 
 @app.route('/query15', methods=["GET", "POST"])
@@ -1239,8 +1239,8 @@ def query17():
       cursor.execute('select count(distinct project), status from projects group by status')
       query = cursor.fetchall()
       cursor.close()
-    except:
-      return render_template('error.html')
+    except Exception as e:
+      return render_template('error.html', e=e)
   return render_template('query17.html', query=query)
 
 @app.route('/query18', methods=["GET", "POST"])
