@@ -1298,7 +1298,7 @@ def query21():
       con = sqlite3.connect("database.db")
       con.row_factory = sqlite3.Row
       cursor = con.cursor()
-      cursor.execute('select max(avg(CurrentSalary)) from ( select avg(CurrentSalary) from EmployeeInfo group by CurrentPosition)')
+      cursor.execute('select max(a) from ( select avg(CurrentSalary) as a from EmployeeInfo group by CurrentPosition)')
       query = cursor.fetchall()
       cursor.close()
     except Exception as e:
