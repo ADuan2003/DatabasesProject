@@ -125,6 +125,14 @@ CREATE TABLE IF NOT EXISTS EmployeeProjects
   PRIMARY KEY (EmployeeID, Project, Role)); 
 ''')
 
+#default values
+cursor.execute('insert into Benefits values (\'health\')')
+cursor.execute('insert into Benefits values (\'dental\')')
+cursor.execute('insert into Benefits values (\'life insurance\')')
+cursor.execute('insert into HealthInsurance values (\'kaiser\')')
+cursor.execute('insert into Positions values (\'scientist\', 100, 1000)')
+cursor.execute('insert into Positions values (\'temp\', 10, 20)')
+
 conn.commit()
 conn.close()
 
